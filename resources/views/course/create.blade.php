@@ -52,38 +52,41 @@
                         <div class="tab-content" id="courseTabContent">
 
                             <div class="tab-pane fade show active" id="description" role="tabpanel">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="{{route('course.store')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
 
                                             <div class="form-group mb-3">
                                                 <label>Course Name <span class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control" placeholder="e.g. Web Development Bootcamp" required>
+                                                <input type="text" name="name" class="form-control" placeholder="Web Development Bootcamp" required>
                                             </div>
-
 
                                             <div class="form-group mb-3">
-                                                <label>Department</label>
-                                                <input type="text" name="department" class="form-control" placeholder="e.g. Computer Science">
+                                                <label>Course Code</label>
+                                                <input type="text" name="code" class="form-control" placeholder="IT/012" required>
                                             </div>
-
 
                                             <div class="form-group mb-3">
-                                                <label>Professor / Instructor</label>
-                                                <input type="text" name="professor" class="form-control" placeholder="Dr. John Doe">
+                                                <label>Category</label>
+                                                <select name="category" class="form-select">
+                                                    <option value="Web Development">Web Development</option>
+                                                    <option value="Mobile Development">Mobile Development</option>
+                                                    <option value="Design">Design</option>
+                                                    <option value="Data Science">Data Science</option>
+                                                    <option value="Business">Business</option>
+                                                </select>
                                             </div>
-
 
                                             <div class="form-group mb-3">
                                                 <label>Start Date</label>
-                                                <input type="date" name="start_date" class="form-control">
+                                                <input type="date" name="start_date" class="form-control"  required>
                                             </div>
 
 
                                             <div class="form-group mb-3">
-                                                <label>Duration (e.g. 12 weeks)</label>
-                                                <input type="text" name="duration" class="form-control" placeholder="12 weeks">
+                                                <label>Duration </label>
+                                                <input type="text" name="duration" class="form-control" placeholder="(6 Months)"  required>
                                             </div>
                                         </div>
 
@@ -91,22 +94,12 @@
 
                                             <div class="form-group mb-3">
                                                 <label>Course Price ($)</label>
-                                                <input type="number" name="price" class="form-control" placeholder="99.99" step="0.01">
-                                            </div>
-
-                                            <div class="form-group mb-3">
-                                                <label>Academic Year</label>
-                                                <select name="year" class="form-select">
-                                                    <option value="">Select Year</option>
-                                                    <option>2024-2025</option>
-                                                    <option>2025-2026</option>
-                                                    <option>2026-2027</option>
-                                                </select>
+                                                <input type="number" name="price" class="form-control" placeholder="99.99" step="0.01"  required>
                                             </div>
 
                                             <div class="form-group mb-3">
                                                 <label>Description</label>
-                                                <textarea name="description" rows="5" class="form-control" placeholder="Write a detailed description..."></textarea>
+                                                <textarea name="description" rows="5" class="form-control" placeholder="Write a detailed description..."  required></textarea>
                                             </div>
 
                                             <div class="form-group mb-3">
@@ -124,7 +117,7 @@
 
                                     <div class="text-end mt-4">
                                         <button type="submit" class="btn btn-primary btn-lg">
-                                            <i class="bi bi-check-circle"></i> Create Course
+                                            Create Course
                                         </button>
                                     </div>
                                 </form>

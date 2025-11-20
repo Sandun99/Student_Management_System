@@ -40,4 +40,5 @@ route::prefix('course')->name('course.')->group(function () {
     Route::get('/create', [CourseController::class, 'create'])->name('create');
     Route::get('/edit', [CourseController::class, 'edit'])->name('edit');
     Route::get('/show', [CourseController::class, 'show'])->name('show');
+    Route::post('/store', [CourseController::class, 'store'])->name('store');
 });
