@@ -100,6 +100,9 @@
         @elseif(request()->routeIs('dashboard'))
         $('#menu1 a:contains("Education")').click().attr('aria-expanded','true')
             .next('ul').addClass('in');
+        @elseif(request()->routeIs('course.*'))
+        $('#menu1 a:contains("Courses")').click().attr('aria-expanded','true')
+            .next('ul').addClass('in');
         @endif
     });
 </script>
