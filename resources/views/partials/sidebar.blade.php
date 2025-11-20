@@ -1,50 +1,108 @@
-<div class="left-sidebar-pro">
-    <nav id="sidebar" class="">
-        <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="{{asset('assets/img/logo/logo.png')}}" alt="Student Management System" /></a>
-            <strong><a href="index.html"><img src="{{asset('assets/img/logo/logosn.png')}}" alt="" /></a></strong>
-        </div>
-        <div class="left-custom-menu-adp-wrap comment-scrollbar">
-            <nav class="sidebar-nav left-sidebar-menu-pro">
-                <ul class="metismenu" id="menu1">
-                    <li class="">
-                        <a class="has-arrow" href="#" >
-                            <span class="educate-icon educate-home icon-wrap"></span>
-                            <span class="mini-click-non">Dashboard</span>
-                        </a>
-                        <ul class="submenu-angle">
-                            <li><a title="Dashboard" href="{{route('dashboard')}}"><span class="mini-sub-pro">Admin Dashboard</span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="#" ><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Teachers</span></a>
-                        <ul class="submenu-angle" >
-                            <li><a title="All Professors" href="{{route('teacher.teacher.index')}}"><span class="mini-sub-pro">All Teachers</span></a></li>
-                            <li><a title="Add Professor" href="{{route('teacher.teacher.add')}}"><span class="mini-sub-pro">Add Teacher</span></a></li>
-                            <li><a title="Edit Professor" href="{{route('teacher.teacher.edit')}}"><span class="mini-sub-pro">Edit Teacher</span></a></li>
-                            <li><a title="Professor Profile" href="{{route('teacher.teacher.show')}}"><span class="mini-sub-pro">Teacher Profile</span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="#" ><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
-                        <ul class="submenu-angle" >
-                            <li><a title="All Students" href="{{route('student.index')}}"><span class="mini-sub-pro">All Students</span></a></li>
-                            <li><a title="Add Students" href="{{route('student.create')}}"><span class="mini-sub-pro">Add Student</span></a></li>
-                            <li><a title="Edit Students" href="{{route('student.edit')}}"><span class="mini-sub-pro">Edit Student</span></a></li>
-                            <li><a title="Students Profile" href="{{route('student.show')}}"><span class="mini-sub-pro">Student Profile</span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="#" ><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Courses</span></a>
-                        <ul class="submenu-angle" >
-                            <li><a title="All Courses" href="{{route('course.index')}}"><span class="mini-sub-pro">All Courses</span></a></li>
-                            <li><a title="Add Courses" href="{{route('course.create')}}"><span class="mini-sub-pro">Add Course</span></a></li>
-                            <li><a title="Edit Courses" href="{{route('course.edit')}}"><span class="mini-sub-pro">Edit Course</span></a></li>
-                            <li><a title="Courses Profile" href="{{route('course.show')}}"><span class="mini-sub-pro">Courses Info</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
-</div>
+
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+    <div class="sidebar-brand">
+        <a href="{{ route('dashboard') }}" class="brand-link">
+            <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+                 class="brand-image opacity-75 shadow">
+            <span class="brand-text fw-light">AdminLTE</span>
+        </a>
+    </div>
+
+    <div class="sidebar-wrapper">
+        <nav class="mt-2">
+            <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" data-accordion="false">
+
+                <li class="nav-item {{ request()->routeIs('dashboard') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-speedometer"></i>
+                        <p>
+                            Dashboard
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}"
+                               class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Admin Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('teacher.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('teacher.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-person-badge"></i>
+                        <p>
+                            Teacher
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.teacher.index') }}" class="nav-link {{ request()->routeIs('teacher.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Teachers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.teacher.add') }}" class="nav-link {{ request()->routeIs('teacher.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Add Teacher</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('student.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('student.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-people"></i>
+                        <p>
+                            Student
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('student.index') }}" class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Students</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('student.create') }}" class="nav-link {{ request()->routeIs('student.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Add Student</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('course.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('course.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-book"></i>
+                        <p>
+                            Courses
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('course.index') }}" class="nav-link {{ request()->routeIs('course.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Courses</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('course.create') }}" class="nav-link {{ request()->routeIs('course.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create Course</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
