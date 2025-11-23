@@ -1,4 +1,3 @@
-{{-- resources/views/teacher/create.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Add Teacher')
