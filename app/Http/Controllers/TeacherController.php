@@ -22,4 +22,9 @@ class TeacherController extends Controller
     public function show(){
         return view('teacher.show');
     }
+
+    public function store(Request $request)
+    {
+
+    }
 }
