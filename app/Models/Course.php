@@ -12,7 +12,6 @@ class Course extends Model
         'name',
         'course_code',
         'category',
-        'professor',
         'start_date',
         'duration',
         'price',
