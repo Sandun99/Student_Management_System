@@ -10,7 +10,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-        return view('course.index');
+        $courses = Course::with('subjects')->latest()->get();
+        return view('course.index' , compact('courses'));
     }
 
     public function create()
@@ -43,21 +44,7 @@ class CourseController extends Controller
             'subjects.*' => 'exists:subjects,id',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('courses', 'public');
-        }
-
-        $course = Course::create([
-            'name'       => $validated['name'],
-            'code'       => $validated['code'],
-            'category'   => $validated['category'],
-            'start_date' => $validated['start_date'],
-            'duration'   => $validated['duration'],
-            'price'      => $validated['price'],
-            'image'      => $imagePath,
-        ]);
-
+        $course = Course::create($validated);
         $course->subjects()->attach($request->subjects);
 
         return redirect()->route('course.index');

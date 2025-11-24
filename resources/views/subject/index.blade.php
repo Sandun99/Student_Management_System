@@ -48,10 +48,10 @@
                                         <td>{{ $subject->name }}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
+                                                Edit
                                             </button>
                                             <button type="button" class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
+                                                Delete
                                             </button>
                                         </td>
                                     </tr>

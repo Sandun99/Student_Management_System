@@ -4,205 +4,84 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row mb-4 align-items-center">
-            <div class="col-sm-12">
-                <h1 class="m-0 align-item-center">Add New Course</h1>
-                <ol class="breadcrumb mt-1 justify-content-end">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('course.index') }}">Courses</a></li>
-                    <li class="breadcrumb-item active">Create</li>
-                </ol>
-            </div>
-
-            <div class="col-sm-3">
-                <form action="{{ route('course.index') }}" method="GET" class="d-flex">
-                    <div class="input-group input-group-lg">
-                        <input
-                            type="text"
-                            name="search"
-                            class="form-control"
-                            placeholder="Search courses..."
-                            value="{{ request('search') }}"
-                            aria-label="Search courses">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">All Courses</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active">Courses</li>
+                    </ol>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="courses-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner res-mg-b-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                            <h2>Apps Development</h2>
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 text-center">
+                            <h4 class="mb-0">Registered Courses</h4>
                         </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
+                        <a href="{{ route('course.create') }}" class="btn btn-light btn-sm">
+                            <i class="bi bi-plus-lg"></i> Add New Course
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/2.jpg" alt=""></a>
-                            <h2>Illustrator CC 2018</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner res-mg-t-30 dk-res-t-pro-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/3.jpg" alt=""></a>
-                            <h2>Indesign cs6 2018</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner res-mg-t-30 dk-res-t-pro-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                            <h2>Web Development</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mg-b-15">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner mg-t-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                            <h2>Apps Development</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner mg-t-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/2.jpg" alt=""></a>
-                            <h2>Illustrator CC 2018</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner mg-t-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/3.jpg" alt=""></a>
-                            <h2>Indesign cs6 2018</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner mg-t-30">
-                        <div class="courses-title">
-                            <a href="#"><img src="img/courses/1.jpg" alt=""></a>
-                            <h2>Web Development</h2>
-                        </div>
-                        <div class="courses-alaltic">
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-clock"></i></span> 1 Year</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-heart"></i></span> 50</span>
-                            <span class="cr-ic-r"><span class="course-icon"><i class="fa fa-dollar"></i></span> 500</span>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Duration:</b> 6 Months</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Professor:</b> Jane Doe</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Students:</b> 100+</p>
-                        </div>
-                        <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">Read More</button>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Course Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Duration</th>
+                                    <th>Subjects</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($courses as $course)
+                                    <tr>
+                                        <td><strong>{{ $course->code }}</strong></td>
+                                        <td>{{ $course->name }}</td>
+                                        <td>{{ $course->category ?? '-' }}</td>
+                                        <td>Rs.{{ number_format($course->price, 2) }}</td>
+                                        <td>{{ $course->duration }}</td>
+                                        <td>
+                                            @if($course->subjects->isNotEmpty())
+                                                @foreach($course->subjects as $subject)
+                                                    <span class="badge bg-secondary me-1">{{ $subject->name }}</span>
+                                                @endforeach
+                                            @else
+                                                <span class="text-muted">No subjects</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                View
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-sm">
+                                                Edit
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            No courses found. <a href="{{ route('course.create') }}">Create one now</a>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
