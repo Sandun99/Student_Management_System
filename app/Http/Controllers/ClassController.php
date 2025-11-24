@@ -9,7 +9,8 @@ class ClassController extends Controller
 {
     public function index()
     {
-        return view('class.index');
+        $classes = Classes::all();
+        return view('class.index' , compact('classes'));
     }
 
     public function create()
@@ -25,7 +26,7 @@ class ClassController extends Controller
                 'name' => $request->name,
                 'code' => $request->code,
             ]);
-            return view('class.index');
+            return redirect()->route('class.index');
         }
         catch (\Exception $e){
             return $e;
