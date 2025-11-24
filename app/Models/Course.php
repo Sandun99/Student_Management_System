@@ -10,12 +10,11 @@ class Course extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'course_code',
+        'code',
         'category',
         'start_date',
         'duration',
         'price',
-        'description',
         'image',
     ];
 
@@ -24,6 +23,10 @@ class Course extends Model
         'start_date' => 'date',
     ];
 
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'course_subject');
+    }
 
 
 }

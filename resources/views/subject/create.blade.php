@@ -43,7 +43,7 @@
                                             id="subjectName"
                                             name="name"
                                             class="form-control form-control-lg"
-                                            placeholder="Web Development"
+                                            placeholder="English"
                                             required>
                                     </div>
 
@@ -57,7 +57,7 @@
                                             id="subjectCode"
                                             name="sub_code"
                                             class="form-control form-control-lg"
-                                            placeholder="WD101"
+                                            placeholder="EN/2025"
                                             required>
                                     </div>
 

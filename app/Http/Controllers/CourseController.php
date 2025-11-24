@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Models\Course;
 
@@ -14,7 +15,8 @@ class CourseController extends Controller
 
     public function create()
     {
-        return view('course.create');
+        $subjects = Subject::orderBy('name')->get();
+        return view('course.create' , compact('subjects'));
     }
 
     public function edit()
@@ -30,24 +32,35 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'code'        => 'nullable|string|max:20',
-            'category'    => 'nullable|string|max:100',
-            'start_date'  => 'nullable|date',
-            'duration'    => 'nullable|string|max:50',
-            'price'       => 'nullable|numeric|min:0',
-            'description' => 'nullable|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name'       => 'required|string|max:255',
+            'code'       => 'required|string|max:20|unique:courses,code',
+            'category'   => 'nullable|string|max:100',
+            'start_date' => 'required|date',
+            'duration'   => 'required|string|max:50',
+            'price'      => 'required|numeric|min:0',
+            'image'      => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'subjects'   => 'required|array|min:1',
+            'subjects.*' => 'exists:subjects,id',
         ]);
 
-        // Handle image upload
+        $imagePath = null;
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('courses', 'public');
+            $imagePath = $request->file('image')->store('courses', 'public');
         }
 
-        Course::create($validated);
+        $course = Course::create([
+            'name'       => $validated['name'],
+            'code'       => $validated['code'],
+            'category'   => $validated['category'],
+            'start_date' => $validated['start_date'],
+            'duration'   => $validated['duration'],
+            'price'      => $validated['price'],
+            'image'      => $imagePath,
+        ]);
 
-        return view('course.index');
+        $course->subjects()->attach($request->subjects);
+
+        return redirect()->route('course.index');
     }
 
 }

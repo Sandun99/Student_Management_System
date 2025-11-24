@@ -16,23 +16,6 @@
                     </ol>
                 </div>
             </div>
-
-{{--            <div class="col-sm-3">--}}
-{{--                <form action="{{ route('course.index') }}" method="GET" class="d-flex">--}}
-{{--                    <div class="input-group input-group-lg">--}}
-{{--                        <input--}}
-{{--                            type="text"--}}
-{{--                            name="search"--}}
-{{--                            class="form-control"--}}
-{{--                            placeholder="Search courses..."--}}
-{{--                            value="{{ request('search') }}"--}}
-{{--                            aria-label="Search courses">--}}
-{{--                        <button class="btn btn-primary" type="submit">--}}
-{{--                            <i class="bi bi-search"></i>--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </div>--}}
         </div>
     </div>
     <div class="row">
@@ -94,12 +77,18 @@
 
                                             <div class="form-group mb-3">
                                                 <label>Course Price ($)</label>
-                                                <input type="number" name="price" class="form-control" placeholder="99.99" step="0.01"  required>
+                                                <input type="number" name="price" class="form-control" placeholder="3000.00" step="0.01"  required>
                                             </div>
 
                                             <div class="form-group mb-3">
-                                                <label>Description</label>
-                                                <textarea name="description" rows="5" class="form-control" placeholder="Write a detailed description..."  required></textarea>
+                                                <label>Subjects</label>
+                                                <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
+                                                    @foreach($subjects ?? [] as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->name }} ({{ $subject->sub_code }})
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group mb-3">
@@ -128,23 +117,33 @@
             </div>
     </div>
 
+    @push('scripts')
+        <script>
+            new TomSelect('#subjects-select', {
+                plugins: ['remove_button'],
+                placeholder: 'Search and select subjects...',
+            });
+        </script>
+    @endpush
+    @push('scripts')
+        <script>
+            function previewImage(event) {
+                const preview = document.getElementById('imagePreview');
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+
+    @endpush
+
 @endsection
 
-@push('scripts')
-    <script>
-        function previewImage(event) {
-            const preview = document.getElementById('imagePreview');
-            const file = event.target.files[0];
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-
-@endpush

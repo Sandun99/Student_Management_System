@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('price', 10, 2)->default(0);
-            $table->text('description')->nullable();
+            $table->text('subject')->nullable();
             $table->timestamps();
         });
     }
