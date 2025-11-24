@@ -4,62 +4,70 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row mb-4 align-items-center">
-            <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center position-relative">
-                    <h1 class="m-0">Add New Subject</h1>
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">Add New Subject</h1>
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none text-muted">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('subject.index') }}" class="text-decoration-none text-muted">Subjects</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('subject.index') }}" class="text-decoration-none">Subjects</a></li>
                         <li class="breadcrumb-item active">Create</li>
                     </ol>
-                </div>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-primary card-outline card-tabs">
-                <div class="card-header p-0 pt-1 border-bottom-0">
-                    <ul class="nav nav-tabs" id="subjectTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="details-tab" data-bs-toggle="pill" href="#details" role="tab">
-                                Subject Details
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="container-fluid pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white bg-secondary">
+                        <ul class="nav nav-tabs card-header-tabs" id="subjectTab" role="tablist">
+                        </ul>
+                    </div>
 
-                <div class="card-body">
-                    <div class="tab-content" id="subjectTabContent">
-                        <div class="tab-pane fade show active" id="details" role="tabpanel">
-                            <form action="" method="POST" enctype="multipart/form-data">
-                                @csrf
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="tab-content" id="subjectTabContent">
+                            <div class="tab-pane fade show active" id="details" role="tabpanel">
+                                <form action="{{ route('subject.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
 
-                                <div class="row">
-                                    <div class="col-md-6">
-
-                                        <div class="form-group mb-3">
-                                            <label>Subject Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" placeholder="Web Development" required>
-                                        </div>
-
-                                        <div class="form-group mb-3">
-                                            <label>Subject Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="code" class="form-control" placeholder="WD101" required>
-                                        </div>
-
+                                    <div class="mb-4">
+                                        <label for="subjectName" class="form-label fw-semibold">
+                                            Subject Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="subjectName"
+                                            name="name"
+                                            class="form-control form-control-lg"
+                                            placeholder="Web Development"
+                                            required>
                                     </div>
 
-                                </div>
+                                    <div class="mb-4">
+                                        <label for="subjectCode" class="form-label fw-semibold">
+                                            Subject Code
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="subjectCode"
+                                            name="code"
+                                            class="form-control form-control-lg"
+                                            placeholder="WD101"
+                                            required>
+                                    </div>
 
-                                <div class="text-end mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        Create Subject
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="d-flex gap-2 justify-content-end mt-5">
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            Create Subject
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,21 +76,3 @@
     </div>
 
 @endsection
-
-@push('scripts')
-    <script>
-        function previewImage(event, previewId = 'imagePreview') {
-            const preview = document.getElementById(previewId);
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-@endpush

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('remarks');
+            $table->string('name')->unique();
+            $table->string('code')->unique();
             $table->timestamps();
         });
     }

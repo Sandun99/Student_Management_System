@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="bg-primary bg-opacity-10 py-5 mb-4">
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                 <h1 class="h2 fw-bold mb-0">Add New Class</h1>
@@ -22,9 +22,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <div class="card border-0 shadow-sm">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-primary text-white bg-secondary">
                         <ul class="nav nav-tabs card-header-tabs" id="classTab" role="tablist">
-
                         </ul>
                     </div>
 

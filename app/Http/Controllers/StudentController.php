@@ -39,12 +39,10 @@ class StudentController extends Controller
                 'username' => $request->username,
                 'password' => $request->password,
             ]);
-
+            return view('student.index');
         }
         catch (\Exception $e) {
             return $e;
         }
-
-        return view('student.index');
     }
 }

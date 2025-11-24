@@ -38,12 +38,10 @@ class TeacherController extends Controller
                 'username' => $request->username,
                 'password' => $request->password,
             ]);
-
+            return view('teacher.index');
         }
         catch (\Exception $e) {
             return $e;
         }
-
-        return view('teacher.index');
     }
 }

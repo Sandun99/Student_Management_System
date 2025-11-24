@@ -51,6 +51,8 @@ route::prefix('course')->name('course.')->group(function () {
 Route::prefix('subject')->name('subject.')->group(function () {
     Route::get('/', [SubjectController::class, 'index'])->name('index');
     Route::get('/create', [SubjectController::class, 'create'])->name('create');
+    Route::post('/store', [SubjectController::class, 'store'])->name('store');
+
 });
 
 Route::prefix('class')->name('class.')->group(function () {
@@ -62,4 +64,5 @@ Route::prefix('class')->name('class.')->group(function () {
 Route::prefix('grade')->name('grade.')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('index');
     Route::get('/create', [GradeController::class, 'create'])->name('create');
+    Route::post('/store', [GradeController::class, 'store'])->name('store');
 });

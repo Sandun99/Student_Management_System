@@ -11,6 +11,6 @@ class grade extends Model
 
     protected $fillable = [
         'name',
-        'remarks'
+        'code'
     ];
 }

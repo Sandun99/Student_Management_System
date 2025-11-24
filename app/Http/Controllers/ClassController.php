@@ -25,11 +25,11 @@ class ClassController extends Controller
                 'name' => $request->name,
                 'code' => $request->code,
             ]);
+            return view('class.index');
         }
         catch (\Exception $e){
             return $e;
         }
-
-        return view('class.index');
     }
+
 }

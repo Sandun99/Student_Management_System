@@ -4,73 +4,71 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row mb-4 align-items-center">
-            <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center position-relative">
-                    <h1 class="m-0">Add New Grade</h1>
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">Add New Grade</h1>
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none text-muted">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('grade.index') }}" class="text-decoration-none text-muted">Grades</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('grade.index') }}" class="text-decoration-none">Grades</a></li>
                         <li class="breadcrumb-item active">Create</li>
                     </ol>
-                </div>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-primary card-outline card-tabs">
-                <div class="card-header p-0 pt-1 border-bottom-0">
-                    <ul class="nav nav-tabs" id="gradeTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="details-tab" data-bs-toggle="pill" href="#details" role="tab">
-                                Grade Details
-                            </a>
-                        </li>
-                    </ul>
-                </div>
 
-                <div class="card-body">
-                    <div class="tab-content" id="gradeTabContent">
-                        <div class="tab-pane fade show active" id="details" role="tabpanel">
-                            <form action="" method="POST">
-                                @csrf
+    <div class="container-fluid pb-5 ">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card border-1 shadow-sm bg">
+                    <div class="card-header bg-primary text-white bg-secondary">
+                        <ul class="nav nav-tabs card-header-tabs" id="gradeTab" role="tablist">
+                        </ul>
+                    </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="tab-content" id="gradeTabContent">
+                            <div class="tab-pane fade show active" id="details" role="tabpanel">
+                                <form action="{{ route('grade.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
 
-                                        <div class="form-group mb-3">
-                                            <label>Grade Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" class="form-control" placeholder="" required>
-                                        </div>
-
+                                    <div class="mb-4">
+                                        <label for="gradeName" class="form-label fw-semibold">
+                                            Grade Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="gradeName"
+                                            name="name"
+                                            class="form-control form-control-lg"
+                                            placeholder="Enter grade name"
+                                            required>
                                     </div>
 
-                                    <div class="col-md-6">
-
-                                        <div class="form-group mb-3">
-                                            <label>Remarks</label>
-                                            <select name="remark" class="form-select">
-                                                <option value="Outstanding">Outstanding</option>
-                                                <option value="Excellent">Excellent</option>
-                                                <option value="Very Good">Very Good</option>
-                                                <option value="Good">Good</option>
-                                                <option value="Average">Average</option>
-                                                <option value="Pass">Pass</option>
-                                                <option value="Fail">Fail</option>
-                                            </select>
-                                        </div>
-
+                                    <div class="mb-4">
+                                        <label for="gradeCode" class="form-label fw-semibold">
+                                            Grade Code
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="gradeCode"
+                                            name="code"
+                                            class="form-control form-control-lg"
+                                            placeholder="GR/001"
+                                            required>
                                     </div>
-                                </div>
 
-                                <div class="text-end mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        Create Grade
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="d-flex gap-2 justify-content-end mt-5">
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            Create Grade
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
