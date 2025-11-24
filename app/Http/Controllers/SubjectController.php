@@ -9,7 +9,8 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        return view('subject.index');
+        $subjects = Subject::all();
+        return view('subject.index' , compact('subjects'));
     }
 
     public function create()
@@ -23,9 +24,9 @@ class SubjectController extends Controller
 
             Subject::query()->create([
                 'name' => $request->name,
-                'code' => $request->code,
+                'sub_code' => $request->sub_code,
             ]);
-            return view('subject.index');
+            return redirect()->route('subject.index');
         }
         catch (\Exception $e) {
             return $e;

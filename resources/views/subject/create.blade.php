@@ -55,7 +55,7 @@
                                         <input
                                             type="text"
                                             id="subjectCode"
-                                            name="code"
+                                            name="sub_code"
                                             class="form-control form-control-lg"
                                             placeholder="WD101"
                                             required>
