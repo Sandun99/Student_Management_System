@@ -36,7 +36,7 @@
                     <div class="tab-content" id="teacherTabContent">
 
                         <div class="tab-pane fade show active" id="basic" role="tabpanel">
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('teacher.teacher.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
@@ -45,6 +45,11 @@
                                         <div class="form-group mb-3">
                                             <label>Full Name <span class="text-danger">*</span></label>
                                             <input type="text" name="name" class="form-control" placeholder="" required>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label>Email <span class="text-danger">*</span></label>
+                                            <input type="text" name="email" class="form-control" placeholder="abc@email.com" required>
                                         </div>
 
                                         <div class="form-group mb-3">
@@ -74,15 +79,25 @@
                                     </div>
 
                                     <div class="col-md-6">
+
                                         <div class="form-group mb-3">
-                                            <label>Profile Image</label>
-                                            <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
-                                                <div class="mt-3">
-                                                    <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                                                    <p class="text-muted mt-2 mb-0">Click to upload teacher photo</p>
-                                                </div>
-                                            </div>
+                                            <label>Username</label>
+                                            <input type="text" name="username" class="form-control" placeholder="" required>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label>Password</label>
+                                            <input type="text" name="password" class="form-control" placeholder="" required>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+{{--                                            <label>Profile Image</label>--}}
+{{--                                            <div class="border border-dashed rounded p-4 text-center bg-light">--}}
+{{--                                                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">--}}
+{{--                                                <div class="mt-3">--}}
+{{--                                                    <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">--}}
+{{--                                                    <p class="text-muted mt-2 mb-0">Click to upload teacher photo</p>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>

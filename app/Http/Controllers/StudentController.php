@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -20,5 +22,29 @@ class StudentController extends Controller
 
     public function show(){
         return view('student.show');
+    }
+
+    public function store(Request $request)
+    {
+        try {
+
+            Student::query()->create([
+                'name' => $request->name,
+                'reg_no' => $request->reg_no,
+                'dob' => $request->dob,
+                'gender' => $request->gender,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => $request->password,
+            ]);
+
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+
+        return view('student.index');
     }
 }

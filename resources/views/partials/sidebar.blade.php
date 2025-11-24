@@ -1,4 +1,3 @@
-
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ route('dashboard') }}" class="brand-link">
@@ -98,6 +97,77 @@
                             <a href="{{ route('course.create') }}" class="nav-link {{ request()->routeIs('course.create') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Create Course</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item {{ request()->routeIs('subject.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('subject.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-book"></i>
+                        <p>
+                            Subjects
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('subject.index') }}" class="nav-link {{ request()->routeIs('subject.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Subjects</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('subject.create') }}" class="nav-link {{ request()->routeIs('subject.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create Subject</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('class.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('class.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-book"></i>
+                        <p>
+                            Classes
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('class.index') }}" class="nav-link {{ request()->routeIs('class.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Classes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('class.create') }}" class="nav-link {{ request()->routeIs('class.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create class</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('grade.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('grade.*') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-book"></i>
+                        <p>
+                            Grades
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('grade.index') }}" class="nav-link {{ request()->routeIs('grade.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Grades</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('grade.create') }}" class="nav-link {{ request()->routeIs('grade.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create Grade</p>
                             </a>
                         </li>
                     </ul>
