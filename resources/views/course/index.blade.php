@@ -41,7 +41,7 @@
                                     <th>Price</th>
                                     <th>Duration</th>
                                     <th>Subjects</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>

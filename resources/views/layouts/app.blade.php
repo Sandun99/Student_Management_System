@@ -18,19 +18,18 @@
 
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}">
+
     @stack('styles')
 </head>
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
 
 <div class="app-wrapper">
 
-    <!-- Header -->
     @include('partials.header')
 
-    <!-- Sidebar -->
     @include('partials.sidebar')
 
-    <!-- Main Content -->
     <main class="app-main">
         @yield('content')
     </main>
@@ -49,6 +48,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+<script src="https://kit.fontawesome.com/70b0d3af29.js" crossorigin="anonymous"></script>
 
 @stack('scripts')
 </body>

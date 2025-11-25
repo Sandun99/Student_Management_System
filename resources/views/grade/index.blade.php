@@ -4,7 +4,20 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">All Grades</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active">Grades</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container pb-5">
 
         <div class="card shadow" >
             <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">

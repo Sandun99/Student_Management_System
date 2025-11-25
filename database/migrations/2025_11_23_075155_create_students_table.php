@@ -16,12 +16,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('reg_no');
             $table->date('dob');
+            $table->string('nic');
             $table->string('gender');
-            $table->integer('mobile');
+            $table->string('mobile');
             $table->string('address');
             $table->string('email');
             $table->string('username');
             $table->string('password');
+            $table->foreignId('grade_id');
+            $table->foreignId('course_id');
             $table->timestamps();
         });
     }

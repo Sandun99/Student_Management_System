@@ -1,135 +1,99 @@
 @extends('layouts.app')
 
-@section('title', 'All Student')
+@section('title', 'All Students')
 
 @section('content')
 
-    <div class="breadcome-area">
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="breadcome-list">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="breadcome-heading">
-                                    <form role="search" class="sr-input-func">
-                                        <input type="text" placeholder="Search..." class="search-int form-control">
-                                        <a href="#"><i class="fa fa-search"></i></a>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <ul class="breadcome-menu">
-                                    <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                    </li>
-                                    <li><span class="bread-blod">All Students</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">All Students</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active">Students</li>
+                    </ol>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="contacts-area mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std res-mg-b-30">
-                        <div class="student-img">
-                            <img src="img/student/1.jpg" alt="" />
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                        <div class="flex-grow-1 text-center">
+                            <h4 class="mb-0">Registered Students</h4>
                         </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
+                        <a href="{{ route('student.create') }}" class="btn btn-light btn-sm">
+                            Add New Student
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std res-mg-b-30">
-                        <div class="student-img">
-                            <img src="img/student/2.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std res-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
-                        <div class="student-img">
-                            <img src="img/student/3.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std res-tablet-mg-t-30 dk-res-t-pro-30">
-                        <div class="student-img">
-                            <img src="img/student/4.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std mg-t-30">
-                        <div class="student-img">
-                            <img src="img/student/1.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std mg-t-30">
-                        <div class="student-img">
-                            <img src="img/student/2.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std mg-t-30">
-                        <div class="student-img">
-                            <img src="img/student/3.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="student-inner-std mg-t-30">
-                        <div class="student-img">
-                            <img src="img/student/4.jpg" alt="" />
-                        </div>
-                        <div class="student-dtl">
-                            <h2>Alexam Angles</h2>
-                            <p class="dp">Computer Science</p>
-                            <p class="dp-ag"><b>Age:</b> 20 Years</p>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>Reg No</th>
+                                    <th>Name</th>
+                                    <th>NIC</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Course</th>
+                                    <th>Grade</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($students as $student)
+                                    <tr>
+                                        <td><strong>{{ $student->reg_no }}</strong></td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->nic }}</td>
+                                        <td>{{ $student->email }}</td>
+                                        <td>{{ $student->mobile }}</td>
+                                        <td>
+                                            @if($student->course)
+                                                <span class="badge bg-secondary">
+                                                        {{ $student->course->name }}
+                                                    @if($student->course->code)
+                                                        <small>({{ $student->course->code }})</small>
+                                                    @endif
+                                                    </span>
+                                            @else
+                                                <span class="badge bg-secondary">No Course</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                                <span class="badge bg-secondary">
+                                                    {{ $student->grade?->name ?? '—' }}
+                                                </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                View
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-sm">
+                                                Edit
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted py-5">
+                                            <h5>No students found</h5>
+                                            <a href="{{ route('student.create') }}" class="btn btn-primary mt-2">
+                                                Add First Student
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

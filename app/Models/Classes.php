@@ -13,4 +13,10 @@ class Classes extends Model
         'name',
         'code'
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'class_student');
+    }
+
 }

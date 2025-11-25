@@ -13,4 +13,10 @@ class grade extends Model
         'name',
         'code'
     ];
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
 }

@@ -1,9 +1,9 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ route('dashboard') }}" class="brand-link">
-            <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                 class="brand-image opacity-75 shadow">
-            <span class="brand-text fw-light">AdminLTE</span>
+            <i class="fa-brands fa-dev fa-xl"
+               style="font-size: 28px; width: 33px; height: 33px; line-height: 33px; text-align: center; color: #ffffff;"></i>
+            <span class="brand-text fw-light">Admin</span>
         </a>
     </div>
 
@@ -13,7 +13,7 @@
 
                 <li class="nav-item {{ request()->routeIs('dashboard') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-speedometer"></i>
+                        <i class="nav-icon bi bi-house-gear-fill"></i>
                         <p>
                             Dashboard
                             <i class="nav-arrow bi bi-chevron-right"></i>
@@ -127,7 +127,7 @@
 
                 <li class="nav-item {{ request()->routeIs('class.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('class.*') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-book"></i>
+                        <i class="nav-icon fa-solid fa-graduation-cap"></i>
                         <p>
                             Classes
                             <i class="nav-arrow bi bi-chevron-right"></i>
@@ -151,7 +151,7 @@
 
                 <li class="nav-item {{ request()->routeIs('grade.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('grade.*') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-book"></i>
+                        <i class="nav-icon bi bi-anthropic"></i>
                         <p>
                             Grades
                             <i class="nav-arrow bi bi-chevron-right"></i>
