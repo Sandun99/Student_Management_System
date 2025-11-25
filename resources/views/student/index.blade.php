@@ -57,9 +57,6 @@
                                             @if($student->course)
                                                 <span class="badge bg-secondary">
                                                         {{ $student->course->name }}
-                                                    @if($student->course->code)
-                                                        <small>({{ $student->course->code }})</small>
-                                                    @endif
                                                     </span>
                                             @else
                                                 <span class="badge bg-secondary">No Course</span>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Student;
-use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,20 +34,7 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name'=> 'required',
-            'reg_no'=> 'required',
-            'dob'=> 'required|date',
-            'nic'=> 'required',
-            'gender'=> 'required|in:male,female',
-            'mobile'=> 'required|digits:10',
-            'address'=> 'required|string',
-            'email'=> 'required',
-            'username'=> 'required',
-            'password'=> 'required',
-            'grade_id'=> 'required',
-            'course_id'=> 'required',
-        ]);
+        $validated = $request->all();
 
         try {
 
@@ -66,8 +52,6 @@ class StudentController extends Controller
                 'grade_id' => $request->grade_id,
                 'course_id' => $request->course_id,
             ]);
-
-
             return redirect()->route('student.index');
         }
         catch (\Exception $exception){

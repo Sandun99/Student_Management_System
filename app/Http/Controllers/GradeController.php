@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classes;
 use App\Models\grade;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;

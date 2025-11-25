@@ -48,8 +48,18 @@
                                         </div>
 
                                         <div class="form-group mb-3">
+                                            <label>Teacher ID <span class="text-danger">*</span></label>
+                                            <input type="text" name="t_id" class="form-control" placeholder="" required>
+                                        </div>
+
+                                        <div class="form-group mb-3">
                                             <label>Email <span class="text-danger">*</span></label>
-                                            <input type="text" name="email" class="form-control" placeholder="abc@email.com" required>
+                                            <input type="text" name="email" class="form-control" placeholder="" required>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label>NIC <span class="text-danger">*</span></label>
+                                            <input type="text" name="nic" class="form-control" placeholder="" required>
                                         </div>
 
                                         <div class="form-group mb-3">
@@ -80,24 +90,76 @@
 
                                     <div class="col-md-6">
 
-                                        <div class="form-group mb-3">
-                                            <label>Username</label>
-                                            <input type="text" name="username" class="form-control" placeholder="" required>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group mb-3">
+                                                    <label>Course </label>
+                                                    <select name="course_id" class="form-select" required>
+                                                        <option value="">Select Course</option>
+                                                        @foreach($courses as $course)
+                                                            <option value="{{ $course->id }}">
+                                                                {{ $course->name }} {{ $course->code ? '('. $course->code .')' : '' }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group mb-3">
+                                                    <label>Subject <span class="text-danger">*</span></label>
+                                                    <select name="subject_id" class="form-select" required>
+                                                        <option value="">Select Subject</option>
+                                                        @foreach($subjects as $subject)
+                                                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group mb-3">
+                                                    <label>Grade <span class="text-danger">*</span></label>
+                                                    <select name="grade_id" class="form-select" required>
+                                                        <option value="">Select Grade</option>
+                                                        @foreach($grades as $grade)
+                                                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-3">
-                                            <label>Password</label>
-                                            <input type="text" name="password" class="form-control" placeholder="" required>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group mb-3">
+                                                    <label>Username</label>
+                                                    <input type="text" name="username" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group mb-3">
+                                                    <label>Password</label>
+                                                    <input type="password" name="password" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group mb-3">
-{{--                                            <label>Profile Image</label>--}}
-{{--                                            <div class="border border-dashed rounded p-4 text-center bg-light">--}}
-{{--                                                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">--}}
-{{--                                                <div class="mt-3">--}}
-{{--                                                    <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">--}}
-{{--                                                    <p class="text-muted mt-2 mb-0">Click to upload teacher photo</p>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                            <label>NIC Front</label>
+                                            <div class="border border-dashed rounded p-4 text-center bg-light">
+                                                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                <div class="mt-3">
+                                                    <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label>NIC Back</label>
+                                            <div class="border border-dashed rounded p-4 text-center bg-light">
+                                                <input type="file" name="image_2" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                <div class="mt-3">
+                                                    <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

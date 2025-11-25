@@ -11,12 +11,31 @@ class Teacher extends Model
 
     protected $fillable = [
         'name',
+        't_id',
         'email',
+        'nic',
         'dob',
         'gender',
         'mobile',
         'address',
+        'course_id',
+        'subject_id',
+        'grade_id',
         'username',
         'password'
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 }
