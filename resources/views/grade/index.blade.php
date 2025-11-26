@@ -42,7 +42,10 @@
                         @foreach($grades as $grade)
                             <tr data-id="{{ $grade->id }}">
                                 <td><strong>{{ $grade->code }}</strong></td>
-                                <td>Grade: {{ $grade->name }}</td>
+                                <td>
+                                    <strong>{{ $grade->full_name }}</strong>
+
+                                </td>
                                 <td class='text-center'>
                                     <button type="button" class="btn btn-warning btn-sm"
                                             onclick="loadUpdateForm({{ $grade->id }})">Update

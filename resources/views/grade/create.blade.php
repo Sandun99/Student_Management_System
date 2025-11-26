@@ -36,16 +36,26 @@
 
                                     <div class="mb-4">
                                         <label for="gradeName" class="form-label fw-semibold">
-                                            Grade Name
-                                            <span class="text-danger">*</span>
+                                            Grade Level <span class="text-danger">*</span>
                                         </label>
                                         <input
                                             type="text"
                                             id="gradeName"
                                             name="name"
                                             class="form-control form-control-lg"
-                                            placeholder="Enter grade name"
+                                            placeholder="Enter grade level (e.g. 10, 11, 12)"
                                             required>
+                                        <small class="text-muted">Just enter the number. Class will be added automatically like 10-A</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Class <span class="text-danger">*</span></label>
+                                        <select name="class_id" class="form-select" required>
+                                            <option value="">-- Select Class --</option>
+                                            @foreach(\App\Models\Classes::orderBy('name')->get() as $class)
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="mb-4">

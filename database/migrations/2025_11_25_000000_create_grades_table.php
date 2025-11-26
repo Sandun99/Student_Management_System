@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('code')->unique();
+            $table->foreignId('class_id')->nullable()->constrained('classes')->onDelete('set null');
             $table->timestamps();
+
+            $table->unique(['name', 'class_id']);
         });
     }
 

@@ -125,30 +125,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('class.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('class.*') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-graduation-cap"></i>
-                        <p>
-                            Classes
-                            <i class="nav-arrow bi bi-chevron-right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('class.index') }}" class="nav-link {{ request()->routeIs('class.index') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>All Classes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('class.create') }}" class="nav-link {{ request()->routeIs('class.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Create class</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="nav-item {{ request()->routeIs('grade.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('grade.*') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-anthropic"></i>
@@ -168,6 +144,30 @@
                             <a href="{{ route('grade.create') }}" class="nav-link {{ request()->routeIs('grade.create') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Create Grade</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('class.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('class.*') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-graduation-cap"></i>
+                        <p>
+                            Classes
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('class.index') }}" class="nav-link {{ request()->routeIs('class.index') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>All Classes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('class.create') }}" class="nav-link {{ request()->routeIs('class.create') ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Create class</p>
                             </a>
                         </li>
                     </ul>

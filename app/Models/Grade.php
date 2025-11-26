@@ -5,14 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class grade extends Model
+class Grade extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'full_name',
+        'class_id',
         'code'
     ];
+
+    public function getFullNameAttribute()
+    {
+        return $this->class ? $this->name . '-' . $this->class->name : $this->name;
+    }
+    public function class()
+    {
+        return $this->belongsTo(Classes::class , 'class_id');
+    }
 
     public function students()
     {

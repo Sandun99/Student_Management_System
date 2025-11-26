@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\grade;
+use App\Models\Classes;
+use App\Models\Grade;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
@@ -10,28 +11,27 @@ class GradeController extends Controller
 {
     public function index()
     {
-        $grades = Grade::all();
+        $grades = Grade::with('class')->latest()->get();
         return view('grade.index' , compact('grades'));
     }
 
     public function create()
     {
-        return view('grade.create' );
+        $classes = Classes::orderBy('name')->get();
+        return view('grade.create', compact('classes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:20',
+            'class_id' => 'required|exists:classes,id',
+            'code'     => 'required|string|unique:grades,code',
+        ]);
 
-        try {
+        Grade::create($request->only(['name', 'class_id', 'code']));
 
-            Grade::query()->create([
-                'name' => $request->name,
-                'code' => $request->code,
-
-            ]);
-            return redirect()->route('grade.index');
-        }catch (\Exception $e){
-            return $e;
-        }
+        return redirect()->route('grade.index')->with('success', 'Grade created successfully!');
     }
 
     public function delete(string $id)

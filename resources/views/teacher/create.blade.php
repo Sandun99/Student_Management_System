@@ -107,7 +107,7 @@
                                                 <select name="grade_id" class="form-select" required>
                                                     <option value="">Select Grade</option>
                                                     @foreach($grades as $grade)
-                                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                                        <option value="{{ $grade->id }}">{{ $grade->full_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
