@@ -48,7 +48,8 @@
                                             onclick="loadUpdateForm({{ $grade->id }})">Update
                                     </button>
                                     <button type="button" class="btn btn-danger btn-sm"
-                                            onclick="deleteStudent({{ $grade->id }})">Delete
+                                            onclick="deleteButton({{ $grade->id }}, 'grade')">
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

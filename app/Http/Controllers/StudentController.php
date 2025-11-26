@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -58,5 +59,23 @@ class StudentController extends Controller
             return redirect()->route('student.create')->with('error', $exception->getMessage());
         }
 
+    }
+
+    public function delete(string $id)
+    {
+        try {
+            $student = Student::findOrFail($id);
+            $student->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Grade deleted successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete Garde.'
+            ], 500);
+        }
     }
 }

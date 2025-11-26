@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\grade;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -30,6 +31,24 @@ class ClassController extends Controller
         }
         catch (\Exception $e){
             return $e;
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $class = Classes::findOrFail($id);
+            $class->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Grade deleted successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete Garde.'
+            ], 500);
         }
     }
 

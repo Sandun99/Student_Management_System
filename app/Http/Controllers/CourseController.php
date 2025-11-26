@@ -50,4 +50,22 @@ class CourseController extends Controller
         return redirect()->route('course.index');
     }
 
+    public function delete(string $id)
+    {
+        try {
+            $course = Course::findOrFail($id);
+            $course->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Grade deleted successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete Garde.'
+            ], 500);
+        }
+    }
+
 }

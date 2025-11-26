@@ -43,14 +43,15 @@
                                 </thead>
                                 <tbody>
                                 @foreach($subjects as $subject)
-                                    <tr>
+                                    <tr data-id="{{ $subject->id }}">
                                         <td><strong>{{ $subject->sub_code }}</strong></td>
                                         <td>{{ $subject->name }}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-warning btn-sm">
                                                 Edit
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm">
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="deleteButton({{ $subject->id }}, 'subject')">
                                                 Delete
                                             </button>
                                         </td>

@@ -30,6 +30,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::get('/show', [TeacherController::class, 'show'])->name('teacher.show');
     Route::post('/store', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::delete('delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
 });
 
 Route::prefix('student')->name('student.')->group(function () {
@@ -38,6 +39,7 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
     Route::get('/show', [StudentController::class, 'show'])->name('show');
     Route::post('/store', [StudentController::class, 'store'])->name('store');
+    Route::delete('delete/{id}', [StudentController::class, 'delete'])->name('destroy');
 });
 
 route::prefix('course')->name('course.')->group(function () {
@@ -46,12 +48,14 @@ route::prefix('course')->name('course.')->group(function () {
     Route::get('/edit', [CourseController::class, 'edit'])->name('edit');
     Route::get('/show', [CourseController::class, 'show'])->name('show');
     Route::post('/store', [CourseController::class, 'store'])->name('store');
+    Route::delete('delete/{id}', [CourseController::class, 'delete'])->name('destroy');
 });
 
 Route::prefix('subject')->name('subject.')->group(function () {
     Route::get('/', [SubjectController::class, 'index'])->name('index');
     Route::get('/create', [SubjectController::class, 'create'])->name('create');
     Route::post('/store', [SubjectController::class, 'store'])->name('store');
+    Route::delete('delete/{id}', [SubjectController::class, 'delete'])->name('delete');
 
 });
 
@@ -59,10 +63,12 @@ Route::prefix('class')->name('class.')->group(function () {
     Route::get('/', [ClassController::class, 'index'])->name('index');
     Route::get('/create', [ClassController::class, 'create'])->name('create');
     Route::post('/store', [ClassController::class, 'store'])->name('store');
+    Route::delete('delete/{id}', [ClassController::class, 'delete'])->name('delete');
 });
 
 Route::prefix('grade')->name('grade.')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('index');
     Route::get('/create', [GradeController::class, 'create'])->name('create');
     Route::post('/store', [GradeController::class, 'store'])->name('store');
+    Route::delete('delete/{id}', [GradeController::class, 'delete'])->name('delete');
 });

@@ -62,4 +62,22 @@ class TeacherController extends Controller
             return redirect()->route('teacher.teacher.index')->with('error', $e->getMessage());
         }
     }
+
+    public function delete(string $id)
+    {
+        try {
+            $teacher = Teacher::findOrFail($id);
+            $teacher->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Grade deleted successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete Garde.'
+            ], 500);
+        }
+    }
 }

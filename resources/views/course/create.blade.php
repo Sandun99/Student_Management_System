@@ -76,7 +76,7 @@
                                         <div class="col-md-6">
 
                                             <div class="form-group mb-3">
-                                                <label>Course Price ($)</label>
+                                                <label>Course Price Rs.</label>
                                                 <input type="number" name="price" class="form-control" placeholder="3000.00" step="0.01"  required>
                                             </div>
 

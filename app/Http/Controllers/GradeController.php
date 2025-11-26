@@ -33,4 +33,24 @@ class GradeController extends Controller
             return $e;
         }
     }
+
+    public function delete(string $id)
+    {
+        try {
+            $grade = Grade::findOrFail($id);
+            $grade->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Grade deleted successfully!'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete Garde.'
+            ], 500);
+        }
+    }
+
+
 }

@@ -47,7 +47,7 @@
                                 </thead>
                                 <tbody>
                                 @forelse($students as $student)
-                                    <tr>
+                                    <tr data-id="{{ $student->id }}">
                                         <td><strong>{{ $student->reg_no }}</strong></td>
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->nic }}</td>
@@ -74,7 +74,8 @@
                                             <button type="button" class="btn btn-warning btn-sm">
                                                 Edit
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm">
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                    onclick="deleteButton({{ $student->id }}, 'student')">
                                                 Delete
                                             </button>
                                         </td>
