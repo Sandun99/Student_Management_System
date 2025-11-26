@@ -27,7 +27,7 @@
                             <h4 class="mb-0">Registered Subjects</h4>
                         </div>
                         <form class="d-flex mb-0" onsubmit="return false;">
-                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Subjects..." id="searchInput" style="width: 250px;">
+                            <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>
                         <a href="{{ route('subject.create') }}" class="btn btn-light btn-sm">
                             <i class="bi bi-plus-lg"></i> Add New Subject
@@ -44,7 +44,7 @@
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="searchableTable">
                                 @foreach($subjects as $subject)
                                     <tr data-id="{{ $subject->id }}">
                                         <td><strong>{{ $subject->sub_code }}</strong></td>

@@ -122,6 +122,49 @@
     }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('globalSearchInput');
+        if (!searchInput) return;
+
+        const tableBody = document.getElementById('searchableTable');
+        const rows = tableBody?.querySelectorAll('tr') || [];
+
+        searchInput.addEventListener('keyup', function () {
+            const query = this.value.trim().toLowerCase();
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const isVisible = query === '' || text.includes(query);
+
+                row.style.display = isVisible ? '' : 'none';
+            });
+
+            let noResultsRow = tableBody.querySelector('tr.no-results');
+            if (query !== '') {
+                const visibleRows = Array.from(rows).filter(r => r.style.display !== 'none' && !r.classList.contains('no-results'));
+                if (visibleRows.length === 0) {
+                    if (!noResultsRow) {
+                        noResultsRow = document.createElement('tr');
+                        noResultsRow.className = 'no-results';
+                        noResultsRow.innerHTML = `<td colspan="${tableBody.querySelector('tr')?.children.length || 8}" class="text-center text-muted py-4">No results found for "<strong>${this.value}</strong>"</td>`;
+                        tableBody.appendChild(noResultsRow);
+                    }
+                } else if (noResultsRow) {
+                    noResultsRow.remove();
+                }
+            }
+        });
+
+        searchInput.addEventListener('search', () => {
+            if (searchInput.value === '') {
+                document.querySelector('tr.no-results')?.remove();
+                rows.forEach(row => row.style.display = '');
+            }
+        });
+    });
+</script>
+
 @stack('scripts')
 </body>
 </html>

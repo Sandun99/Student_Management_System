@@ -26,7 +26,7 @@
                             <h4 class="mb-0">Registered Teachers</h4>
                         </div>
                         <form class="d-flex mb-0" onsubmit="return false;">
-                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Teachers..." id="searchInput" style="width: 250px;">
+                            <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>
                         <a href="{{ route('teacher.teacher.add') }}" class="btn btn-light btn-sm">
                             Add New Teacher
@@ -48,7 +48,7 @@
                                     <th class="text-center">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="searchableTable">
                                 @forelse($teachers as $teacher)
                                     <tr data-id="{{ $teacher->id }}">
                                         <td><strong>{{ $teacher->t_id }}</strong></td>
@@ -96,17 +96,3 @@
     </div>
 
 @endsection
-
-@push('scripts')
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let filter = this.value.toLowerCase();
-            let rows = document.querySelectorAll('#teachersBody tr');
-
-            rows.forEach(row => {
-                let text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-    </script>
-@endpush

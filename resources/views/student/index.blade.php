@@ -26,7 +26,7 @@
                             <h4 class="mb-0">Registered Students</h4>
                         </div>
                         <form class="d-flex mb-0" onsubmit="return false;">
-                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Students..." id="searchInput" style="width: 250px;">
+                            <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>
                         <a href="{{ route('student.create') }}" class="btn btn-light btn-sm">
                             Add New Student
@@ -48,7 +48,7 @@
                                     <th class="text-center">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="searchableTable">
                                 @forelse($students as $student)
                                     <tr data-id="{{ $student->id }}">
                                         <td><strong>{{ $student->reg_no }}</strong></td>
