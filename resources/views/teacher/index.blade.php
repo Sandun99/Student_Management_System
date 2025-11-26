@@ -40,7 +40,6 @@
                                     <th>Email</th>
                                     <th>NIC</th>
                                     <th>Mobile</th>
-                                    <th>Course</th>
                                     <th>Subject</th>
                                     <th>Grade</th>
                                     <th class="text-center">Actions</th>
@@ -55,18 +54,11 @@
                                         <td>{{ $teacher->nic }}</td>
                                         <td>{{ $teacher->mobile }}</td>
                                         <td>
-                                            @if($teacher->course)
-                                                <span class="badge bg-secondary">
-                                                        {{ $teacher->course->name }}
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($teacher->subject)
-                                                <span class="badge bg-secondary">
-                                                        {{ $teacher->subject->name }}
-                                                </span>
-                                            @endif
+                                            @forelse($teacher->subjects as $subject)
+                                                <span class="badge bg-secondary me-1 mb-1">{{ $subject->name }}</span>
+                                            @empty
+                                                <span class="text-muted">—</span>
+                                            @endforelse
                                         </td>
                                         <td>
                                             <span class="badge bg-secondary">

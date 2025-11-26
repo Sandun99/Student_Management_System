@@ -25,13 +25,9 @@ class Teacher extends Model
         'password'
     ];
 
-    public function course()
+    public function subjects()
     {
-        return $this->belongsTo(Course::class);
-    }
-    public function subject()
-    {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsToMany(Subject::class , 'subject_teacher');
     }
 
     public function grade()

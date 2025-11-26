@@ -13,16 +13,16 @@ class TeacherController extends Controller
 {
     public function index(){
 
-        $teachers = Teacher::with('course','subject','grade')->get();
-        return view('teacher.index' , compact('teachers'));
+        $teachers = Teacher::with('subjects', 'grade')->get();
+        return view('teacher.index', compact('teachers'));
     }
 
     public function add()
     {
-        $courses = Course::orderBy('name')->get();
         $subjects = Subject::orderBy('name')->get();
         $grades = Grade::orderBy('name')->get();
-        return view('teacher.create', compact('courses', 'subjects', 'grades'));
+
+        return view('teacher.create', compact('subjects', 'grades'));
     }
 
     public function edit(){
@@ -35,32 +35,31 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->all();
+            $validated = request()->validate([
+                'name' => 'required',
+                't_id' => 'required',
+                'email' => 'required',
+                'nic' => 'required',
+                'dob' => 'required',
+                'gender' => 'required',
+                'mobile' => 'required',
+                'address' => 'required',
+                'username' => 'required',
+                'password' => 'required',
+                'subjects' => 'required|array|min:1',
+                'subjects.*' => 'exists:subjects,id',
+                'grade_id' => 'required',
+            ]) ;
 
-        try {
+            $subjectIds = $validated['subjects'];
+            unset($validated['subjects']);
 
-            Teacher::query()->create([
-                'name' => $request->name,
-                "t_id" => $request->t_id,
-                'email' => $request->email,
-                'nic' => $request->nic,
-                'dob' => $request->dob,
-                'gender' => $request->gender,
-                'mobile' => $request->mobile,
-                'address' => $request->address,
-                'username' => $request->username,
-                'password' => Hash::make($request->password),
-                "course_id" => $request->course_id,
-                "subject_id" => $request->subject_id,
-                "grade_id" => $request->grade_id,
-            ]);
+            $teacher = Teacher::create($validated);
+            $teacher->subjects()->attach($subjectIds);
 
-            return redirect()->route('teacher.teacher.index')->with('success', 'Teacher created successfully.');
-        }
-        catch (\Exception $e) {
-
-            return redirect()->route('teacher.teacher.index')->with('error', $e->getMessage());
-        }
+            return redirect()
+                ->route('teacher.teacher.index')
+                ->with('success', 'Teacher created successfully!');
     }
 
     public function delete(string $id)

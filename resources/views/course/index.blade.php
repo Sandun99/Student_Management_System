@@ -40,7 +40,7 @@
                                     <th>Category</th>
                                     <th>Price</th>
                                     <th>Duration</th>
-                                    <th>Subjects</th>
+                                    <th class="text-center">Subjects</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>

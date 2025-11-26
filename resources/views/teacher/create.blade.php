@@ -91,40 +91,25 @@
                                     <div class="col-md-6">
 
                                         <div class="row">
-                                            <div class="col-4">
-                                                <div class="form-group mb-3">
-                                                    <label>Course </label>
-                                                    <select name="course_id" class="form-select" required>
-                                                        <option value="">Select Course</option>
-                                                        @foreach($courses as $course)
-                                                            <option value="{{ $course->id }}">
-                                                                {{ $course->name }} {{ $course->code ? '('. $course->code .')' : '' }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                            <div class="form-group mb-3">
+                                                <label>Subject <span class="text-danger">*</span></label>
+                                                <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
+                                                    @foreach($subjects ?? [] as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->name }} ({{ $subject->sub_code }})
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="form-group mb-3">
-                                                    <label>Subject <span class="text-danger">*</span></label>
-                                                    <select name="subject_id" class="form-select" required>
-                                                        <option value="">Select Subject</option>
-                                                        @foreach($subjects as $subject)
-                                                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="form-group mb-3">
-                                                    <label>Grade <span class="text-danger">*</span></label>
-                                                    <select name="grade_id" class="form-select" required>
-                                                        <option value="">Select Grade</option>
-                                                        @foreach($grades as $grade)
-                                                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+
+                                            <div class="form-group mb-3">
+                                                <label>Grade <span class="text-danger">*</span></label>
+                                                <select name="grade_id" class="form-select" required>
+                                                    <option value="">Select Grade</option>
+                                                    @foreach($grades as $grade)
+                                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
@@ -179,7 +164,14 @@
     </div>
 
 @endsection
-
+@push('scripts')
+    <script>
+        new TomSelect('#subjects-select', {
+            plugins: ['remove_button'],
+            placeholder: 'Search and select subjects...',
+        });
+    </script>
+@endpush
 @push('scripts')
     <script>
         function previewImage(event, previewId = 'imagePreview') {
