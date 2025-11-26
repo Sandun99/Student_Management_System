@@ -25,6 +25,9 @@
                         <div class="flex-grow-1 text-center">
                             <h4 class="mb-0">Registered Teachers</h4>
                         </div>
+                        <form class="d-flex mb-0" onsubmit="return false;">
+                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Teachers..." id="searchInput" style="width: 250px;">
+                        </form>
                         <a href="{{ route('teacher.teacher.add') }}" class="btn btn-light btn-sm">
                             Add New Teacher
                         </a>
@@ -35,7 +38,7 @@
                             <table class="table table-hover align-middle">
                                 <thead class="table-dark">
                                 <tr>
-                                    <th>Teacher ID</th>
+                                    <th>T_ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>NIC</th>
@@ -62,10 +65,10 @@
                                         </td>
                                         <td>
                                             <span class="badge bg-secondary">
-                                                {{ $teacher->grade?->name ?? '—' }}
+                                                {{ $teacher->grade?->full_name ?? '—' }}
                                             </span>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center" style="width: 180px">
                                             <button type="button" class="btn btn-primary btn-sm">
                                                 View
                                             </button>
@@ -93,3 +96,17 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#teachersBody tr');
+
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+@endpush

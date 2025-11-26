@@ -26,6 +26,9 @@
                         <div class="flex-grow-1 text-center">
                             <h4 class="mb-0">Registered Subjects</h4>
                         </div>
+                        <form class="d-flex mb-0" onsubmit="return false;">
+                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Subjects..." id="searchInput" style="width: 250px;">
+                        </form>
                         <a href="{{ route('subject.create') }}" class="btn btn-light btn-sm">
                             <i class="bi bi-plus-lg"></i> Add New Subject
                         </a>

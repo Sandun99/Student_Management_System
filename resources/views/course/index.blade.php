@@ -25,6 +25,9 @@
                         <div class="flex-grow-1 text-center">
                             <h4 class="mb-0">Registered Courses</h4>
                         </div>
+                        <form class="d-flex mb-0" onsubmit="return false;">
+                            <input class="form-control form-control-sm me-2" type="search" placeholder="Search Courses..." id="searchInput" style="width: 250px;">
+                        </form>
                         <a href="{{ route('course.create') }}" class="btn btn-light btn-sm">
                             <i class="bi bi-plus-lg"></i> Add New Course
                         </a>
@@ -48,8 +51,8 @@
                                 @forelse($courses as $course)
                                     <tr data-id="{{ $course->id }}">
                                         <td><strong>{{ $course->code }}</strong></td>
-                                        <td>{{ $course->name }}</td>
-                                        <td>{{ $course->category ?? '-' }}</td>
+                                        <td class="text-center align-middle">{{ $course->name }}</td>
+                                        <td class="text-center align-middle">{{ $course->category ?? '-' }}</td>
                                         <td>Rs.{{ number_format($course->price, 2) }}</td>
                                         <td>{{ $course->duration }}</td>
                                         <td>
@@ -61,7 +64,7 @@
                                                 <span class="text-muted">No subjects</span>
                                             @endif
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center align-middle" style="min-width: 180px;">
                                             <button type="button" class="btn btn-primary btn-sm">
                                                 View
                                             </button>

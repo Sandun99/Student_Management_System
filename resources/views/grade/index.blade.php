@@ -48,7 +48,7 @@
                                 </td>
                                 <td class='text-center'>
                                     <button type="button" class="btn btn-warning btn-sm"
-                                            onclick="loadUpdateForm({{ $grade->id }})">Update
+                                            onclick="loadUpdateForm({{ $grade->id }})">Edit
                                     </button>
                                     <button type="button" class="btn btn-danger btn-sm"
                                             onclick="deleteButton({{ $grade->id }}, 'grade')">
