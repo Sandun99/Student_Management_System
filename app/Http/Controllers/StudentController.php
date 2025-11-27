@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Student;
-use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +12,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with( 'grade')->latest()->get();
+        $students = Student::with( 'grade','course')->latest()->get();
         return view('student.index' , compact('students'));
     }
 
@@ -29,7 +28,6 @@ class StudentController extends Controller
     }
     public function store(Request $request)
     {
-        $validated = $request->all();
 
         try {
 
@@ -60,8 +58,8 @@ class StudentController extends Controller
             ->where('id', $id)
             ->first();
 
-        $grades  = Grade::orderBy('name')->get();
-        $courses = Course::orderBy('name')->get();
+        $courses = Course::all();
+        $grades  = Grade::all();
         return view('student.edit', compact('student', 'grades', 'courses'));
     }
 
@@ -69,6 +67,7 @@ class StudentController extends Controller
     {
 
         try {
+            $student = Student::findOrFail($request->id);
             Student::query()
                 ->where('id', $request->id)
                 ->update([

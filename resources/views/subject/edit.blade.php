@@ -31,7 +31,7 @@
         </div>
 
         <div class="d-flex gap-2 justify-content-end mt-5">
-            <button type="submit" class="btn btn-primary px-4">
+            <button type="submit" class="btn btn-secondary px-4">
                 Update Subject
             </button>
         </div>

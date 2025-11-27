@@ -1,6 +1,7 @@
 <div class="tab-pane fade show active" id="basic" role="tabpanel">
     <form action="{{ route('student.update', $student->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <input type="hidden" name="id" value="{{$student->id}}">
         <div class="row">
             <div class="col-md-6">
@@ -21,7 +22,7 @@
                            name="reg_no"
                            class="form-control"
                            placeholder="ST/0000"
-                           value="{{$student->name}}"
+                           value="{{$student->reg_no}}"
                            required>
                 </div>
 
@@ -30,7 +31,7 @@
                     <input type="date"
                            name="dob"
                            class="form-control"
-                           value="{{$student->name}}"
+                           value="{{$student->dob}}"
                            required>
                 </div>
 
@@ -40,16 +41,15 @@
                            name="nic"
                            class="form-control"
                            placeholder=""
-                           value="{{$student->name}}"
+                           value="{{$student->nic}}"
                            required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Gender</label>
                     <select name="gender" class="form-select" required>
-                        <option value="" disabled selected>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male"   {{ $student->gender == 'male'   ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ $student->gender == 'female' ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
 
@@ -59,7 +59,7 @@
                            name="mobile"
                            class="form-control"
                            placeholder=""
-                           value="{{$student->name}}"
+                           value="{{$student->mobile}}"
                            required>
                 </div>
 
@@ -80,7 +80,7 @@
                            name="email"
                            class="form-control"
                            placeholder=""
-                           value="{{$student->name}}"
+                           value="{{$student->email}}"
                            required>
                 </div>
 
@@ -95,8 +95,8 @@
                             <select name="course_id" class="form-select" required>
                                 <option value="">-- Select Course --</option>
                                 @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">
-                                        {{ $course->name }} {{ $course->code ? '('. $course->code .')' : '' }}
+                                    <option value="{{ $course->id }}" {{ $student->course_id == $course->id ? 'selected' : '' }}>
+                                        {{ $course->name }} {{ $course->code ? "($course->code)" : '' }}
                                     </option>
                                 @endforeach
                             </select>
@@ -108,7 +108,9 @@
                             <select name="grade_id" class="form-select" required>
                                 <option value="">-- Select Grade --</option>
                                 @foreach($grades as $grade)
-                                    <option value="{{ $grade->id }}">{{ $grade->full_name }}</option>
+                                    <option value="{{ $grade->id }}" {{ $student->grade_id == $grade->id ? 'selected' : '' }}>
+                                        {{ $grade->full_name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -169,11 +171,8 @@
 
             </div>
         </div>
-
-        <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">
-                Create Student
-            </button>
-        </div>
+        <button type="submit" class="btn btn-secondary btn-lg w-100 mt-4">
+            Update Student
+        </button>
     </form>
 </div>

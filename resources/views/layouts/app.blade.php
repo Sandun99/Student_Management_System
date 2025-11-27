@@ -33,6 +33,8 @@
 
     @include('partials.sidebar')
 
+    @include('partials.popupModels')
+
     <main class="app-main">
         @yield('content')
     </main>

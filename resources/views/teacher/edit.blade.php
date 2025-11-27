@@ -1,170 +1,80 @@
 <div class="tab-pane fade show active" id="basic" role="tabpanel">
-    <form action="{{ route('teacher.teacher.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('teacher.teacher.update', $teacher->id) }}" method="POST">
         @csrf
-        <input type="hidden" name="id" value="{{$teacher->id}}">
-        <div class="row">
-            <div class="col-md-6">
+        <input type="hidden" name="id" value="{{ $teacher->id }}">
 
+        <div class="row g-3">
+            <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label>Full Name</label>
-                    <input type="text"
-                           name="name"
-                           class="form-control"
-                           placeholder=""
-                           value="{{$teacher->name}}"
-                           required>
+                    <input type="text" name="name" class="form-control" value="{{ $teacher->name }}" placeholder="Full Name" required>
                 </div>
-
                 <div class="form-group mb-3">
-                    <label>Teacher ID </label>
-                    <input type="text"
-                           name="t_id"
-                           class="form-control"
-                           placeholder=""
-                           value="{{$teacher->t_id}}"
-                           required>
+                    <label>Teacher ID</label>
+                    <input type="text" name="t_id" class="form-control mt-2" value="{{ $teacher->t_id }}" placeholder="Teacher ID" required>
                 </div>
-
                 <div class="form-group mb-3">
                     <label>Email</label>
-                    <input type="text"
-                           name="email"
-                           class="form-control"
-                           placeholder=""
-                           value="{{$teacher->email}}"
-                           required>
+                    <input type="email" name="email" class="form-control mt-2" value="{{ $teacher->email }}" placeholder="Email" required>
                 </div>
-
                 <div class="form-group mb-3">
                     <label>NIC</label>
-                    <input type="text"
-                           name="nic"
-                           class="form-control"
-                           placeholder=""
-                           value="{{$teacher->nic}}"
-                           required>
+                    <input type="text" name="nic" class="form-control mt-2" value="{{ $teacher->nic }}" placeholder="NIC" required>
                 </div>
-
                 <div class="form-group mb-3">
-                    <label>Date of Birth</label>
-                    <input type="date"
-                           name="dob"
-                           value="{{$teacher->dob}}"
-                           class="form-control">
+                    <label>Date Of Birth</label>
+                    <input type="date" name="dob" class="form-control mt-2" value="{{ $teacher->dob }}">
                 </div>
-
                 <div class="form-group mb-3">
-                    <label>Gender <span class="text-danger">*</span></label>
-                    <select name="gender" class="form-select" required>
-                        <option value="" disabled selected>Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                    <label>Gender</label>
+                    <select name="gender" class="form-control mt-2" required>
+                        <option value="male"   {{ $teacher->gender == 'male'   ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ $teacher->gender == 'female' ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
-
                 <div class="form-group mb-3">
-                    <label>Mobile Number</label>
-                    <input type="text"
-                           name="mobile"
-                           class="form-control"
-                           placeholder=""
-                           value="{{$teacher->mobile}}"
-                           required>
+                    <label>Mobile</label>
+                    <input type="text" name="mobile" class="form-control mt-2" value="{{ $teacher->mobile }}" placeholder="Mobile" required>
                 </div>
-
                 <div class="form-group mb-3">
                     <label>Address</label>
-                    <textarea name="address"
-                              rows="3"
-                              class="form-control"
-                              placeholder="">
-                        {{ $teacher->address }}
-                    </textarea>
+                    <textarea name="address" class="form-control mt-2" rows="2" placeholder="Address">{{ $teacher->address }}</textarea>
                 </div>
-
             </div>
 
             <div class="col-md-6">
-
-                <div class="row">
-                    <div class="form-group mb-3">
-                        <label>Subject <span class="text-danger">*</span></label>
-                        <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
-                            @foreach($subjects ?? [] as $subject)
-                                <option value="{{ $subject->id }}">
-                                    {{ $subject->name }} ({{ $subject->sub_code }})
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label>Grade <span class="text-danger">*</span></label>
-                        <select name="grade_id" class="form-select" required>
-                            <option value="">Select Grade</option>
-                            @foreach($grades as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->full_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group mb-3">
-                            <label>Username</label>
-                            <input type="text"
-                                   name="username"
-                                   class="form-control"
-                                   value="{{$teacher->username}}"
-                                   placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group mb-3">
-                            <label>Password</label>
-                            <input type="password"
-                                   name="password"
-                                   class="form-control"
-                                   value="{{$teacher->password}}"
-                                   placeholder="">
-                        </div>
-                    </div>
-                </div>
-
                 <div class="form-group mb-3">
-                    <label>NIC Front</label>
-                    <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file"
-                               name="image"
-                               class="form-control"
-                               accept="image/*"
-                               value="{{$teacher->image_1}}"
-                               onchange="previewImage(event, 'teacherPreview')">
-                        <div class="mt-3">
-                            <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                        </div>
-                    </div>
+                    <label>Subjects</label>
+                    <select name="subjects[]" id="subjects-select" class="form-control mt-2" multiple required style="height: 120px;">
+                        @foreach($subjects as $subject)
+                            <option value="{{ $subject->id }}"
+                                {{ $teacher->subjects->contains($subject->id) ? 'selected' : '' }}>
+                                {{ $subject->name }} ({{ $subject->sub_code }})
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label>NIC Back</label>
-                    <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file"
-                               name="image_2"
-                               class="form-control"
-                               accept="image/*"
-                               value="{{$teacher->image_2}}"
-                               onchange="previewImage(event, 'teacherPreview')">
-                        <div class="mt-3">
-                            <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                        </div>
-                    </div>
+                    <label>Grade</label>
+                    <select name="grade_id" class="form-control mt-2" required>
+                        <option value="">Select Grade</option>
+                        @foreach($grades as $grade)
+                            <option value="{{ $grade->id }}" {{ $teacher->grade_id == $grade->id ? 'selected' : '' }}>
+                                {{ $grade->full_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control mt-2" value="{{ $teacher->username }}" placeholder="Username" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label mb-3">Password</label>
+                    <input type="password" name="password" class="form-control" value="{{ $teacher->password }}" placeholder="">
                 </div>
             </div>
-        </div>
-
-        <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary btn-lg">
+            <button type="submit" class="btn btn-secondary btn-lg w-100 mt-4">
                 Update Teacher
             </button>
         </div>

@@ -18,8 +18,6 @@ class Teacher extends Model
         'gender',
         'mobile',
         'address',
-        'course_id',
-        'subject_id',
         'grade_id',
         'username',
         'password'
