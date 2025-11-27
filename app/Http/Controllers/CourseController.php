@@ -20,11 +20,6 @@ class CourseController extends Controller
         return view('course.create' , compact('subjects'));
     }
 
-    public function edit()
-    {
-        return view('course.edit');
-    }
-
     public function show()
     {
         return view('course.show');
@@ -50,22 +45,48 @@ class CourseController extends Controller
         return redirect()->route('course.index');
     }
 
-    public function delete(string $id)
+    public function edit($id)
     {
-        try {
-            $course = Course::findOrFail($id);
-            $course->delete();
+        $course = Course::query()
+            ->where('id', $id)
+            ->first();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Grade deleted successfully!'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete Garde.'
-            ], 500);
-        }
+        return view('course.edit' , compact('course'));
     }
 
+    public function update(Request $request)
+    {
+        try {
+            Course::query()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'code' => $request->code,
+                    'category' => $request->category,
+                    'start_date' => $request->start_date,
+                    'duration' => $request->duration,
+                    'price' => $request->price,
+                    'subjects' => $request->subjects,
+                ]);
+
+            return redirect()->route('course.index');
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+    }
+    public function delete()
+    {
+        try {
+            Course::query()
+                ->where('id', request('id'))
+                ->delete();
+
+            return redirect()->route('course.index')->with('deleted', 'Course deleted successfully');
+
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+    }
 }

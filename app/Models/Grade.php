@@ -16,9 +16,10 @@ class Grade extends Model
         'code'
     ];
 
+    protected $appends = ['full_name'];
     public function getFullNameAttribute()
     {
-        return $this->class ? $this->name . '-' . $this->class->name : $this->name;
+        return $this->name . ' - ' . ($this->class?->name ?? 'No Class');
     }
     public function class()
     {

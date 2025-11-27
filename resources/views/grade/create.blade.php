@@ -36,7 +36,7 @@
 
                                     <div class="mb-4">
                                         <label for="gradeName" class="form-label fw-semibold">
-                                            Grade Level <span class="text-danger">*</span>
+                                            Grade Name <span class="text-danger">*</span>
                                         </label>
                                         <input
                                             type="text"

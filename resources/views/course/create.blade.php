@@ -42,7 +42,7 @@
 
                                             <div class="form-group mb-3">
                                                 <label>Course Name <span class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control" placeholder="Web Development Bootcamp" required>
+                                                <input type="text" name="name" class="form-control" placeholder="Web Development" required>
                                             </div>
 
                                             <div class="form-group mb-3">

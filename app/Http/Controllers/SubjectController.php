@@ -34,21 +34,42 @@ class SubjectController extends Controller
         }
     }
 
-    public function delete(string $id)
+    public function edit($id)
+    {
+        $subject = Subject::query()
+            ->where('id', $id)
+            ->first();
+
+        return view('subject.edit', compact('subject'));
+    }
+
+    public function update(Request $request)
     {
         try {
-            $subject = Subject::findOrFail($id);
-            $subject->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Grade deleted successfully!'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete Garde.'
-            ], 500);
+            Subject::query()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'sub_code' => $request->sub_code,
+                ]);
+            return redirect()->route('subject.index');
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+    }
+
+    public function delete()
+    {
+        try {
+            Subject::query()
+                ->where('id', request('id'))
+                ->delete();
+            return redirect()->route('subject.index')->with('deleted', 'Subject deleted successfully');
+        }
+        catch (\Exception $e) {
+            return $e;
         }
     }
 }

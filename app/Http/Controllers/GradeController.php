@@ -34,21 +34,43 @@ class GradeController extends Controller
         return redirect()->route('grade.index')->with('success', 'Grade created successfully!');
     }
 
-    public function delete(string $id)
+    public function edit($id)
+    {
+        $grade = Grade::query()
+            ->where('id', $id)
+            ->first();
+
+        return view('grade.edit', compact('grade'));
+    }
+
+    public function update(Request $request)
     {
         try {
-            $grade = Grade::findOrFail($id);
-            $grade->delete();
+            Grade::query()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'class_id' => $request->class_id,
+                    'code' => $request->code,
+                ]);
+            return redirect()->route('grade.index');
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+    }
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Grade deleted successfully!'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete Garde.'
-            ], 500);
+    public function delete()
+    {
+        try {
+            Grade::query()
+                ->where('id', request()->id)
+                ->delete();
+
+            return redirect()->route('grade.index')->with('deleted', 'Grade deleted successfully!');
+        }
+        catch (\Exception $e) {
+            return $e;
         }
     }
 

@@ -1,165 +1,110 @@
-@extends('layouts.app')
-
-@section('title', 'All Courses')
-
-@section('content')
-
-    <div class="breadcome-area">
-    <div class="container-fluid">
+<div class="tab-pane fade show active" id="description" role="tabpanel">
+    <form action="{{ route('course.update', $course->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="id" value="{{$course->id}}">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list single-page-breadcome">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func">
-                                    <input type="text" placeholder="Search..." class="search-int form-control">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                </li>
-                                <li><span class="bread-blod">Edit Course</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="single-pro-review-area mt-t-30 mg-b-15">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="product-payment-inner-st">
-                        <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#description">Courses Details</a></li>
-                            <li><a href="#reviews"> Account Information</a></li>
-                            <li><a href="#INFORMATION">Social Information</a></li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content custom-product-edit">
-                            <div class="product-tab-list tab-pane fade active in" id="description">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div id="dropzone1" class="pro-ad addcoursepro">
-                                                <form action="#" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                                <input name="number" type="text" class="form-control" placeholder="Course Name" value="Apps Development">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Course Start Date" value="12/10/2017">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Course Duration" value="6 Months">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Course Price" value="$400">
-                                                            </div>
-                                                            <div class="form-group alert-up-pd">
-                                                                <div class="dz-message needsclick download-custom">
-                                                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                                                    </p>
-                                                                    <input name="imageico" class="hd-pro-img" type="text" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group res-mg-t-15">
-                                                                <input type="text" class="form-control" placeholder="Department" value="CSE">
-                                                            </div>
-                                                            <div class="form-group edit-ta-resize">
-                                                                <textarea name="description">Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.</textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Course Professor" value="Selima sha">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="Year" value="1 Year">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="payment-adress">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="reviews">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Email">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" placeholder="Phone">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" placeholder="Password">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" placeholder="Confirm Password">
-                                                        </div>
-                                                        <a href="#!" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="INFORMATION">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Facebook URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Twitter URL">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Google Plus">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Linkedin URL">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="col-md-6">
 
-@endsection
+                <div class="form-group mb-3">
+                    <label>Course Name</label>
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Web Development"
+                           value="{{$course->name}}"
+                           required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Course Code</label>
+                    <input type="text"
+                           name="code"
+                           class="form-control"
+                           placeholder="IT/012"
+                           value="{{$course->code}}"
+                           required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Category</label>
+                    <select name="category" class="form-select">
+                        <option value="Web Development">Web Development</option>
+                        <option value="Mobile Development">Mobile Development</option>
+                        <option value="Design">Design</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Start Date</label>
+                    <input type="date"
+                           name="start_date"
+                           class="form-control"
+                           value="{{$course->start_date}}"
+                           required>
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label>Duration </label>
+                    <input type="text"
+                           name="duration"
+                           class="form-control"
+                           placeholder="(6 Months)"
+                           value="{{$course->duration}}"
+                           required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group mb-3">
+                    <label>Course Price Rs.</label>
+                    <input type="number"
+                           name="price"
+                           class="form-control"
+                           placeholder="3000.00"
+                           step="0.01"
+                           value="{{$course->price}}"
+                           required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Subjects</label>
+                    <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
+                        @foreach($subjects ?? [] as $subject)
+                            <option value="{{ $subject->id }}">
+                                {{ $subject->name }} ({{ $subject->sub_code }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Course Image</label>
+                    <div class="border border-dashed rounded p-4 text-center bg-light">
+                        <input type="file"
+                               name="image"
+                               class="form-control"
+                               accept="image/*"
+                               onchange="previewImage(event)"
+                               value="{{$course->image}}">
+                        <div class="mt-3">
+                            <img id="imagePreview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px; display: none;">
+                            <p class="text-muted mt-2 mb-0">Click to upload course thumbnail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">
+                Create Course
+            </button>
+        </div>
+    </form>
+</div>
+
+

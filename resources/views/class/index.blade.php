@@ -48,13 +48,13 @@
                                         <td><strong>{{ $class->code }}</strong></td>
                                         <td>{{ $class->name }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-warning btn-sm">
+                                            <a href="{{route('class.edit',$class->id)}}" class="btn btn-warning btn-sm">
                                                 Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteButton({{ $class->id }}, 'class')">
+                                            </a>
+                                            <a href="{{route('class.delete',$class->id)}}" type="button"
+                                               data-delete="Class" class="btn btn-danger btn-sm">
                                                 Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

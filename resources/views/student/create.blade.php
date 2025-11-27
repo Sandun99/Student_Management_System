@@ -175,6 +175,7 @@
             </div>
         </div>
     </div>
+
     @push('scripts')
         <script>
             function previewImage(event, previewId = 'imagePreview') {
@@ -192,5 +193,4 @@
             }
         </script>
     @endpush
-
 @endsection

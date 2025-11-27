@@ -25,10 +25,6 @@ class TeacherController extends Controller
         return view('teacher.create', compact('subjects', 'grades'));
     }
 
-    public function edit(){
-        return view('teacher.edit');
-    }
-
     public function show(){
         return view('teacher.show');
     }
@@ -62,21 +58,54 @@ class TeacherController extends Controller
                 ->with('success', 'Teacher created successfully!');
     }
 
-    public function delete(string $id)
+    public function edit($id)
+    {
+        $teacher = Teacher::query()
+        ->where('id', $id)
+        ->first();
+
+        $subjects = Subject::orderBy('name')->get();
+        $grades = Grade::orderBy('name')->get();
+        return view('teacher.edit', compact('teacher', 'subjects', 'grades'));
+    }
+
+    public function update(Request $request)
     {
         try {
-            $teacher = Teacher::findOrFail($id);
-            $teacher->delete();
+            Teacher::query()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    't_id' => $request->t_id,
+                    'email' => $request->email,
+                    'nic' => $request->nic,
+                    'dob' => $request->dob,
+                    'gender' => $request->gender,
+                    'mobile' => $request->mobile,
+                    'address' => $request->address,
+                    'username' => $request->username,
+                    'password' => $request->password,
+                    'grade_id' => $request->grade_id,
+                    'subjects' => $request->subjects,
+                ]);
+            return redirect()->route('teacher.teacher.index');
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
+    }
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Grade deleted successfully!'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete Garde.'
-            ], 500);
+    public function delete()
+    {
+        try {
+            Teacher::query()
+            ->where('id', request('id'))
+            ->delete();
+
+            return redirect()->route('teacher.teacher.index')->with('deleted', 'Teacher deleted successfully!');
+        }
+        catch (\Exception $e) {
+            return $e;
         }
     }
 }

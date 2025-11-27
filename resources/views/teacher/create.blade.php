@@ -54,7 +54,7 @@
 
                                         <div class="form-group mb-3">
                                             <label>Email <span class="text-danger">*</span></label>
-                                            <input type="text" name="email" class="form-control" placeholder="" required>
+                                            <input type="text" name="email" class="form-control"  placeholder="" required>
                                         </div>
 
                                         <div class="form-group mb-3">

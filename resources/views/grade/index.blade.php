@@ -44,16 +44,15 @@
                                 <td><strong>{{ $grade->code }}</strong></td>
                                 <td>
                                     <strong>{{ $grade->full_name }}</strong>
-
                                 </td>
                                 <td class='text-center'>
-                                    <button type="button" class="btn btn-warning btn-sm"
-                                            onclick="loadUpdateForm({{ $grade->id }})">Edit
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-sm"
-                                            onclick="deleteButton({{ $grade->id }}, 'grade')">
+                                    <a href="{{route('grade.edit',$grade->id)}}" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+                                    <a href="{{route('grade.delete',$grade->id)}}" type="button"
+                                       data-delete="grade" class="btn btn-danger btn-sm">
                                         Delete
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

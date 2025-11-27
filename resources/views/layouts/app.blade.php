@@ -57,71 +57,57 @@
 
 {{--Sweet Alert Script--}}
 <script>
-    function deleteButton(id, prefix) {
-        if (!prefix) {
-            Swal.fire('Error!', 'Delete failed: prefix missing (grade/course/student)', 'error');
-            console.error('deleteButton: prefix is required! Example: deleteButton(5, "grade")');
-            return;
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a[data-delete]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const url = this.getAttribute('href');
+                const name = this.getAttribute('data-delete') || 'item';
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "This action cannot be undone!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "Cancel",
-            buttonsStyling: false,
-            customClass: {
-                confirmButton: 'btn btn-danger mx-3',
-                cancelButton: 'btn btn-secondary mx-3'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const url = `/${prefix}/delete/${id}`;
-
-                fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json'
+                Swal.fire({
+                    title: 'Delete this ' + name + '?',
+                    text: 'This action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'btn btn-danger mx-2',
+                        cancelButton: 'btn btn-secondary mx-2'
                     }
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network error or route not found');
-                        }
-                        return response.json();
-                    })
-                    .then(res => {
-                        const row = document.querySelector(`tr[data-id="${id}"]`);
-                        if (row) row.remove();
-
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            background: '#28a745',
-                            color: 'white',
-                            iconColor: 'white'
-                        });
-                        Toast.fire({
-                            icon: 'success',
-                            title: res.message || 'Deleted successfully!'
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Delete failed:', error);
-                        Swal.fire('Error!', 'Failed to delete. Check console.', 'error');
-                    });
-            }
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        const form = document.createElement('form');
+                        form.method = 'GET';
+                        form.action = url;
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                });
+            });
         });
-    }
+
+        // === 2. Show ONE success toast ONLY after redirect (no duplicate) ===
+        @if(session('deleted'))
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ session('deleted') }}',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#28a745',
+            color: 'white',
+            iconColor: 'white'
+        });
+        Toast.fire();
+        @endif
+    });
 </script>
 
+{{--search script--}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('globalSearchInput');

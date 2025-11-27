@@ -67,20 +67,20 @@
                                         </td>
                                         <td>
                                                 <span class="badge bg-secondary">
-                                                    {{ $student->grade?->name ?? '—' }}
+                                                    {{ $student->grade?->full_name ?? '—' }}
                                                 </span>
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-primary btn-sm">
                                                 View
                                             </button>
-                                            <button type="button" class="btn btn-warning btn-sm">
+                                            <a href="{{route('student.edit',$student->id)}}" class="btn btn-warning btn-sm">
                                                 Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteButton({{ $student->id }}, 'student')">
+                                            </a>
+                                            <a href="{{route('student.delete',$student->id)}}" type="button"
+                                               data-delete="grade" class="btn btn-danger btn-sm">
                                                 Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

@@ -50,13 +50,13 @@
                                         <td><strong>{{ $subject->sub_code }}</strong></td>
                                         <td>{{ $subject->name }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-warning btn-sm">
+                                            <a href="{{route('subject.edit',$subject->id)}}" class="btn btn-warning btn-sm">
                                                 Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteButton({{ $subject->id }}, 'subject')">
+                                            </a>
+                                            <a href="{{route('subject.delete',$subject->id)}}" type="button"
+                                               data-delete="subject" class="btn btn-danger btn-sm">
                                                 Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -72,13 +72,13 @@
                                             <button type="button" class="btn btn-primary btn-sm">
                                                 View
                                             </button>
-                                            <button type="button" class="btn btn-warning btn-sm">
+                                            <a href="{{route('teacher.teacher.edit',$teacher->id)}}" class="btn btn-warning btn-sm">
                                                 Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="deleteButton({{ $teacher->id }}, 'teacher')">
+                                            </a>
+                                            <a href="{{route('teacher.teacher.delete',$teacher->id)}}" type="button"
+                                               data-delete="grade" class="btn btn-danger btn-sm">
                                                 Delete
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

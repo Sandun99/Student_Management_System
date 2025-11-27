@@ -22,7 +22,6 @@ class ClassController extends Controller
     public function store(Request $request){
 
         try {
-
             Classes::query()->create([
                 'name' => $request->name,
                 'code' => $request->code,
@@ -34,21 +33,41 @@ class ClassController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $classes = Classes::query()
+        ->where('id', $id)
+        ->first();
+        return view('class.edit' , compact('classes'));
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            Classes::query()
+                ->where('id', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'code' => $request->code,
+                ]);
+            return redirect()->route('class.index');
+        }
+        catch (\Exception $e){
+            return $e;
+        }
+    }
+
     public function delete($id)
     {
         try {
-            $class = Classes::findOrFail($id);
-            $class->delete();
+            Classes::query()
+                ->where('id', $id)
+                ->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Grade deleted successfully!'
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete Garde.'
-            ], 500);
+            return redirect()->route('class.index')->with('deleted', 'Class deleted successfully!');
+        }
+        catch (\Exception $e){
+            return $e;
         }
     }
 
