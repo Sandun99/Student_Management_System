@@ -85,7 +85,7 @@ class StudentController extends Controller
                     'course_id' => $request->course_id,
                 ]);
 
-            return redirect()->route('student.index');
+            return redirect()->back()->with('success', 'Student updated successfully');
         }
         catch (\Exception $e){
             return $e;

@@ -53,7 +53,7 @@ class SubjectController extends Controller
                     'name' => $request->name,
                     'sub_code' => $request->sub_code,
                 ]);
-            return redirect()->route('subject.index');
+            return redirect()->route('subject.index')->with("success", "Subject Updated Successfully");
         }
         catch (\Exception $e) {
             return $e;

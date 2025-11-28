@@ -53,7 +53,7 @@ class GradeController extends Controller
                     'class_id' => $request->class_id,
                     'code' => $request->code,
                 ]);
-            return redirect()->route('grade.index');
+            return redirect()->route('grade.index')->with('success', 'Grade updated successfully!');
         }
         catch (\Exception $e) {
             return $e;

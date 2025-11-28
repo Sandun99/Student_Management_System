@@ -171,7 +171,9 @@
 
             </div>
         </div>
-        <button type="submit" class="btn btn-secondary btn-lg w-100 mt-4">
+        <button type="submit"
+                class="btn btn-secondary btn-lg w-100 mt-4"
+                data-confirm="update">
             Update Student
         </button>
     </form>

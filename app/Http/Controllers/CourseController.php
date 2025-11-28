@@ -72,7 +72,7 @@ class CourseController extends Controller
                 ]);
 
             $course->subjects()->sync($request->subjects ?? []);
-            return redirect()->route('course.index', compact('course'));
+            return redirect()->route('course.index', compact('course'))->with('success', 'Course has been updated');
         }
         catch (\Exception $e) {
             return $e;

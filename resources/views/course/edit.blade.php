@@ -101,8 +101,10 @@
         </div>
 
         <div class="text-end mt-4">
-            <button type="submit" class="btn btn-secondary btn-lg">
-                Create Course
+            <button type="submit"
+                    class="btn btn-secondary btn-lg w-100 mt-4"
+                    data-confirm="update">
+                Update Course
             </button>
         </div>
     </form>

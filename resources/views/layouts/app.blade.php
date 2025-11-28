@@ -90,7 +90,7 @@
             });
         });
 
-        // === 2. Show ONE success toast ONLY after redirect (no duplicate) ===
+        // delete toast alert
         @if(session('deleted'))
         const Toast = Swal.mixin({
             toast: true,
@@ -106,6 +106,24 @@
         });
         Toast.fire();
         @endif
+
+
+            // update success toast alert
+        @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            toast: true,
+            position: 'top-end',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            background: '#28a745',
+            color: 'white',
+            iconColor: 'white'
+        });
+@endif
     });
 </script>
 
@@ -153,7 +171,43 @@
     });
 </script>
 
+{{--sweetalert for updating--}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Listen for any button with data-confirm="update"
+        document.body.addEventListener('click', function (e) {
+            const btn = e.target.closest('button[data-confirm="update"]') ||
+                e.target.closest('input[type="submit"][data-confirm="update"]');
 
+            if (!btn) return;
+
+            e.preventDefault();
+            const form = btn.closest('form');
+
+            if (!form) return;
+
+            Swal.fire({
+                title: 'Save Changes?',
+                text: 'Are you sure you want to update this record?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Update',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true,
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'btn btn-success mx-2',
+                    cancelButton: 'btn btn-secondary mx-2'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
+</script>
 
 
 @stack('scripts')

@@ -31,7 +31,9 @@
         </div>
 
         <div class="d-flex gap-2 justify-content-end mt-5">
-            <button type="submit" class="btn btn-secondary px-4">
+            <button type="submit"
+                    class="btn btn-secondary btn-lg w-100 mt-4"
+                    data-confirm="update">
                 Update Class
             </button>
         </div>

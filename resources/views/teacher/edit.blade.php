@@ -107,7 +107,9 @@
                     <input type="password" name="password" class="form-control" value="{{ $teacher->password }}" placeholder="">
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary btn-lg w-100 mt-4">
+            <button type="submit"
+                    class="btn btn-secondary btn-lg w-100 mt-4"
+                    data-confirm="update">
                 Update Teacher
             </button>
         </div>
