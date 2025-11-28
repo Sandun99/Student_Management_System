@@ -17,13 +17,17 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label fw-semibold">Class <span class="text-danger">*</span></label>
-            <select name="class_id" class="form-select" required>
-                <option value="">Select Class</option>
-                @foreach(\App\Models\Classes::orderBy('name')->get() as $class)
-                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+            <label class="form-label fw-semibold">Class</label>
+            <select name="class_id" id="class_id" class="form-select form-select-lg" required>
+                <option value=""> Select Class </option>
+                @foreach($classes as $class)
+                    <option value="{{ $class->id }}"
+                        {{ $grade->class_id == $class->id ? 'selected' : '' }}>
+                        {{ $class->name }}
+                    </option>
                 @endforeach
             </select>
+
         </div>
 
         <div class="mb-4">

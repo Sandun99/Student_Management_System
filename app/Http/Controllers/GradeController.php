@@ -40,7 +40,8 @@ class GradeController extends Controller
             ->where('id', $id)
             ->first();
 
-        return view('grade.edit', compact('grade'));
+        $classes = Classes::all();
+        return view('grade.edit', compact('grade', 'classes'));
     }
 
     public function update(Request $request)
