@@ -24,9 +24,10 @@
                 <div class="flex-grow-1 text-center">
                     <h4 class="mb-0">Registered Grades</h4>
                 </div>
-                <a href="{{ route('grade.create') }}" class="btn btn-light btn-sm">
-                    <i class="bi bi-plus-lg"></i> Add New Grade
-                </a>
+                <button type="button"
+                        class="btn btn-outline-light btn-sm"
+                        data-create-url="{{ route('grade.create') }}">Add New Grade
+                </button>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -27,7 +27,7 @@
     </div>
 </div>
 
-view model
+{{--view model--}}
 <div class="modal fade" id="universalViewModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content shadow-lg rounded-4 overflow-hidden border-0">
@@ -45,6 +45,26 @@ view model
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <p class="mt-3">Loading details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--add new model--}}
+<div class="modal fade modal-xl" id="universalCreateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content rounded-4 overflow-hidden border-0">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title fw-semibold" id="createModalTitle">
+                     Add New Record
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4" id="createModalBody">
+                <div class="text-center py-5 text-muted">
+                    <div class="spinner-border text-success"></div>
+                    <p class="mt-3">Loading form...</p>
                 </div>
             </div>
         </div>
@@ -131,5 +151,39 @@ view model
     });
 </script>
 
+{{--add new model--}}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = new bootstrap.Modal('#universalEditModal');
+        const title = document.getElementById('modalTitle');
+        const body = document.getElementById('modalBodyContent');
+
+        document.body.addEventListener('click', e => {
+            const btn = e.target.closest('button[data-create-url]');
+            if (!btn) return;
+            e.preventDefault();
+
+            const url = btn.dataset.createUrl;
+            const name = url.split('/').slice(-2,-1)[0];
+            title.textContent = 'Add New ' + name[0].toUpperCase() + name.slice(1);
+
+            body.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div></div>';
+            modal.show();
+
+            fetch(url + '?ajax=1')
+                .then(r => r.text())
+                .then(html => {
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+                    const content = doc.querySelector('.tab-pane') || doc.querySelector('form') || doc.body;
+                    body.innerHTML = content.innerHTML;
+
+                    const select = document.getElementById('subjects-select');
+                    if (select && !select.tomselect) {
+                        new TomSelect(select, { plugins: ['remove_button'] });
+                    }
+                });
+        });
+    });
+</script>
 </body>
 </html>

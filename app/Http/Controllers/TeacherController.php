@@ -17,7 +17,7 @@ class TeacherController extends Controller
         return view('teacher.index', compact('teachers'));
     }
 
-    public function add()
+    public function create()
     {
         $subjects = Subject::all();
         $grades = Grade::all();

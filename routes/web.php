@@ -26,12 +26,13 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
-    Route::get('/add', [TeacherController::class, 'add'])->name('teacher.add');
+    Route::get('/create', [TeacherController::class, 'create'])->name('teacher.create');
     Route::post('/store', [TeacherController::class, 'store'])->name('teacher.store');
     Route::get('delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
     Route::get('edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::post('update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::get('/{teacher}/view', [TeacherController::class, 'show'])->name('show');
+    Route::get('/add', [TeacherController::class, 'add'])->name('teacher.add');
 });
 
 Route::prefix('student')->name('student.')->group(function () {

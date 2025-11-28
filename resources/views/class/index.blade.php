@@ -17,7 +17,6 @@
             </div>
         </div>
     </div>
-
     <div class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -27,9 +26,10 @@
                         <div class="flex-grow-1 text-center">
                             <h4 class="mb-0">Registered Classes</h4>
                         </div>
-                        <a href="{{ route('class.create') }}" class="btn btn-light btn-sm">
-                            <i class="bi bi-plus-lg"></i> Add New Class
-                        </a>
+                        <button type="button"
+                                class="btn btn-outline-light btn-sm"
+                                data-create-url="{{ route('class.create') }}">Add New Subject
+                        </button>
                     </div>
 
                     <div class="card-body">

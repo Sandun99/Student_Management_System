@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('teacher.teacher.add') }}" class="nav-link {{ request()->routeIs('teacher.create') ? 'active' : '' }}">
+                            <a href="{{ route('teacher.teacher.create') }}" class="nav-link {{ request()->routeIs('teacher.create') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Add Teacher</p>
                             </a>

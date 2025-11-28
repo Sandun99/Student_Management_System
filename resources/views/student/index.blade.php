@@ -28,9 +28,10 @@
                         <form class="d-flex mb-0" onsubmit="return false;">
                             <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>
-                        <a href="{{ route('student.create') }}" class="btn btn-light btn-sm">
-                            Add New Student
-                        </a>
+                        <button type="button"
+                                class="btn btn-outline-light btn-sm"
+                                data-create-url="{{ route('student.create') }}">Add New Student
+                        </button>
                     </div>
 
                     <div class="card-body">

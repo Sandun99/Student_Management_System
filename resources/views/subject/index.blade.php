@@ -29,9 +29,10 @@
                         <form class="d-flex mb-0" onsubmit="return false;">
                             <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>
-                        <a href="{{ route('subject.create') }}" class="btn btn-light btn-sm">
-                            <i class="bi bi-plus-lg"></i> Add New Subject
-                        </a>
+                        <button type="button"
+                                class="btn btn-outline-light btn-sm"
+                                data-create-url="{{ route('subject.create') }}">Add New Subject
+                        </button>
                     </div>
 
                     <div class="card-body">

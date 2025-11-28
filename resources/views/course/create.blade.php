@@ -4,21 +4,23 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <div class="row mb-4 align-items-center">
-            <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center position-relative">
-                    <h1 class="m-0">Add New Course</h1>
+    <div class="bg-secondary bg-opacity-10 py-5 mb-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <h1 class="h2 fw-bold mb-0">Add New Course</h1>
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none text-muted">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('course.index') }}" class="text-decoration-none text-muted">Courses</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('course.index') }}" class="text-decoration-none">Course</a></li>
                         <li class="breadcrumb-item active">Create</li>
                     </ol>
-                </div>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="container">
+        <div class="row">
             <div class="col-12">
                 <div class="card card-primary card-outline card-tabs">
                     <div class="card-header p-0 pt-1 border-bottom-0">
@@ -105,7 +107,7 @@
                                     </div>
 
                                     <div class="text-end mt-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">
+                                        <button type="submit" class="btn btn-secondary btn-lg">
                                             Create Course
                                         </button>
                                     </div>
@@ -115,6 +117,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 
     @push('scripts')
