@@ -23,6 +23,9 @@ class Teacher extends Model
         'password'
     ];
 
+    protected $casts = [
+        'dob' => 'date',
+    ];
     public function subjects()
     {
         return $this->belongsToMany(Subject::class , 'subject_teacher');

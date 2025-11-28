@@ -18,13 +18,14 @@ class StudentController extends Controller
 
     public function create(){
 
-        $grades  = Grade::orderBy('name')->get();
-        $courses = Course::orderBy('name')->get();
+        $grades  = Grade::all();
+        $courses = Course::all();
         return view('student.create', compact('grades', 'courses'));
 
     }
-    public function show(){
-        return view('student.show');
+    public function show(Student $student){
+
+        return view('student.show', compact('student'));
     }
     public function store(Request $request)
     {
@@ -67,7 +68,6 @@ class StudentController extends Controller
     {
 
         try {
-            $student = Student::findOrFail($request->id);
             Student::query()
                 ->where('id', $request->id)
                 ->update([

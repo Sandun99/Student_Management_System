@@ -19,16 +19,15 @@ class TeacherController extends Controller
 
     public function add()
     {
-        $subjects = Subject::orderBy('name')->get();
-        $grades = Grade::orderBy('name')->get();
+        $subjects = Subject::all();
+        $grades = Grade::all();
 
         return view('teacher.create', compact('subjects', 'grades'));
     }
 
-    public function show(){
-        return view('teacher.show');
+    public function show(Teacher $teacher){
+        return view('teacher.show', compact('teacher'));
     }
-
     public function store(Request $request)
     {
 
@@ -63,8 +62,8 @@ class TeacherController extends Controller
         ->where('id', $id)
         ->first();
 
-        $subjects = Subject::orderBy('name')->get();
-        $grades = Grade::orderBy('name')->get();
+        $subjects = Subject::all();
+        $grades = Grade::all();
         return view('teacher.edit', compact('teacher', 'subjects', 'grades'));
     }
 

@@ -69,21 +69,25 @@
                                             </span>
                                         </td>
                                         <td class="text-center" style="width: 180px">
-                                            <button type="button" class="btn btn-primary btn-sm">
+                                            <button type="button"
+                                                    class="btn btn-primary btn-sm"
+                                                    data-view-url="{{ route('teacher.show', $teacher->id) }}">
                                                 View
                                             </button>
                                             <a href="{{route('teacher.teacher.edit',$teacher->id)}}" class="btn btn-warning btn-sm">
                                                 Edit
                                             </a>
-                                            <a href="{{route('teacher.teacher.delete',$teacher->id)}}" type="button"
-                                               data-delete="grade" class="btn btn-danger btn-sm">
+                                            <a href="{{route('teacher.teacher.delete',$teacher->id)}}"
+                                               data-delete="teacher" class="btn btn-danger btn-sm">
                                                 Delete
                                             </a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-
+                                        <td colspan="8" class="text-center text-muted py-4">
+                                            No teachers found.
+                                        </td>
                                     </tr>
                                 @endforelse
                                 </tbody>
@@ -96,3 +100,4 @@
     </div>
 
 @endsection
+

@@ -28,5 +28,4 @@ class Course extends Model
         return $this->belongsToMany(Subject::class, 'course_subject');
     }
 
-
 }

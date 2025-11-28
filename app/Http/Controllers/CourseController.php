@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\Course;
 
@@ -16,13 +18,14 @@ class CourseController extends Controller
 
     public function create()
     {
-        $subjects = Subject::orderBy('name')->get();
+        $subjects = Subject::all();
         return view('course.create' , compact('subjects'));
     }
 
-    public function show()
+    public function show(Course $course)
     {
-        return view('course.show');
+        return view('course.show', compact('course'));
+
     }
 
     public function store(Request $request)
@@ -39,24 +42,24 @@ class CourseController extends Controller
             'subjects.*' => 'exists:subjects,id',
         ]);
 
-        $course = Course::create($validated);
-        $course->subjects()->attach($request->subjects);
-
         return redirect()->route('course.index');
     }
 
     public function edit($id)
     {
         $course = Course::query()
+            ->with('subjects')
             ->where('id', $id)
             ->first();
 
         return view('course.edit' , compact('course'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
         try {
+            $course = Course::findOrFail($id);
+
             Course::query()
                 ->where('id', $request->id)
                 ->update([
@@ -66,10 +69,10 @@ class CourseController extends Controller
                     'start_date' => $request->start_date,
                     'duration' => $request->duration,
                     'price' => $request->price,
-                    'subjects' => $request->subjects,
                 ]);
 
-            return redirect()->route('course.index');
+            $course->subjects()->sync($request->subjects ?? []);
+            return redirect()->route('course.index', compact('course'));
         }
         catch (\Exception $e) {
             return $e;

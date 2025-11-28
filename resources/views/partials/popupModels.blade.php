@@ -2,7 +2,7 @@
 <html lang="en">
 <body class="bg-light">
 
-
+{{--edit model--}}
 <div class="modal fade" id="universalEditModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content shadow-lg rounded-4 overflow-hidden border-0">
@@ -27,6 +27,31 @@
     </div>
 </div>
 
+view model
+<div class="modal fade" id="universalViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content shadow-lg rounded-4 overflow-hidden border-0">
+
+            <div class="border-bottom px-4 py-3 d-flex justify-content-between align-items-center bg-white">
+                <h5 class="modal-title fw-semibold text-dark mb-0" id="viewModalTitle">
+                    View Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4" id="viewModalBodyContent">
+                <div class="text-center py-5 text-muted">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--edit model script--}}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const modalEl = document.getElementById('universalEditModal');
@@ -77,6 +102,32 @@
                     bodyEl.innerHTML = `<div class="text-center py-5 text-danger">Failed to load form.</div>`;
                 });
         });
+    });
+</script>
+
+{{--VIEW Modal Script--}}
+<script>
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('[data-view-url]')) return;
+
+        e.preventDefault();
+        const btn = e.target.closest('[data-view-url]');
+        const url = btn.getAttribute('data-view-url');
+        const title = btn.getAttribute('data-title') || 'Details';
+
+        document.getElementById('viewModalTitle').textContent = title;
+        document.getElementById('viewModalBodyContent').innerHTML = `
+            <div class="text-center py-5"><div class="spinner-border text-primary"></div><p>Loading...</p></div>`;
+
+        bootstrap.Modal.getOrCreateInstance('#universalViewModal').show();
+
+        fetch(url)
+            .then(r => r.text())
+            .then(html => {
+                const content = new DOMParser().parseFromString(html, 'text/html')
+                    .querySelector('.row')?.innerHTML || html;
+                document.getElementById('viewModalBodyContent').innerHTML = content;
+            });
     });
 </script>
 

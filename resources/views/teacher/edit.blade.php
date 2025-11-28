@@ -7,23 +7,46 @@
             <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label>Full Name</label>
-                    <input type="text" name="name" class="form-control" value="{{ $teacher->name }}" placeholder="Full Name" required>
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           value="{{ $teacher->name }}"
+                           placeholder="Full Name" required>
                 </div>
                 <div class="form-group mb-3">
                     <label>Teacher ID</label>
-                    <input type="text" name="t_id" class="form-control mt-2" value="{{ $teacher->t_id }}" placeholder="Teacher ID" required>
+                    <input type="text"
+                           name="t_id"
+                           class="form-control mt-2"
+                           value="{{ $teacher->t_id }}"
+                           placeholder="Teacher ID"
+                           required>
                 </div>
                 <div class="form-group mb-3">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control mt-2" value="{{ $teacher->email }}" placeholder="Email" required>
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control mt-2"
+                        value="{{ $teacher->email }}"
+                        placeholder="Email"
+                        required>
                 </div>
                 <div class="form-group mb-3">
                     <label>NIC</label>
-                    <input type="text" name="nic" class="form-control mt-2" value="{{ $teacher->nic }}" placeholder="NIC" required>
+                    <input type="text"
+                           name="nic"
+                           class="form-control mt-2"
+                           value="{{ $teacher->nic }}"
+                           placeholder="NIC"
+                           required>
                 </div>
                 <div class="form-group mb-3">
                     <label>Date Of Birth</label>
-                    <input type="date" name="dob" class="form-control mt-2" value="{{ $teacher->dob }}">
+                    <input type="date"
+                           name="dob"
+                           class="form-control mt-2"
+                           value="{{ $teacher->dob?->format('Y-m-d') }}">
                 </div>
                 <div class="form-group mb-3">
                     <label>Gender</label>
@@ -34,11 +57,21 @@
                 </div>
                 <div class="form-group mb-3">
                     <label>Mobile</label>
-                    <input type="text" name="mobile" class="form-control mt-2" value="{{ $teacher->mobile }}" placeholder="Mobile" required>
+                    <input type="text"
+                           name="mobile"
+                           class="form-control mt-2"
+                           value="{{ $teacher->mobile }}"
+                           placeholder="Mobile"
+                           required>
                 </div>
                 <div class="form-group mb-3">
                     <label>Address</label>
-                    <textarea name="address" class="form-control mt-2" rows="2" placeholder="Address">{{ $teacher->address }}</textarea>
+                    <textarea name="address"
+                              class="form-control mt-2"
+                              rows="2"
+                              placeholder="Address">
+                        {{ $teacher->address }}
+                    </textarea>
                 </div>
             </div>
 

@@ -65,7 +65,9 @@
                                             @endif
                                         </td>
                                         <td class="text-center align-middle" style="min-width: 180px;">
-                                            <button type="button" class="btn btn-primary btn-sm">
+                                            <button type="button"
+                                                    class="btn btn-primary btn-sm"
+                                                    data-view-url="{{ route('course.show', $course->id) }}">
                                                 View
                                             </button>
                                             <a href="{{route('course.edit',$course->id)}}" class="btn btn-warning btn-sm">

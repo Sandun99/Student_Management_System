@@ -41,7 +41,7 @@
                     <input type="date"
                            name="start_date"
                            class="form-control"
-                           value="{{$course->start_date}}"
+                           value="{{ $course->start_date?->format('Y-m-d') }}"
                            required>
                 </div>
 
@@ -73,9 +73,10 @@
                 <div class="form-group mb-3">
                     <label>Subjects</label>
                     <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
-                        @foreach($subjects ?? [] as $subject)
-                            <option value="{{ $subject->id }}">
-                                {{ $subject->name }} ({{ $subject->sub_code }})
+                        @foreach(\App\Models\Subject::all() as $subject)
+                            <option value="{{ $subject->id }}"
+                                {{ $course->subjects->pluck('id')->contains($subject->id) ? 'selected' : '' }}>
+                                {{ $subject->name }} ({{ $subject->sub_code ?? 'N/A' }})
                             </option>
                         @endforeach
                     </select>
@@ -106,5 +107,3 @@
         </div>
     </form>
 </div>
-
-

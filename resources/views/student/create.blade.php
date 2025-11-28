@@ -52,27 +52,27 @@
                                     <div class="col-md-6">
 
                                         <div class="form-group mb-3">
-                                            <label>Full Name <span class="text-danger">*</span></label>
+                                            <label>Full Name</label>
                                             <input type="text" name="name" class="form-control" placeholder="" required>
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>Reg_No <span class="text-danger">*</span></label>
+                                            <label>Reg_No</label>
                                             <input type="text" name="reg_no" class="form-control" placeholder="ST/0000" required>
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>Date of Birth <span class="text-danger">*</span></label>
+                                            <label>Date of Birth </label>
                                             <input type="date" name="dob" class="form-control" required>
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>NIC <span class="text-danger">*</span></label>
+                                            <label>NIC </label>
                                             <input type="text" name="nic" class="form-control" placeholder="" required>
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>Gender <span class="text-danger">*</span></label>
+                                            <label>Gender</label>
                                             <select name="gender" class="form-select" required>
                                                 <option value="" disabled selected>Select Gender</option>
                                                 <option value="male">Male</option>
@@ -81,7 +81,7 @@
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>Mobile Number <span class="text-danger">*</span></label>
+                                            <label>Mobile Number</label>
                                             <input type="text" name="mobile" class="form-control" placeholder="" required>
                                         </div>
 
@@ -91,7 +91,7 @@
                                         </div>
 
                                         <div class="form-group mb-3">
-                                            <label>email <span class="text-danger">*</span></label>
+                                            <label>email </label>
                                             <input type="text" name="email" class="form-control" placeholder="" required>
                                         </div>
 
@@ -175,7 +175,6 @@
             </div>
         </div>
     </div>
-
     @push('scripts')
         <script>
             function previewImage(event, previewId = 'imagePreview') {

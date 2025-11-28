@@ -24,6 +24,10 @@ class Student extends Model
         'course_id'
     ];
 
+    protected $casts = [
+        'dob' => 'date',
+    ];
+
     public function course()
     {
         return $this->belongsTo(Course::class);

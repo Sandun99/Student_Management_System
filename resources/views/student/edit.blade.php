@@ -31,7 +31,7 @@
                     <input type="date"
                            name="dob"
                            class="form-control"
-                           value="{{$student->dob}}"
+                           value="{{ $student->dob?->format('Y-m-d') }}"
                            required>
                 </div>
 

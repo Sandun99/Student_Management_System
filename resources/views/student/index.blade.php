@@ -71,7 +71,9 @@
                                                 </span>
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary btn-sm">
+                                            <button type="button"
+                                                    class="btn btn-primary btn-sm"
+                                                    data-view-url="{{ route('student.show', $student->id) }}">
                                                 View
                                             </button>
                                             <a href="{{route('student.edit',$student->id)}}" class="btn btn-warning btn-sm">
@@ -101,5 +103,4 @@
             </div>
         </div>
     </div>
-
 @endsection

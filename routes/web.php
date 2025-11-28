@@ -27,31 +27,31 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
     Route::get('/add', [TeacherController::class, 'add'])->name('teacher.add');
-    Route::get('/show', [TeacherController::class, 'show'])->name('teacher.show');
     Route::post('/store', [TeacherController::class, 'store'])->name('teacher.store');
     Route::get('delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
     Route::get('edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::post('update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+    Route::get('/{teacher}/view', [TeacherController::class, 'show'])->name('show');
 });
 
 Route::prefix('student')->name('student.')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
     Route::get('/create', [StudentController::class, 'create'])->name('create');
-    Route::get('/show', [StudentController::class, 'show'])->name('show');
     Route::post('/store', [StudentController::class, 'store'])->name('store');
     Route::get('/delete/{id}', [StudentController::class, 'delete'])->name('delete');
     Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('edit');
     Route::put('/update/{id}', [StudentController::class, 'update'])->name('update');
+    Route::get('/{student}/view', [StudentController::class, 'show'])->name('show');
 });
 
 route::prefix('course')->name('course.')->group(function () {
     Route::get('/', [CourseController::class, 'index'])->name('index');
     Route::get('/create', [CourseController::class, 'create'])->name('create');
-    Route::get('/show', [CourseController::class, 'show'])->name('show');
     Route::post('/store', [CourseController::class, 'store'])->name('store');
     Route::get('/delete/{id}', [CourseController::class, 'delete'])->name('delete');
     Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [CourseController::class, 'update'])->name('update');
+    Route::get('/course/{course}/view', [CourseController::class, 'show'])->name('show');
 });
 
 Route::prefix('subject')->name('subject.')->group(function () {
