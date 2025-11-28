@@ -46,7 +46,7 @@ class StudentController extends Controller
                 'grade_id' => $request->grade_id,
                 'course_id' => $request->course_id,
             ]);
-            return redirect()->route('student.index');
+            return redirect()->route('student.index')->with('create', 'Student created successfully!');
         }
         catch (\Exception $exception){
             return redirect()->route('student.create')->with('error', $exception->getMessage());

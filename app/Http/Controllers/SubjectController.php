@@ -27,7 +27,7 @@ class SubjectController extends Controller
                 'name' => $request->name,
                 'sub_code' => $request->sub_code,
             ]);
-            return redirect()->route('subject.index');
+            return redirect()->route('subject.index')->with('create', 'Subject created successfully!');
         }
         catch (\Exception $e) {
             return $e;

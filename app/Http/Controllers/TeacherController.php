@@ -49,7 +49,7 @@ class TeacherController extends Controller
             $teacher = Teacher::latest()->first();
             $teacher->subjects()->attach($request->subjects);
 
-            return redirect()->route('teacher.teacher.index')->with('success', 'Teacher created successfully!');
+            return redirect()->route('teacher.teacher.index')->with('create', 'Teacher created successfully!');
         }
         catch (\Exception $e) {
             return $e;

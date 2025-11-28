@@ -26,7 +26,7 @@ class ClassController extends Controller
                 'name' => $request->name,
                 'code' => $request->code,
             ]);
-            return redirect()->route('class.index');
+            return redirect()->route('class.index')->with('create', 'Class created successfully!');
         }
         catch (\Exception $e){
             return $e;

@@ -42,7 +42,7 @@ class CourseController extends Controller
             'subjects.*' => 'exists:subjects,id',
         ]);
 
-        return redirect()->route('course.index');
+        return redirect()->route('course.index')->with('create', 'Course created successfully!');
     }
 
     public function edit($id)

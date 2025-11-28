@@ -31,7 +31,7 @@ class GradeController extends Controller
 
         Grade::create($request->only(['name', 'class_id', 'code']));
 
-        return redirect()->route('grade.index')->with('success', 'Grade created successfully!');
+        return redirect()->route('grade.index')->with('create', 'Grade created successfully!');
     }
 
     public function edit($id)

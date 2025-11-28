@@ -100,7 +100,7 @@
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-            background: '#28a745',
+            background: '#ce1313',
             color: 'white',
             iconColor: 'white'
         });
@@ -110,20 +110,37 @@
 
             // update success toast alert
         @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: '{{ session('success') }}',
+        const Toast2 = Swal.mixin({
             toast: true,
             position: 'top-end',
+            icon: 'success',
+            title: '{{ session('success') }}',
+            showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
-            showConfirmButton: false,
-            background: '#28a745',
+            background: '#e7ae39',
             color: 'white',
             iconColor: 'white'
         });
-@endif
+        Toast2.fire();
+        @endif
+
+        // toast for when after creating
+        @if(session('create'))
+        const Toast3 = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ session('create') }}',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#3ab61d',
+            color: 'white',
+            iconColor: 'white'
+        });
+        Toast3.fire();
+        @endif
     });
 </script>
 
