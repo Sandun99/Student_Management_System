@@ -127,7 +127,7 @@
 
                 <li class="nav-item {{ request()->routeIs('grade.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('grade.*') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-anthropic"></i>
+                        <i class="nav-icon fa-solid fa-graduation-cap"></i>
                         <p>
                             Grades
                             <i class="nav-arrow bi bi-chevron-right"></i>
@@ -151,7 +151,7 @@
 
                 <li class="nav-item {{ request()->routeIs('class.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('class.*') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-graduation-cap"></i>
+                        <i class="nav-icon bi bi-anthropic"></i>
                         <p>
                             Classes
                             <i class="nav-arrow bi bi-chevron-right"></i>
