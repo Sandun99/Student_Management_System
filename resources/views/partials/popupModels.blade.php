@@ -121,6 +121,7 @@
                 .catch(() => {
                     bodyEl.innerHTML = `<div class="text-center py-5 text-danger">Failed to load form.</div>`;
                 });
+
         });
     });
 </script>

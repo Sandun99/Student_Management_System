@@ -30,17 +30,17 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid ">
+        <div class="row ">
             <!--begin::Col-->
             <div class="col-lg-3 col-6">
                 <!--begin::Small Box Widget 1-->
-                <div class="small-box text-bg-primary">
+                <div class="small-box text-bg-secondary border-5 shadow-lg mb-5 border-start border-secondary border-5">
                     <div class="inner">
                         <h3>{{$totalTeachers}}</h3>
                         <p>Total Teachers</p>
                     </div>
-                    <a href="{{route('teacher.teacher.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                    <a href="{{route('teacher.teacher.index')}}" class="small-box-footer link-underline-opacity-0 link-underline-opacity-50-hover ">
                         View Teachers <i class="bi bi-link-45deg"></i>
                     </a>
                 </div>
