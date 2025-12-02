@@ -12,7 +12,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::with('subjects')->latest()->get();
+        $courses = Course::with('subjects')->oldest()->get();
         return view('course.index' , compact('courses'));
     }
 
@@ -42,6 +42,16 @@ class CourseController extends Controller
             'subjects.*' => 'exists:subjects,id',
         ]);
 
+        $course = Course::query()->create([
+            'name' => $request->name,
+            'code' => $request->code,
+            'category' => $request->category,
+            'start_date' => $request->start_date,
+            'duration' => $request->duration,
+            'price' => $request->price,
+        ]);
+
+        $course->subjects()->attach($request->subjects);
         return redirect()->route('course.index')->with('create', 'Course created successfully!');
     }
 

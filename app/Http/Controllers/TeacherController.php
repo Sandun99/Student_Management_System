@@ -13,7 +13,7 @@ class TeacherController extends Controller
 {
     public function index(){
 
-        $teachers = Teacher::with('subjects', 'grade')->get();
+        $teachers = Teacher::with('subjects', 'grade')->oldest()->get();
         return view('teacher.index', compact('teachers'));
     }
 

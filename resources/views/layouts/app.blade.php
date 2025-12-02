@@ -44,7 +44,6 @@
 <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('assets/js/adminlte.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"></script>
@@ -54,6 +53,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
 
 <script src="https://kit.fontawesome.com/70b0d3af29.js" crossorigin="anonymous"></script>
 

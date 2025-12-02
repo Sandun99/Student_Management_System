@@ -7,12 +7,13 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Vtiful\Kernel\Excel;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with( 'grade','course')->latest()->get();
+        $students = Student::with( 'grade','course')->oldest()->get();
         return view('student.index' , compact('students'));
     }
 
@@ -104,5 +105,10 @@ class StudentController extends Controller
         catch (\Exception $e){
             return $e;
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }
