@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Student;
 use App\Models\Grade;
+use App\Models\Course;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -15,7 +16,9 @@ class StudentExport implements FromCollection , WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Student::orderBy('reg_no', 'asc')->get();
+        return Student::with('course' , 'grade')
+            ->orderBy('reg_no', 'asc')
+            ->get();
     }
     public function headings(): array
     {
@@ -27,7 +30,9 @@ class StudentExport implements FromCollection , WithHeadings , WithMapping
             'gender',
             'mobile',
             'address',
-            'email'
+            'email',
+            'course',
+            'grade',
         ];
     }
 
@@ -41,7 +46,9 @@ class StudentExport implements FromCollection , WithHeadings , WithMapping
             $student->gender,
             $student->mobile,
             $student->address,
-            $student->email
+            $student->email,
+            $student->course?->name,
+            $student->grade?->full_name,
         ];
     }
 }
