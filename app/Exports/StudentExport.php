@@ -3,8 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Student;
-use App\Models\Grade;
-use App\Models\Course;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
