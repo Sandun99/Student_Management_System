@@ -17,13 +17,6 @@ class CourseExport implements FromCollection , WithHeadings , WithMapping
     public function collection()
     {
         return Course::with('subjects')
-            ->select(
-            'code',
-            'name',
-            'category',
-            'start_date',
-            'duration',
-            'price')
             ->orderBy('code' , 'asc')
             ->get();
     }
