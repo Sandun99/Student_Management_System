@@ -46,11 +46,11 @@ class CourseImport implements ToCollection , WithHeadingRow
                     $subjectName = trim($subjectName);
                     if (!empty($subjectName)) {
 
-                        $simpleCode = 'SUB-' . strtoupper($subjectName);
+                        $newCode = 'SB/' . strtoupper($subjectName);
 
                         $subject = Subject::firstOrCreate(
                             ['name' => $subjectName],
-                            ['sub_code' => $simpleCode]
+                            ['sub_code' => $newCode]
                         );
                         $subjectIds[] = $subject->id;
                     }

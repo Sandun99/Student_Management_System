@@ -7,11 +7,10 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content shadow-lg rounded-4 overflow-hidden border-0">
 
-            <div class="border-bottom px-4 py-3 d-flex justify-content-between align-items-center bg-white">
+            <div class="border-bottom px-4 py-3 bg-white">
                 <h5 class="modal-title fw-semibold text-dark mb-0" id="modalTitle">
                     Update Teacher
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body p-4" id="modalBodyContent">
