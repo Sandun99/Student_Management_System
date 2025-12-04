@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -25,19 +26,38 @@ class CourseImport implements ToCollection , WithHeadingRow
                     'category' => $row['category'],
                     'start_date' => $row['start_date'],
                     'duration' => $row['duration'],
-                    'price' => $row['price'],
+                    'price' => (float) str_replace([',', ' '], '', $row['price']),
                 ]);
             }else{
-                Course::create([
+                $course = Course::create([
                     'name' => $row['name'],
                     'code' => $row['code'],
                     'category' => $row['category'],
                     'start_date' => $row['start_date'],
                     'duration' => $row['duration'],
-                    'price' => $row['price'],
+                    'price' => (float) str_replace([',', ' '], '', $row['price']),
                 ]);
             }
+            if (!empty($row['subjects'])) {
+                $subjectNames = explode(',', $row['subjects']);
+                $subjectIds = [];
 
+                foreach ($subjectNames as $subjectName) {
+                    $subjectName = trim($subjectName);
+                    if (!empty($subjectName)) {
+
+                        $simpleCode = 'SUB-' . strtoupper($subjectName);
+
+                        $subject = Subject::firstOrCreate(
+                            ['name' => $subjectName],
+                            ['sub_code' => $simpleCode]
+                        );
+                        $subjectIds[] = $subject->id;
+                    }
+                }
+
+                $course->subjects()->sync($subjectIds);
+            }
         }
     }
 }
