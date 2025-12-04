@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TeacherExport;
+use App\Imports\TeacherImport;
 use App\Models\Teacher;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -109,5 +112,26 @@ class TeacherController extends Controller
         catch (\Exception $e) {
             return $e;
         }
+    }
+
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' =>[
+                'required',
+                'file',
+            ]
+        ]);
+
+        Excel::import(new TeacherImport, $request->file('import_file'));
+
+        return redirect()->back()->with('status', 'Teacher imported successfully');
+    }
+
+
+    public function export()
+    {
+        $fileName = 'teacher_list.xlsx';
+        return Excel::download(new TeacherExport, $fileName);
     }
 }

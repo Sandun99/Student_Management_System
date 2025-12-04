@@ -25,7 +25,12 @@ class Course extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'course_subject');
+        return $this->belongsToMany
+        (Subject::class, 'course_subject');
     }
 
+    public function getSubjectNameAttribute(): string
+    {
+        return $this->subject?->name;
+    }
 }

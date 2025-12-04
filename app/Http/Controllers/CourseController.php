@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CourseExport;
+use App\Imports\CourseImport;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -101,5 +104,24 @@ class CourseController extends Controller
         catch (\Exception $e) {
             return $e;
         }
+    }
+
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' => [
+                'required',
+                'file',
+            ]
+        ]);
+        Excel::import(new CourseImport, $request->file('import_file'));
+
+        return redirect()->back()->with('success', 'Course imported successfully');
+    }
+
+    public function export()
+    {
+        $fileName = 'courses.xlsx';
+        return Excel::download(new CourseExport, 'courses.xlsx');
     }
 }

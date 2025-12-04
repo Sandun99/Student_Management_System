@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\GradeExport;
+use App\Imports\ClassesImport;
+use App\Imports\GradeImport;
 use App\Models\Classes;
 use App\Models\Grade;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class GradeController extends Controller
 {
     public function index()
     {
-        $grades = Grade::with('class')->latest()->get();
+        $grades = Grade::with('class')->orderBy('code', 'asc')->get();
         return view('grade.index' , compact('grades'));
     }
 
@@ -40,7 +45,7 @@ class GradeController extends Controller
             ->where('id', $id)
             ->first();
 
-        $classes = Classes::all();
+        $classes = Classes::orderBy('code', 'asc')->get();
         return view('grade.edit', compact('grade', 'classes'));
     }
 
@@ -75,5 +80,24 @@ class GradeController extends Controller
         }
     }
 
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' =>[
+                'required',
+                'file',
+            ]
+        ]);
+
+        Excel::import(new GradeImport, $request->file('import_file'));
+
+        return redirect()->back()->with('status', 'Excel Data Imported successfully!');
+    }
+
+    public function export()
+    {
+        $fileName = 'grades.xlsx';
+        return Excel::download(new GradeExport, $fileName);
+    }
 
 }

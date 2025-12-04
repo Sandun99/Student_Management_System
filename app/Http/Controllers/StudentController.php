@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Vtiful\Kernel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -107,8 +109,23 @@ class StudentController extends Controller
         }
     }
 
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' =>[
+                'required',
+                'file',
+            ]
+        ]);
+
+        Excel::import(new StudentImport, $request->file('import_file'));
+
+        return redirect()->back()->with('status', 'Student imported successfully');
+    }
+
     public function export()
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        $fileName = "Student_List.xlsx";
+        return Excel::download(new StudentExport, $fileName);
     }
 }

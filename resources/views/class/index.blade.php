@@ -18,15 +18,26 @@
             </div>
         </div>
     </div>
+
     <div class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <div class="flex-grow-1 text-center">
-                        </div>
+                        <form action="{{route('class.import')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row flex-grow-1">
+                                <div class="input-group input-group-sm col-6" style="width: 320px">
+                                    <input type="file" name="import_file" class="form-control">
+                                    <button type="submit" class="btn btn-primary btn-sm">Import</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="{{route('class.export')}}" method="get">
+                            <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                        </form>
                         <button type="button"
-                                class="btn btn-outline-light btn-sm"
+                                class="btn btn-outline-light btn-sm ms-auto"
                                 data-create-url="{{ route('class.create') }}">Add New Subject
                         </button>
                     </div>

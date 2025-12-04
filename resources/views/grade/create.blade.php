@@ -51,7 +51,7 @@
                                         <label class="form-label fw-semibold">Class <span class="text-danger">*</span></label>
                                         <select name="class_id" class="form-select" required>
                                             <option value="">Select Class</option>
-                                            @foreach(\App\Models\Classes::orderBy('name')->get() as $class)
+                                            @foreach($classes as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endforeach
                                         </select>

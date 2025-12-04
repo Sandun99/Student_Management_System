@@ -24,15 +24,29 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <div class="flex-grow-1 text-center">
-                        </div>
-                        <form class="d-flex mb-0" onsubmit="return false;">
-                            <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
+                        <form action="{{route('subject.import')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row flex-grow-1">
+                                <div class="input-group input-group-sm col-6" style="width: 320px">
+                                    <input type="file" name="import_file" class="form-control">
+                                    <button type="submit" class="btn btn-primary btn-sm">Import</button>
+                                </div>
+                            </div>
                         </form>
-                        <button type="button"
-                                class="btn btn-outline-light btn-sm"
-                                data-create-url="{{ route('subject.create') }}">Add New Subject
-                        </button>
+                        <form action="{{route('subject.export')}}" method="get">
+                            <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                        </form>
+                        <div class="flex-grow-1"></div>
+                        <div class="d-flex align-items-center gap-3">
+                            <form class="d-flex mb-0 ms-auto" onsubmit="return false;">
+                                <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
+                            </form>
+                            <button type="button"
+                                    class="btn btn-outline-light btn-sm ms-auto"
+                                    data-create-url="{{ route('subject.create') }}">Add New Subject
+                            </button>
+                        </div>
+
                     </div>
 
                     <div class="card-body">

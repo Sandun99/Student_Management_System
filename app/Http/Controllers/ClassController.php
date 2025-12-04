@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClassesExport;
+use App\Imports\ClassesImport;
 use App\Models\Classes;
-use App\Models\grade;
+use App\Models\Grade;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClassController extends Controller
 {
     public function index()
     {
-        $classes = Classes::all();
+        $classes = Classes::orderBy('code', 'asc')->get();
         return view('class.index' , compact('classes'));
     }
 
@@ -69,6 +72,27 @@ class ClassController extends Controller
         catch (\Exception $e){
             return $e;
         }
+    }
+
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' => [
+                'required',
+                'file',
+            ]
+        ]);
+
+        Excel::import(new ClassesImport, $request->file('import_file'));
+
+        return redirect()->back()->with('status', 'Classes Imported successfully!');
+
+    }
+
+    public function export()
+    {
+        $fileName = 'classes.xlsx';
+        return Excel::download(new ClassesExport, $fileName);
     }
 
 }

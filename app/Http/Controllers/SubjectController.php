@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\grade;
+use App\Exports\SubjectExport;
+use App\Imports\SubjectImport;
+use App\Models\Grade;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
 {
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::orderBy('sub_code', 'asc')->get();
         return view('subject.index' , compact('subjects'));
     }
 
@@ -71,5 +74,25 @@ class SubjectController extends Controller
         catch (\Exception $e) {
             return $e;
         }
+    }
+
+    public function importExcelData(Request $request)
+    {
+        $request->validate([
+            'import_file' =>[
+                'required',
+                'file',
+            ]
+        ]);
+
+        Excel::import(new SubjectImport, $request->file('import_file'));
+
+        return redirect()->back()->with('status', 'Subject imported successfully');
+    }
+
+    public function export()
+    {
+        $fileName = 'subject.xlsx';
+        return Excel::download(new SubjectExport,$fileName);
     }
 }

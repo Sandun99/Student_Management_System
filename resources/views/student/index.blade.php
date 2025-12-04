@@ -24,17 +24,19 @@
             <div class="col-lg-12">
                 <div class="card shadow">
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <div class="flex-grow-1">
-                            <div class="btn-group dropend" role="group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Export As
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">PDF</a></li>
-                                    <li><a class="dropdown-item" href="#">CSV</a></li>
-                                </ul>
+                        <form action="{{route('student.import')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row flex-grow-1">
+                                <div class="input-group input-group-sm col-6" style="width: 320px">
+                                    <input type="file" name="import_file" class="form-control">
+                                    <button type="submit" class="btn btn-primary btn-sm">Import</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+                        <form action="{{route('student.export')}}" method="get">
+                            <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                        </form>
+                        <div class="flex-grow-1"></div>
                         <form class="d-flex mb-0" onsubmit="return false;">
                             <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                         </form>

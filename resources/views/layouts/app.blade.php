@@ -141,6 +141,23 @@
         });
         Toast3.fire();
         @endif
+
+        // toast for excel import
+        @if(session('status'))
+        const Toast4 = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ session('status') }}',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#3ab61d',
+            color: 'white',
+            iconColor: 'white'
+        });
+        Toast4.fire();
+        @endif
     });
 </script>
 
