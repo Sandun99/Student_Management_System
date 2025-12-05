@@ -26,10 +26,11 @@ return new class extends Migration
                 $table->string('nic_front')->nullable();
                 $table->string('nic_back')->nullable();
 
-                $table->string('username')->unique();
-                $table->string('password');
+                $table->string('username')->nullable()->unique();
+                $table->string('password')->nullable();
 
-                $table->foreignId('grade_id')->constrained()->onDelete('cascade');
+                $table->foreignId('grade_id');
+                $table->foreignId('subject_id');
 
                 $table->timestamps();
         });

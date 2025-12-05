@@ -15,7 +15,9 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with( 'grade','course')->oldest()->get();
+        $students = Student::with( 'grade','course')
+            ->orderBy('reg_no' , 'asc')
+            ->get();
         return view('student.index' , compact('students'));
     }
 

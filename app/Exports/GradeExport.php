@@ -13,14 +13,19 @@ class GradeExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Grade::select('code', 'name' )->get();
+        return Grade::with('class')->get()->map(function ($grade) {
+            return [
+                'code' => $grade->code,
+                'full_name' => $grade->full_name,
+            ];
+        });
     }
 
     public function headings(): array
     {
         return [
             'code',
-            'name',
+            'full_name',
         ];
     }
 }

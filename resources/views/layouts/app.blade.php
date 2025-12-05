@@ -165,6 +165,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('globalSearchInput');
+        const exportForm = document.getElementById('exportForm');
+        const exportSearchInput = document.getElementById('exportSearch');
         if (!searchInput) return;
 
         const tableBody = document.getElementById('searchableTable');
@@ -202,6 +204,13 @@
                 rows.forEach(row => row.style.display = '');
             }
         });
+
+        // export only search result
+        if (exportForm && exportSearchInput) {
+            exportForm.addEventListener('submit', function() {
+                exportSearchInput.value = searchInput.value.trim();
+            });
+        }
     });
 </script>
 

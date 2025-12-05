@@ -33,7 +33,8 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{route('subject.export')}}" method="get">
+                        <form action="{{route('subject.export')}}" method="get" id="exportForm">
+                            <input type="hidden" name="search" id="exportSearch" value="">
                             <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
                         </form>
                         <div class="flex-grow-1"></div>

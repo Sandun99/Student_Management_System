@@ -20,7 +20,8 @@ class Teacher extends Model
         'address',
         'grade_id',
         'username',
-        'password'
+        'password',
+        'subject_id',
     ];
 
     protected $casts = [

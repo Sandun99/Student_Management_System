@@ -26,7 +26,7 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
             $teacher->t_id,
             $teacher->name,
             $teacher->email,
-            "" . $teacher->nic,
+            " " . $teacher->nic,
             optional($teacher->dob)->format('Y-m-d'),
             $teacher->gender,
             $teacher->mobile,
@@ -39,7 +39,7 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
     public function headings(): array
     {
         return [
-            'teacher_id',
+            't_id',
             'name',
             'email',
             'nic',

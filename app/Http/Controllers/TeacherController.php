@@ -55,7 +55,7 @@ class TeacherController extends Controller
             return redirect()->route('teacher.teacher.index')->with('create', 'Teacher created successfully!');
         }
         catch (\Exception $e) {
-            return $e;
+            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to create teacher: ' . $e->getMessage()]);
         }
     }
 
@@ -96,7 +96,7 @@ class TeacherController extends Controller
             return redirect()->route('teacher.teacher.index')->with('success', 'Teacher updated successfully!');
         }
         catch (\Exception $e) {
-            return $e;
+            return redirect()->back()->withInput()->withErrors(['error' => 'Failed to update teacher: ' . $e->getMessage()]);
         }
     }
 
@@ -110,7 +110,7 @@ class TeacherController extends Controller
             return redirect()->route('teacher.teacher.index')->with('deleted', 'Teacher deleted successfully!');
         }
         catch (\Exception $e) {
-            return $e;
+            return redirect()->back()->withErrors(['error' => 'Failed to delete teacher: ' . $e->getMessage()]);
         }
     }
 
@@ -120,12 +120,17 @@ class TeacherController extends Controller
             'import_file' =>[
                 'required',
                 'file',
+                'mimes:xlsx,xls,csv',
+                'max:10240', // 10MB max
             ]
         ]);
 
-        Excel::import(new TeacherImport, $request->file('import_file'));
-
-        return redirect()->back()->with('status', 'Teacher imported successfully');
+        try {
+            Excel::import(new TeacherImport, $request->file('import_file'));
+            return redirect()->back()->with('status', 'Teacher imported successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to import teachers: ' . $e->getMessage()]);
+        }
     }
 
 

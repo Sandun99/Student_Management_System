@@ -40,7 +40,7 @@ class StudentExport implements FromCollection , WithHeadings , WithMapping
             $student->reg_no,
             $student->name,
             optional($student->dob)->format('Y-m-d'),
-            "" . $student->nic,
+            " " . $student->nic,
             $student->gender,
             $student->mobile,
             $student->address,

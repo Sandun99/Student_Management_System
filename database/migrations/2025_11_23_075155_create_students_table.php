@@ -21,10 +21,9 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('address');
             $table->string('email');
-            $table->string('username');
-            $table->string('password');
-            $table->foreignId('grade_id');
-            $table->foreignId('course_id');
+            $table->string('username')->nullable()->unique();
+            $table->string('password')->nullable();
+            $table->foreignId('grade_id')->nullable();
             $table->timestamps();
         });
     }
