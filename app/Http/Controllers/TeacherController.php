@@ -16,7 +16,9 @@ class TeacherController extends Controller
 {
     public function index(){
 
-        $teachers = Teacher::with('subjects', 'grade')->oldest()->get();
+        $teachers = Teacher::with('subjects', 'grade')
+            ->orderBy('t_id', 'asc')
+            ->get();
         return view('teacher.index', compact('teachers'));
     }
 
