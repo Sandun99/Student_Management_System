@@ -14,7 +14,7 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
     */
     public function collection()
     {
-        return Teacher::with('subjects' , 'grade')
+        return Teacher::with('subjects' , 'grades')
             ->orderBy('t_id', 'asc')
             ->get();
     }
@@ -22,6 +22,11 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
 
     public function map($teacher): array
     {
+
+        $grades = $teacher->grades->pluck('full_name')->implode(', ');
+
+        $subjects = $teacher->subjects->pluck('name')->implode(', ');
+
         return [
             $teacher->t_id,
             $teacher->name,
@@ -31,8 +36,8 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
             $teacher->gender,
             $teacher->mobile,
             $teacher->address,
-            $teacher->grade?->full_name,
-            $teacher->subjects->pluck('name')->implode(', '),
+            $grades,
+            $subjects,
         ];
     }
 
@@ -47,7 +52,7 @@ class TeacherExport implements FromCollection , WithHeadings , WithMapping
             'gender',
             'mobile',
             'address',
-            'grade',
+            'grades',
             'subject',
         ];
     }
