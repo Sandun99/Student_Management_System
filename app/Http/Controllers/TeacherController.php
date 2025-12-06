@@ -16,7 +16,7 @@ class TeacherController extends Controller
 {
     public function index(){
 
-        $teachers = Teacher::with('subjects', 'grade')
+        $teachers = Teacher::with('subjects', 'grades')
             ->orderBy('t_id', 'asc')
             ->get();
         return view('teacher.index', compact('teachers'));
@@ -47,12 +47,12 @@ class TeacherController extends Controller
                 'mobile' => $request->mobile,
                 'address' => $request->address,
                 'username' => $request->username,
-                'password' => Hash::make($request->password),
-                'grade_id' => $request->grade_id,
+                'password' => $request->password,
             ]);
 
             $teacher = Teacher::latest()->first();
-            $teacher->subjects()->attach($request->subjects);
+            $teacher->subjects()->sync($request->subjects ?? []);
+            $teacher->grades()->sync($request->grades ?? []);
 
             return redirect()->route('teacher.teacher.index')->with('create', 'Teacher created successfully!');
         }
@@ -75,7 +75,7 @@ class TeacherController extends Controller
     public function update(Request $request)
     {
         try {
-            $teacher = Teacher::findOrFail($request->id);
+
             Teacher::query()
                 ->where('id', $request->id)
                 ->update([
@@ -89,11 +89,11 @@ class TeacherController extends Controller
                     'address' => $request->address,
                     'username' => $request->username,
                     'password' => $request->password,
-                    'grade_id' => $request->grade_id,
                 ]);
 
             $teacher = Teacher::find($request->id);
-            $teacher->subjects()->sync($request->subjects ?? []);
+            $teacher->subjects()->sync($request->subjects);
+            $teacher->grades()->sync($request->grades);
 
             return redirect()->route('teacher.teacher.index')->with('success', 'Teacher updated successfully!');
         }

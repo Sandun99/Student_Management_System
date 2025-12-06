@@ -24,20 +24,15 @@ class TeacherImport implements ToCollection ,WithHeadingRow
                 continue;
             }
 
-            $grade = null;
+            $gradeIds = [];
             if (!empty($row['grade'])) {
-                $gradeParts = explode('-', trim($row['grade']));
-                if (count($gradeParts) === 2) {
-                    $gradeName = trim($gradeParts[0]);
-                    $className = trim($gradeParts[1]);
-
-                    if ($gradeName && $className) {
-                        $class = Classes::where('name', $className)->first();
-                        if ($class) {
-                            $grade = Grade::where('name', $gradeName)
-                                ->where('class_id', $class->id)
-                                ->first();
-                        }
+                foreach (array_map('trim', explode(',', $row['grade'])) as $entry) {
+                    if (str_contains($entry, '-')) {
+                        [$gradeName, $className] = array_map('trim', explode('-', $entry));
+                        $grade = Grade::where('name', $gradeName)
+                            ->whereHas('class', fn($q) => $q->where('name', $className))
+                            ->first();
+                        if ($grade) $gradeIds[] = $grade->id;
                     }
                 }
             }
@@ -68,10 +63,10 @@ class TeacherImport implements ToCollection ,WithHeadingRow
                     'gender' => $row['gender'] ?? $teacher->gender,
                     'mobile' => $row['mobile'] ?? $teacher->mobile,
                     'address' => $row['address'] ?? $teacher->address,
-                    'grade_id' => $grade ? $grade->id : $teacher->grade_id,
                 ]);
 
                 $teacher->subjects()->sync($subjectIds);
+                $teacher->grades()->sync($gradeIds);
 
             }else{
                 $teacher = Teacher::create([
@@ -83,10 +78,10 @@ class TeacherImport implements ToCollection ,WithHeadingRow
                     'gender' => $row['gender'],
                     'mobile' => $row['mobile'],
                     'address' => $row['address'] ?? null,
-                    'grade_id' => $grade ? $grade->id : null,
                 ]);
 
                 $teacher->subjects()->sync($subjectIds);
+                $teacher->grades()->sync($gradeIds);
             }
         }
     }

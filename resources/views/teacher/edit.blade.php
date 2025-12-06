@@ -78,7 +78,7 @@
             <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label>Subjects</label>
-                    <select name="subjects[]" id="subjects-select" class="form-control mt-2" multiple required style="height: 120px;">
+                    <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
                         @foreach($subjects as $subject)
                             <option value="{{ $subject->id }}"
                                 {{ $teacher->subjects->contains($subject->id) ? 'selected' : '' }}>
@@ -89,10 +89,10 @@
                 </div>
                 <div class="form-group mb-3">
                     <label>Grade</label>
-                    <select name="grade_id" class="form-control mt-2" required>
-                        <option value="">Select Grade</option>
+                    <select name="grades[]" id="grades-select" class="form-select" multiple required>
                         @foreach($grades as $grade)
-                            <option value="{{ $grade->id }}" {{ $teacher->grade_id == $grade->id ? 'selected' : '' }}>
+                            <option value="{{ $grade->id }}"
+                                {{ $teacher->grades->contains($grade->id) ? 'selected' : '' }}>
                                 {{ $grade->full_name }}
                             </option>
                         @endforeach

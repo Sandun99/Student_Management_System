@@ -71,16 +71,15 @@
                                         <td>{{ $teacher->nic }}</td>
                                         <td>{{ $teacher->mobile }}</td>
                                         <td>
-                                            @forelse($teacher->subjects as $subject)
+                                            @foreach($teacher->subjects as $subject)
                                                 <span class="badge bg-secondary me-1 mb-1">{{ $subject->name }}</span>
-                                            @empty
-                                                <span class="text-muted">—</span>
-                                            @endforelse
+                                            @endforeach
                                         </td>
                                         <td>
-                                            <span class="badge bg-secondary">
-                                                {{ $teacher->grade?->full_name ?? '—' }}
-                                            </span>
+                                            @foreach($teacher->grades as $grade)
+                                                <span class="badge bg-secondary me-1 mb-1">{{ $grade->full_name }}</span>
+                                            @endforeach
+
                                         </td>
                                         <td class="text-center" style="width: 180px">
                                             <button type="button"

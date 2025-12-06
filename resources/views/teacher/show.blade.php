@@ -35,7 +35,12 @@
                 </tr>
                 <tr>
                     <th>Assigned Grade</th>
-                    <td>{{ $teacher->grade?->full_name}}</td>
+                    @foreach($teacher->grades as $grade)
+                        <td>
+                            {{$grade->full_name}}
+                        </td>
+                    @endforeach
+
                 </tr>
             </table>
             <div class="col-md-12 mt-4">

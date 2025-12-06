@@ -28,9 +28,9 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
     Route::get('/create', [TeacherController::class, 'create'])->name('teacher.create');
     Route::post('/store', [TeacherController::class, 'store'])->name('teacher.store');
-    Route::get('delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
-    Route::get('edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
-    Route::post('update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+    Route::get('/delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
+    Route::get('/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
     Route::get('/{teacher}/view', [TeacherController::class, 'show'])->name('show');
     Route::post('/import', [TeacherController::class, 'importExcelData'])->name('import');
     Route::get('/export', [TeacherController::class, 'export'])->name('export');

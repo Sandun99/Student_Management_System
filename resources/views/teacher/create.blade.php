@@ -93,7 +93,7 @@
 
                                             <div class="row">
                                                 <div class="form-group mb-3">
-                                                    <label>Subject <span class="text-danger">*</span></label>
+                                                    <label>Subject</label>
                                                     <select name="subjects[]" id="subjects-select" class="form-select" multiple required>
                                                         @foreach($subjects ?? [] as $subject)
                                                             <option value="{{ $subject->id }}">
@@ -104,10 +104,9 @@
                                                 </div>
 
                                                 <div class="form-group mb-3">
-                                                    <label>Grade <span class="text-danger">*</span></label>
-                                                    <select name="grade_id" class="form-select" required>
-                                                        <option value="">Select Grade</option>
-                                                        @foreach($grades as $grade)
+                                                    <label>Grades</label>
+                                                    <select name="grades[]" id="grades-select" class="form-select" multiple required>
+                                                        @foreach($grades ?? [] as $grade)
                                                             <option value="{{ $grade->id }}">{{ $grade->full_name }}</option>
                                                         @endforeach
                                                     </select>
@@ -134,7 +133,7 @@
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
                                                     <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="teacherPreview1" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +142,7 @@
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
                                                     <input type="file" name="image_2" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="teacherPreview2" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,19 +168,11 @@
 @endsection
 @push('scripts')
     <script>
-        new TomSelect('#subjects-select', {
-            plugins: ['remove_button'],
-            placeholder: 'Search and select subjects...',
-        });
-    </script>
-@endpush
-@push('scripts')
-    <script>
-        function previewImage(event, previewId = 'imagePreview') {
+        function previewImage(event, previewId) {
             const preview = document.getElementById(previewId);
             const file = event.target.files[0];
 
-            if (file) {
+            if (file && preview) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;

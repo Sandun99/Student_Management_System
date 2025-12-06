@@ -16,7 +16,9 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::with('subjects')->oldest()->get();
+        $courses = Course::with('subjects')
+            ->orderBy('code', 'asc')
+            ->get();
         return view('course.index' , compact('courses'));
     }
 

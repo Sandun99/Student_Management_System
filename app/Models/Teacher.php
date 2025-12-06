@@ -18,10 +18,8 @@ class Teacher extends Model
         'gender',
         'mobile',
         'address',
-        'grade_id',
         'username',
         'password',
-        'subject_id',
     ];
 
     protected $casts = [
@@ -32,8 +30,8 @@ class Teacher extends Model
         return $this->belongsToMany(Subject::class , 'subject_teacher');
     }
 
-    public function grade()
+    public function grades()
     {
-        return $this->belongsTo(Grade::class);
+        return $this->belongsToMany(Grade::class, 'grade_teacher');
     }
 }

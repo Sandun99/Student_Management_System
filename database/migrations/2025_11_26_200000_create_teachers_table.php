@@ -29,9 +29,6 @@ return new class extends Migration
                 $table->string('username')->nullable()->unique();
                 $table->string('password')->nullable();
 
-                $table->foreignId('grade_id');
-                $table->foreignId('subject_id');
-
                 $table->timestamps();
         });
     }

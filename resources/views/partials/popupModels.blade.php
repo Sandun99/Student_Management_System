@@ -110,12 +110,18 @@
 
                     // Re-init TomSelect
                     const select = document.getElementById('subjects-select');
-                    if (select && !select.tomselect) {
-                        new TomSelect(select, {
-                            plugins: ['remove_button'],
-                            placeholder: 'Search and select subjects...'
-                        });
-                    }
+                    ['subjects-select', 'grades-select'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && !el.tomselect) {
+                            new TomSelect(el, {
+                                plugins: ['remove_button'],
+                                placeholder: id === 'subjects-select' ? 'Select subjects...' : 'Select one or more grades...',
+                                maxItems: null,
+                                hideSelected: true,
+                                closeAfterSelect: false
+                            });
+                        }
+                    });
                 })
                 .catch(() => {
                     bodyEl.innerHTML = `<div class="text-center py-5 text-danger">Failed to load form.</div>`;

@@ -19,7 +19,7 @@ class Grade extends Model
     protected $appends = ['full_name'];
     public function getFullNameAttribute(): string
     {
-        return $this->name . '-' . ($this->class?->name ?? 'No Class');
+        return $this->name . '-' . ($this->class?->name);
     }
     public function class()
     {
@@ -29,6 +29,11 @@ class Grade extends Model
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'grade_teacher');
     }
 
 }

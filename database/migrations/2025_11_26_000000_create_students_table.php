@@ -23,7 +23,17 @@ return new class extends Migration
             $table->string('email');
             $table->string('username')->nullable()->unique();
             $table->string('password')->nullable();
-            $table->foreignId('grade_id')->nullable();
+
+            $table->foreignId('grade_id')
+                ->nullable()
+                ->constrained('grades')
+                ->onDelete('set null');
+
+            $table->foreignId('course_id')
+                ->nullable()
+                ->constrained('courses')
+                ->onDelete('set null');
+
             $table->timestamps();
         });
     }

@@ -71,14 +71,18 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->mobile }}</td>
                                         <td>
+                                            @if($student->course)
                                                 <span class="badge bg-secondary">
                                                         {{ $student->course->name }}
-                                                    </span>
+                                                </span>
+                                            @else
+                                                <span class="badge bg-secondary">No Course</span>
+                                            @endif
                                         </td>
                                         <td>
-                                                <span class="badge bg-secondary">
-                                                    {{ $student->grade?->full_name}}
-                                                </span>
+                                            <span class="badge bg-secondary">
+                                                {{ $student->grade?->full_name}}
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <button type="button"
