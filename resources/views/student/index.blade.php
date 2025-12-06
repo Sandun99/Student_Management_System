@@ -35,6 +35,7 @@
                         </form>
                         <form action="{{route('student.export')}}" method="get">
                             <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                            <a href="{{route('student.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
                         </form>
                         <div class="flex-grow-1"></div>
                         <form class="d-flex mb-0" onsubmit="return false;">
@@ -70,17 +71,13 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->mobile }}</td>
                                         <td>
-                                            @if($student->course)
                                                 <span class="badge bg-secondary">
                                                         {{ $student->course->name }}
                                                     </span>
-                                            @else
-                                                <span class="badge bg-secondary">No Course</span>
-                                            @endif
                                         </td>
                                         <td>
                                                 <span class="badge bg-secondary">
-                                                    {{ $student->grade?->full_name ?? '—' }}
+                                                    {{ $student->grade?->full_name}}
                                                 </span>
                                         </td>
                                         <td class="text-center">

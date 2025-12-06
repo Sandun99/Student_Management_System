@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CourseController extends Controller
 {
@@ -123,5 +124,20 @@ class CourseController extends Controller
     {
         $fileName = 'courses.xlsx';
         return Excel::download(new CourseExport, 'courses.xlsx');
+    }
+
+    public function pdf()
+    {
+        $courses = Course::all();
+        $subjects = Subject::all();
+        $data = [
+            'title' => 'Student Management System',
+            'date' => date('Y-m-d'),
+            'courses' => $courses,
+            'subjects' => $subjects,
+        ];
+
+        $pdf = PDF::loadView('course.pdf' , $data);
+        return $pdf->download('courses.pdf');
     }
 }

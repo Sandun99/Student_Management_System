@@ -8,6 +8,7 @@ use App\Models\Grade;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SubjectController extends Controller
 {
@@ -94,5 +95,18 @@ class SubjectController extends Controller
     {
         $fileName = 'subject.xlsx';
         return Excel::download(new SubjectExport,$fileName);
+    }
+
+    public function pdf()
+    {
+        $subjects = Subject::all();
+        $data = [
+            'title' => 'Student Management System',
+            'date' => date('d-m-Y'),
+            'subjects' => $subjects
+        ];
+
+        $pdf = Pdf::loadView('subject.pdf', $data);
+        return $pdf->download('subjects.pdf');
     }
 }

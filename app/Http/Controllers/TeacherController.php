@@ -6,11 +6,11 @@ use App\Exports\TeacherExport;
 use App\Imports\TeacherImport;
 use App\Models\Teacher;
 use App\Models\Grade;
-use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TeacherController extends Controller
 {
@@ -140,5 +140,23 @@ class TeacherController extends Controller
     {
         $fileName = 'teacher_list.xlsx';
         return Excel::download(new TeacherExport, $fileName);
+    }
+
+    public function pdf()
+    {
+        $teachers = Teacher::all();
+        $subjects = Subject::all();
+        $grades = Grade::all();
+
+        $data = [
+            'title' => 'Student Management System',
+            'date' => date('Y-m-d'),
+            'teachers' => $teachers,
+            'subjects' => $subjects,
+            'grades' => $grades,
+        ];
+
+        $pdf = PDF::loadView('teacher.pdf' , $data);
+        return $pdf->download('teacher.pdf');
     }
 }

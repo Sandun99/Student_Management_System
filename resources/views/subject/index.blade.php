@@ -36,6 +36,7 @@
                         <form action="{{route('subject.export')}}" method="get" id="exportForm">
                             <input type="hidden" name="search" id="exportSearch" value="">
                             <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                            <a href="{{route('subject.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
                         </form>
                         <div class="flex-grow-1"></div>
                         <div class="d-flex align-items-center gap-3">

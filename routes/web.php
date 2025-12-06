@@ -34,6 +34,7 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/{teacher}/view', [TeacherController::class, 'show'])->name('show');
     Route::post('/import', [TeacherController::class, 'importExcelData'])->name('import');
     Route::get('/export', [TeacherController::class, 'export'])->name('export');
+    Route::get('/pdf', [TeacherController::class, 'pdf'])->name('pdf');
 });
 
 Route::prefix('student')->name('student.')->group(function () {
@@ -46,6 +47,7 @@ Route::prefix('student')->name('student.')->group(function () {
     Route::get('/{student}/view', [StudentController::class, 'show'])->name('show');
     Route::post('/import', [StudentController::class, 'importExcelData'])->name('import');
     Route::get('/export', [StudentController::class, 'export'])->name('export');
+    Route::get('/pdf', [StudentController::class, 'pdf'])->name('pdf');
 });
 
 route::prefix('course')->name('course.')->group(function () {
@@ -58,6 +60,7 @@ route::prefix('course')->name('course.')->group(function () {
     Route::get('/course/{course}/view', [CourseController::class, 'show'])->name('show');
     Route::post('/import', [CourseController::class, 'importExcelData'])->name('import');
     Route::get('/export', [CourseController::class, 'export'])->name('export');
+    Route::get('/pdf', [CourseController::class, 'pdf'])->name('pdf');
 });
 
 Route::prefix('subject')->name('subject.')->group(function () {
@@ -69,6 +72,7 @@ Route::prefix('subject')->name('subject.')->group(function () {
     Route::post('/update/{id}', [SubjectController::class, 'update'])->name('update');
     Route::post('/import', [SubjectController::class, 'importExcelData'])->name('import');
     Route::get('/export', [SubjectController::class, 'export'])->name('export');
+    Route::get('/pdf', [SubjectController::class, 'pdf'])->name('pdf');
 });
 
 Route::prefix('class')->name('class.')->group(function () {
@@ -80,6 +84,7 @@ Route::prefix('class')->name('class.')->group(function () {
     Route::post('/update/{id}', [ClassController::class, 'update'])->name('update');
     Route::post('/import', [ClassController::class, 'importExcelData'])->name('import');
     Route::get('/export', [ClassController::class, 'export'])->name('export');
+    Route::get('/pdf', [ClassController::class, 'pdf'])->name('pdf');
 });
 
 Route::prefix('grade')->name('grade.')->group(function () {
@@ -91,4 +96,5 @@ Route::prefix('grade')->name('grade.')->group(function () {
     Route::post('/update/{id}', [GradeController::class, 'update'])->name('update');
     Route::post('/import', [GradeController::class, 'importExcelData'])->name('import');
     Route::get('/export', [GradeController::class, 'export'])->name('export');
+    Route::get('/pdf', [GradeController::class, 'pdf'])->name('pdf');
 });

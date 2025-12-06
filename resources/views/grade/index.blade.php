@@ -33,6 +33,7 @@
                 </form>
                 <form action="{{route('grade.export')}}" method="get">
                     <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                    <a href="{{route('grade.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
                 </form>
                 <button type="button"
                         class="btn btn-outline-light btn-sm ms-auto"

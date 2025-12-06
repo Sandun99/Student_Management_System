@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Exports\ClassesExport;
 use App\Imports\ClassesImport;
 use App\Models\Classes;
-use App\Models\Grade;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClassController extends Controller
 {
@@ -95,4 +95,17 @@ class ClassController extends Controller
         return Excel::download(new ClassesExport, $fileName);
     }
 
+    public function pdf()
+    {
+        $classes = Classes::all();
+
+        $data = [
+            'title' => 'Student Management System',
+            'date' => date('Y-m-d'),
+            'classes' => $classes
+        ];
+
+        $pdf = PDF::loadView('class.pdf' , $data);
+        return $pdf->download('class.pdf');
+    }
 }

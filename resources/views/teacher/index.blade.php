@@ -35,6 +35,7 @@
                         </form>
                         <form action="{{route('teacher.export')}}" method="get">
                             <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
+                            <a href="{{route('teacher.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
                         </form>
                         <div class="flex-grow-1 text-center"></div>
                         <form class="d-flex mb-0" onsubmit="return false;">

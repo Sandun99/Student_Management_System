@@ -10,6 +10,7 @@ use App\Models\Grade;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class GradeController extends Controller
@@ -98,6 +99,22 @@ class GradeController extends Controller
     {
         $fileName = 'grades.xlsx';
         return Excel::download(new GradeExport, $fileName);
+    }
+
+    public function pdf()
+    {
+        $grades = Grade::all();
+        $classes = Classes::all();
+
+        $data = [
+            'title' => 'Student Management System',
+            'date' => date('d-m-Y'),
+            'grades' => $grades,
+            'classes' => $classes,
+        ];
+
+        $pdf = PDF::loadView('grade.pdf' , $data);
+        return $pdf->download('grade.pdf');
     }
 
 }
