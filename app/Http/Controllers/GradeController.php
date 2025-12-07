@@ -134,7 +134,7 @@ class GradeController extends Controller
             'grades' => $grades,
         ];
 
-        $pdf = PDF::loadView('grade.pdf' , $data);
+        $pdf = PDF::loadView('grade.pdf' , $data)->setPaper('A4', 'portrait');
         return $pdf->download('grade.pdf');
     }
 

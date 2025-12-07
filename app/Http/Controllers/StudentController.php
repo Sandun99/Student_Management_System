@@ -174,7 +174,7 @@ class StudentController extends Controller
             'date' => date('Y-m-d'),
             'students' => $students,
         ];
-        $pdf = PDF::loadView('student.pdf',$data);
+        $pdf = PDF::loadView('student.pdf',$data)->setPaper('A4', 'portrait');
         return $pdf->download('student.pdf');
     }
 }

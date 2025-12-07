@@ -105,7 +105,7 @@ class ClassController extends Controller
             'classes' => $classes
         ];
 
-        $pdf = PDF::loadView('class.pdf' , $data);
+        $pdf = PDF::loadView('class.pdf' , $data)->setPaper('A4', 'portrait');
         return $pdf->download('class.pdf');
     }
 }

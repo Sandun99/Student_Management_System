@@ -189,7 +189,7 @@ class TeacherController extends Controller
             'teachers' => $teachers,
         ];
 
-        $pdf = PDF::loadView('teacher.pdf' , $data);
+        $pdf = PDF::loadView('teacher.pdf' , $data)->setPaper('A4', 'portrait');
         return $pdf->download('teacher.pdf');
     }
 }

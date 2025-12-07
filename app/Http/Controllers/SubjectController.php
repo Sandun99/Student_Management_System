@@ -125,7 +125,7 @@ class SubjectController extends Controller
             'subjects' => $subjects
         ];
 
-        $pdf = Pdf::loadView('subject.pdf', $data);
+        $pdf = Pdf::loadView('subject.pdf', $data)->setPaper('A4', 'portrait');
         return $pdf->download('subjects.pdf');
     }
 }

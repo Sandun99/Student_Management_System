@@ -168,7 +168,7 @@ class CourseController extends Controller
             'courses' => $courses,
         ];
 
-        $pdf = PDF::loadView('course.pdf' , $data);
+        $pdf = PDF::loadView('course.pdf' , $data)->setPaper('A4', 'portrait');
         return $pdf->download('courses.pdf');
     }
 }

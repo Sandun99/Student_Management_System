@@ -33,10 +33,30 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{route('class.export')}}" method="get">
-                            <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
-                            <a href="{{route('class.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
-                        </form>
+                        <div class="btn-group ms-1" role="group">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Export As
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <form data-export action="{{ route('class.export') }}" method="get" class="d-inline">
+                                        <input type="hidden" name="search">
+                                        <button type="submit" class="dropdown-item">
+                                            Export Excel
+                                        </button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form data-export action="{{ route('class.pdf') }}" method="get" class="d-inline">
+                                        <input type="hidden" name="search">
+                                        <button type="submit" class="dropdown-item">
+                                            Export PDF
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-grow-1"></div>
                         <button type="button"
                                 class="btn btn-outline-light btn-sm ms-auto"
                                 data-create-url="{{ route('class.create') }}">Add New Subject
