@@ -136,24 +136,57 @@ class TeacherController extends Controller
     }
 
 
-    public function export()
+    public function export(Request $request)
     {
-        $fileName = 'teacher_list.xlsx';
-        return Excel::download(new TeacherExport, $fileName);
+        $search = $request->get('search', '');
+        $teachers = Teacher::with('subjects', 'grades')
+            ->orderBy('t_id', 'asc')
+            ->get();
+
+        if ($search != ''){
+            $search = strtolower($search);
+            $teachers = $teachers->filter(function ($teacher) use ($search) {
+                return str_contains(strtolower($teacher->t_id), $search) ||
+                    str_contains(strtolower($teacher->name), $search) ||
+                    str_contains(strtolower($teacher->email), $search) ||
+                    str_contains(strtolower($teacher->nic), $search) ||
+                    str_contains(strtolower($teacher->gender), $search) ||
+                    str_contains(strtolower($teacher->mobile), $search) ||
+                    str_contains(strtolower($teacher->address), $search) ||
+                    str_contains(strtolower($teacher->subjects), $search) ||
+                    str_contains(strtolower($teacher->grades), $search);
+            });
+        }
+
+        return Excel::download(new TeacherExport($teachers->values()), 'teachers.xlsx');
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $teachers = Teacher::all();
-        $subjects = Subject::all();
-        $grades = Grade::all();
+        $search = $request->get('search', '');
+        $teachers = Teacher::with('subjects', 'grades')
+            ->orderBy('t_id', 'asc')
+            ->get();
+
+        if ($search != ''){
+            $search = strtolower($search);
+            $teachers = $teachers->filter(function ($teacher) use ($search) {
+                return str_contains(strtolower($teacher->t_id), $search) ||
+                    str_contains(strtolower($teacher->name), $search) ||
+                    str_contains(strtolower($teacher->email), $search) ||
+                    str_contains(strtolower($teacher->nic), $search) ||
+                    str_contains(strtolower($teacher->gender), $search) ||
+                    str_contains(strtolower($teacher->mobile), $search) ||
+                    str_contains(strtolower($teacher->address), $search) ||
+                    str_contains(strtolower($teacher->subjects), $search) ||
+                    str_contains(strtolower($teacher->grades), $search);
+            });
+        }
 
         $data = [
             'title' => 'Student Management System',
             'date' => date('Y-m-d'),
             'teachers' => $teachers,
-            'subjects' => $subjects,
-            'grades' => $grades,
         ];
 
         $pdf = PDF::loadView('teacher.pdf' , $data);

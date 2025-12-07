@@ -167,6 +167,7 @@
 
 @endsection
 @push('scripts')
+
     <script>
         function previewImage(event, previewId) {
             const preview = document.getElementById(previewId);

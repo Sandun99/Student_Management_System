@@ -32,10 +32,29 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{route('course.export')}}" method="get">
-                            <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
-                            <a href="{{route('course.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
-                        </form>
+                        <div class="btn-group ms-1" role="group">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Export As
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <form data-export action="{{ route('course.export') }}" method="get" class="d-inline">
+                                        <input type="hidden" name="search">
+                                        <button type="submit" class="dropdown-item">
+                                            Export Excel
+                                        </button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form data-export action="{{ route('course.pdf') }}" method="get" class="d-inline">
+                                        <input type="hidden" name="search">
+                                        <button type="submit" class="dropdown-item">
+                                            Export PDF
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="flex-grow-1 text-center"></div>
                         <form class="d-flex mb-0" onsubmit="return false;">
                             <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">

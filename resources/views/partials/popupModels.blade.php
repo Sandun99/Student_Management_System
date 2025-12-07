@@ -184,9 +184,18 @@
                     body.innerHTML = content.innerHTML;
 
                     const select = document.getElementById('subjects-select');
-                    if (select && !select.tomselect) {
-                        new TomSelect(select, { plugins: ['remove_button'] });
-                    }
+                    ['subjects-select', 'grades-select'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && !el.tomselect) {
+                            new TomSelect(el, {
+                                plugins: ['remove_button'],
+                                placeholder: id === 'subjects-select' ? 'Select subjects...' : 'Select one or more grades...',
+                                maxItems: null,
+                                hideSelected: true,
+                                closeAfterSelect: false
+                            });
+                        }
+                    });
                 });
         });
     });

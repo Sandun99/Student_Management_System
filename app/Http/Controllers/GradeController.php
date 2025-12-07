@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\GradeExport;
-use App\Imports\ClassesImport;
 use App\Imports\GradeImport;
 use App\Models\Classes;
 use App\Models\Grade;
@@ -95,22 +94,44 @@ class GradeController extends Controller
         return redirect()->back()->with('status', 'Excel Data Imported successfully!');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $fileName = 'grades.xlsx';
-        return Excel::download(new GradeExport, $fileName);
+        $search = $request->get('search', '');
+        $grades = Grade::with('class')
+            ->orderBy('code', 'asc')
+            ->get();
+
+        if ($search !== '') {
+            $search = strtolower($search);
+            $grades = $grades->filter(function ($g) use ($search) {
+                return str_contains(strtolower($g->code), $search) ||
+                    str_contains(strtolower($g->full_name), $search);
+            });
+        }
+        return Excel::download(new GradeExport($grades->values()), 'grades.xlsx');
+
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $grades = Grade::all();
-        $classes = Classes::all();
+
+        $search = $request->get('search', '');
+        $grades = Grade::with('class')
+            ->orderBy('code', 'asc')
+            ->get();
+
+        if ($search !== '') {
+            $search = strtolower($search);
+            $grades = $grades->filter(function ($g) use ($search) {
+                return str_contains(strtolower($g->code), $search) ||
+                    str_contains(strtolower($g->full_name), $search);
+            });
+        }
 
         $data = [
             'title' => 'Student Management System',
             'date' => date('d-m-Y'),
             'grades' => $grades,
-            'classes' => $classes,
         ];
 
         $pdf = PDF::loadView('grade.pdf' , $data);

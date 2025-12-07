@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Grade;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -11,11 +12,17 @@ class GradeExport implements FromCollection, WithHeadings
     /**
     * @return \Illuminate\Support\Collection
     */
+    protected $data;
+    public function __construct(Collection $data)
+    {
+        $this->data = $data;
+    }
+
     public function collection()
     {
-        return Grade::with('class')->get()->map(function ($grade) {
+        return $this->data->map(function ($grade) {
             return [
-                'code' => $grade->code,
+                'code'      => $grade->code,
                 'full_name' => $grade->full_name,
             ];
         });

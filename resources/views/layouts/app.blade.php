@@ -252,6 +252,34 @@
 
 </script>
 
+{{--export only what u search script--}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('globalSearchInput');
+        if (!searchInput) return;
+
+        // Find ALL export forms that have the hidden search field
+        const exportForms = document.querySelectorAll('form[data-export]');
+
+        const updateHiddenFields = () => {
+            const query = searchInput.value.trim().toLowerCase();
+            exportForms.forEach(form => {
+                const hidden = form.querySelector('input[name="search"]');
+                if (hidden) hidden.value = query;
+            });
+        };
+
+        // Update on every key press
+        searchInput.addEventListener('keyup', updateHiddenFields);
+        searchInput.addEventListener('search', updateHiddenFields); // when user clears with X
+
+        // Also update right before submit (just in case)
+        exportForms.forEach(form => {
+            form.addEventListener('submit', updateHiddenFields);
+        });
+    });
+</script>
+
 
 @stack('scripts')
 </body>

@@ -122,21 +122,50 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Course imported successfully');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $fileName = 'courses.xlsx';
-        return Excel::download(new CourseExport, 'courses.xlsx');
+        $search = $request->get('search', '');
+        $courses = Course::with('subjects')
+            ->orderBy('code', 'asc')
+            ->get();
+
+        if ($search != ''){
+            $search = strtolower($search);
+            $courses = $courses->filter(function ($course) use ($search) {
+                return str_contains(strtolower($course->code), $search) ||
+                    str_contains(strtolower($course->name), $search) ||
+                    str_contains(strtolower($course->category), $search) ||
+                    str_contains(strtolower($course->price), $search) ||
+                    str_contains(strtolower($course->duration), $search) ||
+                    str_contains(strtolower($course->subjects), $search);
+            });
+        }
+        return Excel::download(new CourseExport($courses->values()), 'courses.xlsx');
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $courses = Course::all();
-        $subjects = Subject::all();
+        $courses = Course::with('subjects')
+            ->orderBy('code', 'asc')
+            ->get();
+        $search = $request->get('search', '');
+
+        if ($search != ''){
+            $search = strtolower($search);
+            $courses = $courses->filter(function ($course) use ($search) {
+                return str_contains(strtolower($course->code), $search) ||
+                    str_contains(strtolower($course->name), $search) ||
+                    str_contains(strtolower($course->category), $search) ||
+                    str_contains(strtolower($course->price), $search) ||
+                    str_contains(strtolower($course->duration), $search) ||
+                    str_contains(strtolower($course->subjects), $search);
+            });
+        }
+
         $data = [
             'title' => 'Student Management System',
             'date' => date('Y-m-d'),
             'courses' => $courses,
-            'subjects' => $subjects,
         ];
 
         $pdf = PDF::loadView('course.pdf' , $data);

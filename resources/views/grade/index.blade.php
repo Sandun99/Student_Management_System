@@ -31,9 +31,32 @@
                         </div>
                     </div>
                 </form>
-                <form action="{{route('grade.export')}}" method="get">
-                    <button type="submit" class="btn btn-primary btn-sm ms-1">Export</button>
-                    <a href="{{route('grade.pdf')}}" type="button" class="btn btn-primary btn-sm">Export PDF</a>
+                <div class="btn-group ms-1" role="group">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                         Export As
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <form data-export action="{{ route('grade.export') }}" method="get" class="d-inline">
+                                <input type="hidden" name="search">
+                                <button type="submit" class="dropdown-item">
+                                   Export Excel
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <form data-export action="{{ route('grade.pdf') }}" method="get" class="d-inline">
+                                <input type="hidden" name="search">
+                                <button type="submit" class="dropdown-item">
+                                    Export PDF
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-grow-1"></div>
+                <form class="d-flex mb-0 ms-auto" onsubmit="return false;">
+                    <input id="globalSearchInput" placeholder="Search..." class="form-control form-control-sm me-2">
                 </form>
                 <button type="button"
                         class="btn btn-outline-light btn-sm ms-auto"
@@ -50,7 +73,7 @@
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
-                        <tbody id="gradesBody">
+                        <tbody id="searchableTable">
                         @foreach($grades as $grade)
                             <tr data-id="{{ $grade->id }}">
                                 <td><strong>{{ $grade->code }}</strong></td>

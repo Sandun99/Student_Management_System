@@ -5,33 +5,34 @@ namespace App\Exports;
 use App\Models\Course;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Ramsey\Collection\Collection;
+use Illuminate\Support\Collection;
 
-class CourseExport implements FromCollection , WithHeadings , WithMapping
+class CourseExport implements FromCollection , WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
 
-    public function collection()
+    protected $data;
+
+    public function __construct(Collection $data)
     {
-        return Course::with('subjects')
-            ->orderBy('code' , 'asc')
-            ->get();
+        $this->data = $data;
     }
 
-    public function map($course): array
+    public function collection()
     {
-        return [
-            $course->code,
-            $course->name,
-            $course->category,
-            $course->start_date?->format('Y-m-d'),
-            $course->duration,
-            number_format($course->price,2),
-            $course->subjects->pluck('name')->implode(', '),
-        ];
+        return $this->data->map(function($course){
+            return [
+                'code' => $course->code,
+                'name' => $course->name,
+                'category' => $course->category,
+                'start_date' => $course->start_date?->format('Y-m-d'),
+                'duration' => $course->duration,
+                number_format($course->price,2),
+                'subjects' => $course->subjects->pluck('name')->implode(', '),
+            ];
+        });
     }
 
     public function headings(): array

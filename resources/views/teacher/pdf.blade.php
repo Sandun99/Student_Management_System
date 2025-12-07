@@ -72,7 +72,9 @@
         <tr>
             <th>Grade</th>
             <td>
-                {{$teacher->grade?->full_name}}
+                @foreach($teacher->grades as $grade)
+                    {{ $grade->full_name }} |
+                @endforeach
             </td>
         </tr>
         <tr>

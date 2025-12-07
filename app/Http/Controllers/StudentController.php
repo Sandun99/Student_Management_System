@@ -126,24 +126,53 @@ class StudentController extends Controller
         return redirect()->back()->with('status', 'Student imported successfully');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $fileName = "Student_List.xlsx";
-        return Excel::download(new StudentExport, $fileName);
+        $search = $request->get('search' , '');
+        $students = Student::with('grade','course')
+            ->orderBy('reg_no' , 'asc')
+            ->get();
+
+        if ($search != '') {
+            $search = strtolower($search);
+            $students = $students->filter(function($student) use ($search){
+                return str_contains(strtolower($student->reg_no) , $search) ||
+                    str_contains(strtolower($student->nic) , $search) ||
+                    str_contains(strtolower($student->gender) , $search) ||
+                    str_contains(strtolower($student->mobile) , $search) ||
+                    str_contains(strtolower($student->email) , $search) ||
+                    str_contains(strtolower($student->course) , $search) ||
+                    str_contains(strtolower($student->grade) , $search);
+            });
+        }
+
+        return Excel::download(new StudentExport($students->values()), 'students.xlsx');
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $students = Student::all();
-        $courses = Course::all();
-        $grades = Grade::all();
+        $search = $request->get('search' , '');
+        $students = Student::with('grade','course')
+            ->orderBy('reg_no' , 'asc')
+            ->get();
+
+        if ($search != '') {
+            $search = strtolower($search);
+            $students = $students->filter(function($student) use ($search){
+                return str_contains(strtolower($student->reg_no) , $search) ||
+                    str_contains(strtolower($student->nic) , $search) ||
+                    str_contains(strtolower($student->gender) , $search) ||
+                    str_contains(strtolower($student->mobile) , $search) ||
+                    str_contains(strtolower($student->email) , $search) ||
+                    str_contains(strtolower($student->course) , $search) ||
+                    str_contains(strtolower($student->grade) , $search);
+            });
+        }
 
         $data = [
             'title' => 'Student Management System',
             'date' => date('Y-m-d'),
             'students' => $students,
-            'courses' => $courses,
-            'grades' => $grades,
         ];
         $pdf = PDF::loadView('student.pdf',$data);
         return $pdf->download('student.pdf');

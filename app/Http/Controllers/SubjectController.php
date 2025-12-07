@@ -91,15 +91,34 @@ class SubjectController extends Controller
         return redirect()->back()->with('status', 'Subject imported successfully');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $fileName = 'subject.xlsx';
-        return Excel::download(new SubjectExport,$fileName);
+        $search = $request->get('search', '');
+        $subjects = Subject::orderBy('sub_code', 'asc')->get();
+
+        if ($search != '') {
+            $search = strtolower($search);
+            $subjects = $subjects->filter(function ($subject) use ($search) {
+                return str_contains(strtolower($subject->sub_code), $search) ||
+                    str_contains(strtolower($subject->name), $search);
+            });
+        }
+
+        return Excel::download(new SubjectExport($subjects->values()), 'subjects.xlsx');
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $subjects = Subject::all();
+        $subjects = Subject::orderBy('sub_code', 'asc')->get();
+        $search = $request->get('search', '');
+        if ($search != '') {
+            $search = strtolower($search);
+            $subjects = $subjects->filter(function ($subject) use ($search) {
+                return str_contains(strtolower($subject->sub_code), $search) ||
+                    str_contains(strtolower($subject->name), $search);
+            });
+        }
+
         $data = [
             'title' => 'Student Management System',
             'date' => date('d-m-Y'),
