@@ -144,20 +144,32 @@
                                             </div>
 
                                             <div class="form-group mb-3">
+                                                <label>Profile Picture</label>
+                                                <div class="border border-dashed rounded p-4 text-center bg-light">
+                                                    <input type="file" name="profile" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewProfile')">
+                                                    <div class="mt-3">
+                                                        <img id="previewProfile" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
                                                 <label>NIC Front</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="nic_front" class="form-control" accept="image/*" onchange="previewImage(event, 'studentPreview')">
+                                                    <input type="file" name="nic_front" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewNicFront')">
                                                     <div class="mt-3">
-                                                        <img id="studentPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="previewNicFront" src="" alt="Preview" class="img-fluid rounded shadow-sm" style="max-height: 200px; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label>NIC Back</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="nic_back" class="form-control" accept="image/*" onchange="previewImage(event, 'studentPreview')">
+                                                    <input type="file" name="nic_back" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewNicBack')">
                                                     <div class="mt-3">
-                                                        <img id="studentPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="previewNicBack" src="" alt="Preview" class="img-fluid rounded shadow-sm" style="max-height: 200px; display: none;">
                                                     </div>
                                                 </div>
                                             </div>

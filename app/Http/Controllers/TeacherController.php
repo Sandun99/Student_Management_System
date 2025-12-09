@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\TeacherExport;
 use App\Imports\TeacherImport;
+use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Grade;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -37,6 +39,44 @@ class TeacherController extends Controller
     {
 
         try {
+
+            $request->validate([
+                'profile' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_front' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_back' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            if ($request->has('profile')) {
+                $file = $request->file('profile');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path = 'assets/img/profile/';
+                $file->move($path, $filename);
+
+            }
+
+            if ($request->has('nic_front')) {
+                $file = $request->file('nic_front');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path1 = 'assets/img/nic/front/';
+                $file->move($path1, $filename);
+            }
+
+            if ($request->has('nic_back')) {
+                $file = $request->file('nic_back');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path2 = 'assets/img/nic/back/';
+                $file->move($path2, $filename);
+            }
+
             Teacher::query()->create([
                 'name' => $request->name,
                 't_id' => $request->t_id,
@@ -46,13 +86,16 @@ class TeacherController extends Controller
                 'gender' => $request->gender,
                 'mobile' => $request->mobile,
                 'address' => $request->address,
+                'profile' => $path.$filename,
+                'nic_front' => $path1.$filename,
+                'nic_back' => $path2.$filename,
                 'username' => $request->username,
                 'password' => $request->password,
             ]);
 
             $teacher = Teacher::latest()->first();
-            $teacher->subjects()->sync($request->subjects ?? []);
-            $teacher->grades()->sync($request->grades ?? []);
+            $teacher->subjects()->sync($request->subjects);
+            $teacher->grades()->sync($request->grades);
 
             return redirect()->route('teacher.teacher.index')->with('create', 'Teacher created successfully!');
         }
@@ -72,24 +115,75 @@ class TeacherController extends Controller
         return view('teacher.edit', compact('teacher', 'subjects', 'grades'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
         try {
 
-            Teacher::query()
-                ->where('id', $request->id)
-                ->update([
-                    'name' => $request->name,
-                    't_id' => $request->t_id,
-                    'email' => $request->email,
-                    'nic' => $request->nic,
-                    'dob' => $request->dob,
-                    'gender' => $request->gender,
-                    'mobile' => $request->mobile,
-                    'address' => $request->address,
-                    'username' => $request->username,
-                    'password' => $request->password,
-                ]);
+            $request->validate([
+                'profile' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_front' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_back' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $teacher = Teacher::findOrFail($id);
+
+            if ($request->has('profile')) {
+                $file = $request->file('profile');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path = 'assets/img/profile/';
+                $file->move($path, $filename);
+
+                if (file::exists($teacher->profile)) {
+                    File::delete($teacher->profile);
+                }
+            }
+
+            if ($request->has('nic_front')) {
+                $file = $request->file('nic_front');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path1 = 'assets/img/nic/front/';
+                $file->move($path1, $filename);
+
+                if (file::exists($teacher->nic_front)) {
+                    File::delete($teacher->nic_front);
+                }
+            }
+
+            if ($request->has('nic_back')) {
+                $file = $request->file('nic_back');
+                $extension = $file->getClientOriginalExtension();
+
+                $filename = time() . '.' . $extension;
+
+                $path2 = 'assets/img/nic/back/';
+                $file->move($path2, $filename);
+
+                if (file::exists($teacher->nic_back)) {
+                    File::delete($teacher->nic_back);
+                }
+            }
+
+            $teacher->update([
+                'name' => $request->name,
+                't_id' => $request->t_id,
+                'email' => $request->email,
+                'nic' => $request->nic,
+                'dob' => $request->dob,
+                'gender' => $request->gender,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'profile' => $path . $filename,
+                'nic_front' => $path1 . $filename,
+                'nic_back' => $path2 . $filename,
+                'username' => $request->username,
+                'password' => $request->password,
+            ]);
 
             $teacher = Teacher::find($request->id);
             $teacher->subjects()->sync($request->subjects);
@@ -102,7 +196,7 @@ class TeacherController extends Controller
         }
     }
 
-    public function delete()
+    public function delete(int $id)
     {
         try {
             Teacher::query()

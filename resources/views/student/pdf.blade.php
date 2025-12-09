@@ -1,88 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <meta charset="utf-8">
+    <title>Students</title>
     <style>
-        h1 {
-            font-size: 18pt;
-            text-align: center;
-            margin-bottom: 5px;
-            font-weight: normal;
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 9pt;
+            margin: 0;
+            padding: 8mm 4mm 8mm 4mm;
+            line-height: 1.3;
         }
 
         table {
-            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 4px 3px;
+            text-align: left;
+            font-size: 9pt;
+            white-space: nowrap;
         }
 
         th {
-            background-color: #f0f0f0;
-            padding: 10px 12px;
-            text-align: left;
+            border-bottom: 1px solid #000;
             font-weight: bold;
-            font-size: 12pt;
         }
 
         td {
-            padding: 8px 12px;
-            vertical-align: top;
-            text-align: left;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 3px;
+        }
+
+        @page {
+            margin: 0;
+            size: A4 portrait;
+        }
+
+        @page :first {
+            margin-top: 0;
+        }
+
+        @page {
+            prince-shrink-to-fit: true;
         }
     </style>
 </head>
 <body>
 
-<h1>{{ $title }}</h1>
-<h3>{{ $date }}</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Reg No</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>NIC</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Course</th>
+        <th>Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($students as $student)
+        <tr>
+            <td>{{ $student->reg_no }}</td>
+            <td>{{ $student->name }}</td>
+            <td>{{ $student->dob?->format('d M Y') }}</td>
+            <td>{{ $student->nic }}</td>
+            <td>{{ $student->gender}}</td>
+            <td>{{ $student->mobile }}</td>
+            <td>{{ $student->course?->name }}</td>
+            <td>{{ $student->grade?->full_name }}</td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 
-@foreach($students as $student)
-    <table class="table">
-        <tr>
-            <th>Student Name</th>
-            <td><strong>{{ $student->name }}</strong></td>
-        </tr>
-        <tr>
-            <th>Student ID</th>
-            <td>{{$student->reg_no}}</td>
-        </tr>
-        <tr>
-            <th>Date Of Birth</th>
-            <td>{{$student->dob?->format('d M, Y')}}</td>
-        </tr>
-        <tr>
-            <th>NIC</th>
-            <td>{{$student->nic}}</td>
-        </tr>
-        <tr>
-            <th>Gender</th>
-            <td>{{$student->gender}}</td>
-        </tr>
-        <tr>
-            <th>Phone Num</th>
-            <td>{{$student->mobile}}</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>{{$student->address}}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{$student->email}}</td>
-        </tr>
-        <tr>
-            <th>Course</th>
-            <td>
-                {{ $student->course?->name }}
-            </td>
-        </tr>
-        <tr>
-            <th>Grade</th>
-            <td>
-                {{ $student->grade?->full_name}}
-            </td>
-        </tr>
-    </table>
-    <hr>
-@endforeach
 </body>
 </html>

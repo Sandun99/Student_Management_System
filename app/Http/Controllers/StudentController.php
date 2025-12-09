@@ -38,6 +38,38 @@ class StudentController extends Controller
 
         try {
 
+            $request->validate([
+                'profile' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_front' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_back' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $profile  = null;
+            $nicFront = null;
+            $nicBack  = null;
+
+            if ($request->hasFile('profile')) {
+                $file = $request->file('profile');
+                $filename = 'profile_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/profile'), $filename);
+                $profile = 'assets/img/' . $filename;
+            }
+
+            if ($request->hasFile('nic_front')) {
+                $file = $request->file('nic_front');
+                $filename = 'front_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/front'), $filename);
+                $nicFront = 'assets/img/nic/front/' . $filename;
+            }
+
+            if ($request->hasFile('nic_back')) {
+                $file = $request->file('nic_back');
+                $filename = 'back_' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/back'), $filename);
+                $nicBack = 'assets/img/nic/back/' . $filename;
+            }
+
+
             Student::query()->create([
                 'name' => $request->name,
                 'reg_no' => $request->reg_no,
@@ -48,14 +80,17 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'email' => $request->email,
                 'username' => $request->username,
-                'password' => Hash::make($request->password),
+                'password' => $request->password,
+                'profile'    => $profile,
+                'nic_front'  => $nicFront,
+                'nic_back'   => $nicBack,
                 'grade_id' => $request->grade_id,
                 'course_id' => $request->course_id,
             ]);
             return redirect()->route('student.index')->with('create', 'Student created successfully!');
         }
-        catch (\Exception $exception){
-            return redirect()->route('student.create')->with('error', $exception->getMessage());
+        catch (\Exception $e){
+            return $e;
         }
     }
 
@@ -70,26 +105,70 @@ class StudentController extends Controller
         return view('student.edit', compact('student', 'grades', 'courses'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
 
         try {
-            Student::query()
-                ->where('id', $request->id)
-                ->update([
-                    'name' => $request->name,
-                    'reg_no' => $request->reg_no,
-                    'dob' => $request->dob,
-                    'nic' => $request->nic,
-                    'gender' => $request->gender,
-                    'mobile' => $request->mobile,
-                    'address' => $request->address,
-                    'email' => $request->email,
-                    'username' => $request->username,
-                    'password' => $request->password,
-                    'grade_id' => $request->grade_id,
-                    'course_id' => $request->course_id,
-                ]);
+
+            $request->validate([
+                'profile' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_front' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'nic_back' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $student = Student::findOrFail($id);
+
+            if ($request->hasFile('profile')) {
+
+                if ($student->profile && file_exists(public_path($student->profile))) {
+                    unlink(public_path($student->profile));
+                }
+
+                $file = $request->file('profile');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/profile'), $filename);
+                $student->profile = 'assets/img/profile/' . $filename;
+            }
+
+            if ($request->hasFile('nic_front')) {
+
+                if ($student->nic_front && file_exists(public_path($student->nic_front))) {
+                    unlink(public_path($student->nic_front));
+                }
+
+                $file = $request->file('nic_front');
+                $filename = 'front' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/front'), $filename);
+                $student->nic_front = 'assets/img/nic/front/' . $filename;
+            }
+
+            if ($request->hasFile('nic_back')) {
+
+                if ($student->nic_back && file_exists(public_path($student->nic_back))) {
+                    unlink(public_path($student->nic_back));
+                }
+
+                $file = $request->file('nic_back');
+                $filename = 'back' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/back'), $filename);
+                $student->nic_back = 'assets/img/nic/back/' . $filename;
+            }
+
+
+            $student->update([
+                'name' => $request->name,
+                'reg_no' => $request->reg_no,
+                'dob' => $request->dob,
+                'nic' => $request->nic,
+                'gender' => $request->gender,
+                'mobile' => $request->mobile,
+                'address' => $request->address,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => $request->password,
+                'grade_id' => $request->grade_id,
+                'course_id' => $request->course_id,
+            ]);
 
             return redirect()->back()->with('success', 'Student updated successfully');
         }
@@ -98,7 +177,7 @@ class StudentController extends Controller
         }
     }
 
-    public function delete()
+    public function delete(int $id)
     {
         try {
             Student::query()

@@ -106,7 +106,35 @@
                     <label class="form-label mb-3">Password</label>
                     <input type="password" name="password" class="form-control" value="{{ $teacher->password }}" placeholder="">
                 </div>
+                <div class="form-group mb-3">
+                    <label>Profile Picture</label>
+                    <div class="border border-dashed rounded p-4 text-center bg-light">
+                        <input type="file" name="profile" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                        <div class="mt-3">
+                            <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label>NIC Front</label>
+                    <div class="border border-dashed rounded p-4 text-center bg-light">
+                        <input type="file" name="nic_front" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                        <div class="mt-3">
+                            <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label>NIC Back</label>
+                    <div class="border border-dashed rounded p-4 text-center bg-light">
+                        <input type="file" name="nic_back" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                        <div class="mt-3">
+                            <img id="previewId" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <button type="submit"
                     class="btn btn-secondary btn-lg w-100 mt-4"
                     data-confirm="update">
@@ -115,3 +143,21 @@
         </div>
     </form>
 </div>
+@push('scripts')
+
+    <script>
+        function previewImage(event, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = event.target.files[0];
+
+            if (file && preview) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+@endpush

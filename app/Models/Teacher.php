@@ -18,6 +18,9 @@ class Teacher extends Model
         'gender',
         'mobile',
         'address',
+        'profile',
+        'nic_front',
+        'nic_back',
         'username',
         'password',
     ];

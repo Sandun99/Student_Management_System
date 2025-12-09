@@ -129,20 +129,29 @@
                                             </div>
 
                                             <div class="form-group mb-3">
+                                                <label>Profile Picture</label>
+                                                <div class="border border-dashed rounded p-4 text-center bg-light">
+                                                    <input type="file" name="profile" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <div class="mt-3">
+                                                        <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
                                                 <label>NIC Front</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <input type="file" name="nic_front" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview1" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label>NIC Back</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="image_2" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <input type="file" name="nic_back" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview2" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,8 +178,8 @@
 @push('scripts')
 
     <script>
-        function previewImage(event, previewId) {
-            const preview = document.getElementById(previewId);
+        function previewImage(event, teacherPreview) {
+            const preview = document.getElementById(teacherPreview);
             const file = event.target.files[0];
 
             if (file && preview) {

@@ -20,6 +20,9 @@ class Student extends Model
         'email',
         'username',
         'password',
+        'profile',
+        'nic_front',
+        'nic_back',
         'grade_id',
         'course_id'
     ];
