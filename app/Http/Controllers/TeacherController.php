@@ -46,35 +46,29 @@ class TeacherController extends Controller
                 'nic_back' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
-            if ($request->has('profile')) {
+            $profile  = null;
+            $nicFront = null;
+            $nicBack  = null;
+
+            if ($request->hasFile('profile')) {
                 $file = $request->file('profile');
-                $extension = $file->getClientOriginalExtension();
-
-                $filename = time() . '.' . $extension;
-
-                $path = 'assets/img/profile/';
-                $file->move($path, $filename);
-
+                $filename = 'TP-' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/profile'), $filename);
+                $profile = 'assets/img/profile/' . $filename;
             }
 
-            if ($request->has('nic_front')) {
+            if ($request->hasFile('nic_front')) {
                 $file = $request->file('nic_front');
-                $extension = $file->getClientOriginalExtension();
-
-                $filename = time() . '.' . $extension;
-
-                $path1 = 'assets/img/nic/front/';
-                $file->move($path1, $filename);
+                $filename = 'TF-' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/front'), $filename);
+                $nicFront = 'assets/img/nic/front/' . $filename;
             }
 
-            if ($request->has('nic_back')) {
+            if ($request->hasFile('nic_back')) {
                 $file = $request->file('nic_back');
-                $extension = $file->getClientOriginalExtension();
-
-                $filename = time() . '.' . $extension;
-
-                $path2 = 'assets/img/nic/back/';
-                $file->move($path2, $filename);
+                $filename = 'TB-' . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/back'), $filename);
+                $nicBack = 'assets/img/nic/back/' . $filename;
             }
 
             Teacher::query()->create([
@@ -86,9 +80,9 @@ class TeacherController extends Controller
                 'gender' => $request->gender,
                 'mobile' => $request->mobile,
                 'address' => $request->address,
-                'profile' => $path.$filename,
-                'nic_front' => $path1.$filename,
-                'nic_back' => $path2.$filename,
+                'profile'    => $profile,
+                'nic_front'  => $nicFront,
+                'nic_back'   => $nicBack,
                 'username' => $request->username,
                 'password' => $request->password,
             ]);
@@ -127,46 +121,40 @@ class TeacherController extends Controller
 
             $teacher = Teacher::findOrFail($id);
 
-            if ($request->has('profile')) {
+            if ($request->hasFile('profile')) {
+
+                if ($teacher->profile && file_exists(public_path($teacher->profile))) {
+                    unlink(public_path($teacher->profile));
+                }
+
                 $file = $request->file('profile');
-                $extension = $file->getClientOriginalExtension();
-
-                $filename = time() . '.' . $extension;
-
-                $path = 'assets/img/profile/';
-                $file->move($path, $filename);
-
-                if (file::exists($teacher->profile)) {
-                    File::delete($teacher->profile);
-                }
+                $filename = 'TP-'. $teacher->id . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/profile'), $filename);
+                $teacher->profile = 'assets/img/profile/' . $filename;
             }
 
-            if ($request->has('nic_front')) {
+            if ($request->hasFile('nic_front')) {
+
+                if ($teacher->nic_front && file_exists(public_path($teacher->nic_front))) {
+                    unlink(public_path($teacher->nic_front));
+                }
+
                 $file = $request->file('nic_front');
-                $extension = $file->getClientOriginalExtension();
-
-                $filename = time() . '.' . $extension;
-
-                $path1 = 'assets/img/nic/front/';
-                $file->move($path1, $filename);
-
-                if (file::exists($teacher->nic_front)) {
-                    File::delete($teacher->nic_front);
-                }
+                $filename = 'TF-' . $teacher->id . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/front'), $filename);
+                $teacher->nic_front = 'assets/img/nic/front/' . $filename;
             }
 
-            if ($request->has('nic_back')) {
-                $file = $request->file('nic_back');
-                $extension = $file->getClientOriginalExtension();
+            if ($request->hasFile('nic_back')) {
 
-                $filename = time() . '.' . $extension;
-
-                $path2 = 'assets/img/nic/back/';
-                $file->move($path2, $filename);
-
-                if (file::exists($teacher->nic_back)) {
-                    File::delete($teacher->nic_back);
+                if ($teacher->nic_back && file_exists(public_path($teacher->nic_back))) {
+                    unlink(public_path($teacher->nic_back));
                 }
+
+                $file = $request->file('nic_back');
+                $filename = 'TB-' . $teacher->id . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets/img/nic/back'), $filename);
+                $teacher->nic_back = 'assets/img/nic/back/' . $filename;
             }
 
             $teacher->update([
@@ -178,9 +166,6 @@ class TeacherController extends Controller
                 'gender' => $request->gender,
                 'mobile' => $request->mobile,
                 'address' => $request->address,
-                'profile' => $path . $filename,
-                'nic_front' => $path1 . $filename,
-                'nic_back' => $path2 . $filename,
                 'username' => $request->username,
                 'password' => $request->password,
             ]);

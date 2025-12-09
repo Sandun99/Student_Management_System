@@ -1,7 +1,9 @@
 <div class="row justify-content-center">
     <div class="row g-4">
         <div class="col-md-12">
-
+            <p class="text-center">
+                <img src="{{ asset($teacher->profile) }}" alt="img" style="width: 200px; height: 200px;" class="rounded-circle border border-dark"/>
+            </p>
             <h4 class="fw-bold mt-3 text-center">{{ $teacher->name }}</h4>
             <p class="text-muted mb-2 text-center">
                 <strong>Teacher ID:</strong> {{ $teacher->t_id }}
@@ -35,12 +37,11 @@
                 </tr>
                 <tr>
                     <th>Assigned Grade</th>
-                    @foreach($teacher->grades as $grade)
-                        <td>
-                            {{$grade->full_name}}
-                        </td>
-                    @endforeach
-
+                    <td>
+                        @foreach($teacher->grades as $grade)
+                            {{$grade->full_name}} |
+                        @endforeach
+                    </td>
                 </tr>
             </table>
             <div class="col-md-12 mt-4">
@@ -58,31 +59,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-                <div class="col-12 mt-4">
-                    @if($teacher->username || $teacher->password)
-                        <div class="col-12">
-                            <h5 class="fw-bold mb-3">
-                                Account Login
-                            </h5>
-                            <div class="border rounded p-3 bg-light">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <small class="text-muted">Username</small>
-                                        <p class="mb-0"><strong>{{ $teacher->username }}</strong></p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <small class="text-muted">Password</small>
-                                        <p class="mb-0">
-                                            <strong>
-                                                {{ $teacher->password ? '••••••••' : '—' }}
-                                            </strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </div>
                 <div class="row mt-3">
                     <table class="table">

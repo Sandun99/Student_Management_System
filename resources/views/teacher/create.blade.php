@@ -131,27 +131,30 @@
                                             <div class="form-group mb-3">
                                                 <label>Profile Picture</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="profile" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <input type="file" name="profile" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewProfile')">
                                                     <div class="mt-3">
-                                                        <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="previewProfile" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label>NIC Front</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="nic_front" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <input type="file" name="nic_front" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewNicFront')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="previewNicFront" src="" alt="Preview" class="img-fluid rounded shadow-sm" style="max-height: 200px; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label>NIC Back</label>
                                                 <div class="border border-dashed rounded p-4 text-center bg-light">
-                                                    <input type="file" name="nic_back" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
+                                                    <input type="file" name="nic_back" class="form-control"
+                                                           accept="image/*" onchange="previewImage(event, 'previewNicBack')">
                                                     <div class="mt-3">
-                                                        <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                                                        <img id="previewNicBack" src="" alt="Preview" class="img-fluid rounded shadow-sm" style="max-height: 200px; display: none;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,7 +168,6 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -173,23 +175,22 @@
         </div>
     </div>
 
+    @push('scripts')
+        <script>
+            function previewImage(event, previewId = 'imagePreview') {
+                const preview = document.getElementById(previewId);
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
+    @endpush
 
 @endsection
-@push('scripts')
-
-    <script>
-        function previewImage(event, teacherPreview) {
-            const preview = document.getElementById(teacherPreview);
-            const file = event.target.files[0];
-
-            if (file && preview) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-@endpush

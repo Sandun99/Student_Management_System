@@ -50,21 +50,21 @@ class StudentController extends Controller
 
             if ($request->hasFile('profile')) {
                 $file = $request->file('profile');
-                $filename = 'profile_' . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SP-' . time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/profile'), $filename);
-                $profile = 'assets/img/' . $filename;
+                $profile = 'assets/img/profile/' . $filename;
             }
 
             if ($request->hasFile('nic_front')) {
                 $file = $request->file('nic_front');
-                $filename = 'front_' . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SF-' . time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/front'), $filename);
                 $nicFront = 'assets/img/nic/front/' . $filename;
             }
 
             if ($request->hasFile('nic_back')) {
                 $file = $request->file('nic_back');
-                $filename = 'back_' . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SB-' . time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/back'), $filename);
                 $nicBack = 'assets/img/nic/back/' . $filename;
             }
@@ -125,7 +125,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('profile');
-                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SP-' . $student->id . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/profile'), $filename);
                 $student->profile = 'assets/img/profile/' . $filename;
             }
@@ -137,7 +137,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('nic_front');
-                $filename = 'front' . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SF-' . $student->id . time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/front'), $filename);
                 $student->nic_front = 'assets/img/nic/front/' . $filename;
             }
@@ -149,7 +149,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('nic_back');
-                $filename = 'back' . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'TB-' . $student->id . time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/back'), $filename);
                 $student->nic_back = 'assets/img/nic/back/' . $filename;
             }
@@ -177,7 +177,7 @@ class StudentController extends Controller
         }
     }
 
-    public function delete(int $id)
+    public function delete()
     {
         try {
             Student::query()

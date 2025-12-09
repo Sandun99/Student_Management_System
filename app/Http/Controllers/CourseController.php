@@ -43,7 +43,6 @@ class CourseController extends Controller
             'start_date' => 'required|date',
             'duration'   => 'required|string|max:50',
             'price'      => 'required|numeric|min:0',
-            'image'      => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'subjects'   => 'required|array|min:1',
             'subjects.*' => 'exists:subjects,id',
         ]);

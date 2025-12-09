@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="basic" role="tabpanel">
-    <form action="{{ route('teacher.teacher.update', $teacher->id) }}" method="POST">
+    <form action="{{ route('teacher.teacher.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $teacher->id }}">
 
@@ -109,28 +109,72 @@
                 <div class="form-group mb-3">
                     <label>Profile Picture</label>
                     <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file" name="profile" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
-                        <div class="mt-3">
-                            <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                        </div>
+                        <input type="file"
+                               name="profile"
+                               class="form-control"
+                               accept="image/*"
+                               onchange="previewImage(event, 'profilePreview')">
+                        @if($teacher->profile)
+                            <div class="mt-3">
+                                <img id="profilePreview"
+                                     src="{{ asset($teacher->profile) }}"
+                                     alt="Profile"
+                                     class="img-fluid rounded-circle"
+                                     style="width: 150px; height: 150px; object-fit: cover;">
+                            </div>
+                        @else
+                            <div class="mt-3">
+                                <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
+                            </div>
+                        @endif
                     </div>
                 </div>
+
                 <div class="form-group mb-3">
                     <label>NIC Front</label>
                     <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file" name="nic_front" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
-                        <div class="mt-3">
-                            <img id="teacherPreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                        </div>
+                        <input type="file"
+                               name="nic_front"
+                               class="form-control"
+                               accept="image/*"
+                               onchange="previewImage(event, 'nicFrontPreview')">
+                        @if($teacher->nic_front)
+                            <div class="mt-3">
+                                <img id="nicFrontPreview"
+                                     src="{{ asset($teacher->nic_front) }}"
+                                     alt="NIC Front"
+                                     class="img-fluid"
+                                     style="width: 300px; height: 150px; object-fit: cover;">
+                            </div>
+                        @else
+                            <div class="mt-3">
+                                <img id="nicFrontPreview" src="" alt="Preview" class="img-fluid" style="width: 300px; height: 150px; object-fit: cover; display: none;">
+                            </div>
+                        @endif
                     </div>
                 </div>
+
                 <div class="form-group mb-3">
                     <label>NIC Back</label>
                     <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file" name="nic_back" class="form-control" accept="image/*" onchange="previewImage(event, 'teacherPreview')">
-                        <div class="mt-3">
-                            <img id="previewId" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                        </div>
+                        <input type="file"
+                               name="nic_back"
+                               class="form-control"
+                               accept="image/*"
+                               onchange="previewImage(event, 'nicBackPreview')">
+                        @if($teacher->nic_back)
+                            <div class="mt-3">
+                                <img id="nicBackPreview"
+                                     src="{{ asset($teacher->nic_back) }}"
+                                     alt="NIC Back"
+                                     class="img-fluid"
+                                     style="width: 300px; height: 150px; object-fit: cover;">
+                            </div>
+                        @else
+                            <div class="mt-3">
+                                <img id="nicBackPreview" src="" alt="Preview" class="img-fluid" style="width: 300px; height: 150px; object-fit: cover; display: none;">
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

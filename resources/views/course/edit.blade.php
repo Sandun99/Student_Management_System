@@ -81,22 +81,6 @@
                         @endforeach
                     </select>
                 </div>
-
-                <div class="form-group mb-3">
-                    <label>Course Image</label>
-                    <div class="border border-dashed rounded p-4 text-center bg-light">
-                        <input type="file"
-                               name="image"
-                               class="form-control"
-                               accept="image/*"
-                               onchange="previewImage(event)"
-                               value="{{$course->image}}">
-                        <div class="mt-3">
-                            <img id="imagePreview" src="" alt="Preview" class="img-fluid rounded" style="max-height: 200px; display: none;">
-                            <p class="text-muted mt-2 mb-0">Click to upload course thumbnail</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

@@ -1,92 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <meta charset="utf-8">
+    <title>Students</title>
     <style>
-        h1 {
-            font-size: 18pt;
-            text-align: center;
-            margin-bottom: 5px;
-            font-weight: normal;
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 5pt;
+            margin: 0;
+            padding: 8mm 4mm 8mm 4mm;
+            line-height: 1.3;
         }
 
         table {
-            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 4px 3px;
+            text-align: left;
+            font-size: 7pt;
+            white-space: normal;
         }
 
         th {
-            background-color: #f0f0f0;
-            padding: 10px 12px;
-            text-align: left;
+            border-bottom: 1px solid #000;
             font-weight: bold;
-            font-size: 12pt;
         }
 
         td {
-            padding: 8px 12px;
-            vertical-align: top;
-            text-align: left;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 3px;
+        }
+
+        @page {
+            margin: 0;
+            size: A4 portrait;
+        }
+
+        @page :first {
+            margin-top: 0;
+        }
+
+        @page {
+            prince-shrink-to-fit: true;
         }
     </style>
 </head>
 <body>
 
-<h1>{{ $title }}</h1>
-<h3>{{ $date }}</h3>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>NIC</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Address</th>
+{{--        <th>Subjects</th>--}}
+{{--        <th>Grades</th>--}}
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($teachers as $teacher)
+        <tr>
+            <td>{{ $teacher->t_id }}</td>
+            <td>{{ $teacher->name }}</td>
+            <td>{{ $teacher->nic }}</td>
+            <td>{{ $teacher->dob?->format('d M Y') }}</td>
+            <td>{{ $teacher->email }}</td>
+            <td>{{ $teacher->gender}}</td>
+            <td>{{ $teacher->mobile }}</td>
+            <td>{{ $teacher->address }}</td>
+{{--            @foreach($teacher->subjects as $subject)--}}
+{{--                <td>--}}
+{{--                    {{ $subject->sub_code }}--}}
+{{--                </td>--}}
+{{--            @endforeach--}}
+{{--            @foreach($teacher->grades as $grade)--}}
+{{--                <td>--}}
+{{--                    {{ $grade->full_name }}--}}
+{{--                </td>--}}
+{{--            @endforeach--}}
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 
-@foreach($teachers as $teacher)
-    <table class="table">
-        <tr>
-            <th>Teacher Name</th>
-            <td><strong>{{$teacher->name}}</strong></td>
-        </tr>
-        <tr>
-            <th>Teacher ID</th>
-            <td>{{$teacher->t_id}}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{$teacher->email}}</td>
-        </tr>
-        <tr>
-            <th>NIC</th>
-            <td>{{$teacher->nic}}</td>
-        </tr>
-        <tr>
-            <th>Date of Birth</th>
-            <td>{{$teacher->dob?->format('d M, Y')}}</td>
-        </tr>
-        <tr>
-            <th>Gender</th>
-            <td>{{$teacher->gender}}</td>
-        </tr>
-        <tr>
-            <th>Phone Number</th>
-            <td>{{$teacher->mobile}}</td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>{{$teacher->address}}</td>
-        </tr>
-        <tr>
-            <th>Grade</th>
-            <td>
-                @foreach($teacher->grades as $grade)
-                    {{ $grade->full_name }} |
-                @endforeach
-            </td>
-        </tr>
-        <tr>
-            <th>Subject</th>
-            <td>
-                @foreach($teacher->subjects as $subject)
-                    {{ $subject->name }} <br>
-                @endforeach
-            </td>
-        </tr>
-    </table>
-    <hr>
-@endforeach
 </body>
 </html>

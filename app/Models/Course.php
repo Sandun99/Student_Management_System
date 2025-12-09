@@ -15,7 +15,6 @@ class Course extends Model
         'start_date',
         'duration',
         'price',
-        'image',
     ];
 
     protected $casts = [
