@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\GradeController;
@@ -21,8 +22,9 @@ use App\Http\Controllers\SubjectController;
 
 
 
+Route::get('/', [AuthController::class, 'index'])->name('index');
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('teacher')->name('teacher.')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
@@ -97,4 +99,12 @@ Route::prefix('grade')->name('grade.')->group(function () {
     Route::post('/import', [GradeController::class, 'importExcelData'])->name('import');
     Route::get('/export', [GradeController::class, 'export'])->name('export');
     Route::get('/pdf', [GradeController::class, 'pdf'])->name('pdf');
+});
+
+Route::prefix('auth')->name('auth.')->group(function () {
+    Route::get('/', [AuthController::class, 'index'])->name('index');
+    Route::post('/register', [AuthController::class, 'store'])->name('store');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
