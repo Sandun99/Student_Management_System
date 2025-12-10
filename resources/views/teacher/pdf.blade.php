@@ -20,7 +20,7 @@
         th, td {
             padding: 4px 3px;
             text-align: left;
-            font-size: 7pt;
+            font-size: 5pt;
             white-space: normal;
         }
 
@@ -50,7 +50,7 @@
 </head>
 <body>
 
-<table>
+<table class="table table-bordered">
     <thead>
     <tr>
         <th>ID</th>
@@ -61,8 +61,8 @@
         <th>Gender</th>
         <th>Phone</th>
         <th>Address</th>
-{{--        <th>Subjects</th>--}}
-{{--        <th>Grades</th>--}}
+        <th style="width: 85px;">Subjects</th>
+        <th style="width: 60px;">Grades</th>
     </tr>
     </thead>
     <tbody>
@@ -76,16 +76,17 @@
             <td>{{ $teacher->gender}}</td>
             <td>{{ $teacher->mobile }}</td>
             <td>{{ $teacher->address }}</td>
-{{--            @foreach($teacher->subjects as $subject)--}}
-{{--                <td>--}}
-{{--                    {{ $subject->sub_code }}--}}
-{{--                </td>--}}
-{{--            @endforeach--}}
-{{--            @foreach($teacher->grades as $grade)--}}
-{{--                <td>--}}
-{{--                    {{ $grade->full_name }}--}}
-{{--                </td>--}}
-{{--            @endforeach--}}
+            <td style="width: 85px; word-wrap: break-word; white-space: normal; line-height: 1.3;">
+                @foreach($teacher->subjects as $subject)
+                    {{ $subject->sub_code }} |
+                @endforeach
+            </td>
+            <td style="width: 60px; word-wrap: break-word; white-space: normal; line-height: 1.3;">
+                @foreach($teacher->grades as $grade)
+                    {{ $grade->full_name }} |
+                @endforeach
+            </td>
+
         </tr>
     @endforeach
     </tbody>

@@ -262,6 +262,7 @@
             <input type="checkbox" name="remember"> Remember me
             <a href="#">Forgot your password?</a>
             <button type="submit">Sign In</button>
+            <p>admin@gmail.com<br>admin</p>
         </form>
     </div>
     <div class="overlay-container">
