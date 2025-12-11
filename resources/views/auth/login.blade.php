@@ -242,7 +242,7 @@
                 <input type="password" name="password" id="password" class="form-control-sm" placeholder="Password">
                 <input type="password" name="password_confirmation" id="confirm-password" class="form-control-sm"
                        placeholder="Confirm Password">
-                <button type="submit" class="mt-2">Submit</button>
+                <button type="submit" class="mt-2">Sign Up</button>
             </div>
         </form>
     </div>

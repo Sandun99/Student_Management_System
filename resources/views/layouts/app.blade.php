@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        body {
+            font-size: 14px;
+        }
+    </style>
 
     @stack('styles')
 </head>

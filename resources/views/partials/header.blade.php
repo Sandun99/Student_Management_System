@@ -29,6 +29,7 @@
                         <li class="user-footer">
                             <form action="{{ route('auth.logout') }}" method="POST">
                                 @csrf
+                                <a href="{{ route('profile.index') }}" class="btn btn-sm">Profile</a>
                                 <button type="submit" class="btn btn-default btn-flat float-end">Sign out</button>
                             </form>
                         </li>
