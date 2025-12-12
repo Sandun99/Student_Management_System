@@ -89,7 +89,7 @@
                                         <td>{{ $course->duration }}</td>
                                         <td>
                                             @foreach($course->subjects as $subject)
-                                                <span class="badge bg-secondary me-1">{{ $subject->name }}</span>
+                                                {{ $subject->name }}
                                             @endforeach
                                         </td>
                                         <td class="text-center align-middle" style="min-width: 180px;">

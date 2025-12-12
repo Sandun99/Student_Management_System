@@ -4,6 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', '| Dashboard')</title>
+    <style id="custom-header-overrides">
+        .hover-opacity-100 {
+            transition: opacity .3s ease !important;
+        }
+        .hover-opacity-100:hover {
+            opacity: 1 !important;
+        }
+
+        .dropdown-item.hover-bg-primary:hover,
+        .hover-bg-primary:hover {
+            background: rgba(99, 102, 241, 0.25) !important;
+            color: white !important;
+        }
+
+        .dropdown-item.hover-bg-danger:hover,
+        .hover-bg-danger:hover {
+            background: rgba(239, 68, 68, 0.25) !important;
+            color: white !important;
+        }
+
+        .dropdown-item.text-white:hover {
+            color: white !important;
+        }
+    </style>
+    <style>
+        body {
+            font-size: 14px;
+        }
+    </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css">
@@ -22,11 +51,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
-        body {
-            font-size: 14px;
-        }
-    </style>
 
     @stack('styles')
 </head>
