@@ -1,76 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <meta charset="utf-8">
+    <title>Course</title>
     <style>
-        h1 {
-            font-size: 18pt;
-            text-align: center;
-            margin-bottom: 5px;
-            font-weight: normal;
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 5pt;
+            margin: 0;
+            padding: 8mm 4mm 8mm 4mm;
+            line-height: 1.3;
         }
 
         table {
-            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1px;
+            text-align: left;
+            font-size: 7pt;
+            white-space: normal;
         }
 
         th {
-            background-color: #f0f0f0;
-            padding: 10px 12px;
-            text-align: left;
+            border-bottom: 1px solid #000;
             font-weight: bold;
-            font-size: 12pt;
         }
 
         td {
-            padding: 8px 12px;
-            vertical-align: top;
-            text-align: left;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 3px;
+        }
+
+        @page {
+            margin: 0;
+            size: A4 portrait;
+        }
+
+        @page :first {
+            margin-top: 0;
+        }
+
+        @page {
+            prince-shrink-to-fit: true;
         }
     </style>
 </head>
 <body>
 
-<h1>{{ $title }}</h1>
-<h3>{{ $date }}</h3>
-
-@foreach($courses as $course)
-    <table class="table">
+<table>
+    <thead>
+    <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Duration</th>
+        <th>Start Date</th>
+        <th>Subjects</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($courses as $course)
         <tr>
-            <th>Course Name</th>
-            <td><strong>{{ $course->name }}</strong></td>
-        </tr>
-        <tr>
-            <th>Course Code</th>
             <td>{{ $course->code }}</td>
-        </tr>
-        <tr>
-            <th>Category</th>
+            <td>{{ $course->name }}</td>
             <td>{{ $course->category }}</td>
-        </tr>
-        <tr>
-            <th>Price</th>
-            <td>Rs. {{ number_format($course->price, 2) }}</td>
-        </tr>
-        <tr>
-            <th>Duration</th>
-            <td>{{ $course->duration }}</td>
-        </tr>
-        <tr>
-            <th>Start Date</th>
-            <td>{{ $course->start_date?->format('d M, Y')}}</td>
-        </tr>
-        <tr>
-            <th>Subjects</th>
+            <td style="width: 55px;">{{ $course->price }}</td>
+            <td style="width: 60px;">{{ $course->duration }}</td>
+            <td style="width: 75px;">{{ $course->start_date?->format('d M Y') }}</td>
             <td>
                 @foreach($course->subjects as $subject)
-                    {{ $subject->name }} <br>
+                    {{ $subject->name }} ,
                 @endforeach
             </td>
         </tr>
-    </table>
-    <hr>
-@endforeach
+    @endforeach
+    </tbody>
+</table>
 </body>
 </html>

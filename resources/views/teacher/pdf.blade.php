@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Students</title>
+    <title>Teachers</title>
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
