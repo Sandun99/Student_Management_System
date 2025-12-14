@@ -60,28 +60,25 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="row mt-3">
-                    <table class="table">
-                        <tr>
-                            <th class="col-2 align-middle">
-                                NIC Front
-                            </th>
-                            <td>
-                                <img src="{{ asset($teacher->nic_front) }}" alt="img" class="w-50"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="col-2 align-middle">
-                                NIC Back
-                            </th>
-                            <td>
-                                <img src="{{ asset($teacher->nic_back) }}" alt="img" class="w-50"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
             </div>
-
+            <table class="table mt-4">
+                <tr>
+                    <th class="col-2 align-middle">
+                        NIC Front
+                    </th>
+                    <td>
+                        <img src="{{ asset($teacher->nic_front) }}" alt="img" class="w-50"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2 align-middle">
+                        NIC Back
+                    </th>
+                    <td>
+                        <img src="{{ asset($teacher->nic_back) }}" alt="img" class="w-50"/>
+                    </td>
+                </tr>
+            </table>
             <div class="col-12 text-center mt-4">
                 <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">
                     Close

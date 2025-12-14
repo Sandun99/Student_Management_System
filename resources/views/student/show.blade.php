@@ -12,7 +12,7 @@
             <table class="table mt-4 ">
                 <tr>
                     <th>NIC</th>
-                    <td><strong>{{ $student->nic }}</strong></td>
+                    <td>{{ $student->nic }}</td>
                 </tr>
                 <tr>
                     <th>Date of Birth</th>
@@ -47,27 +47,25 @@
             </table>
         </div>
 
-        <div class="row mt-3">
-            <div class="row mt-3">
-                <table class="table">
-                    <tr>
-                        <th class="col-2 align-middle">
-                            NIC Front
-                        </th>
-                        <td>
-                            <img src="{{ asset($student->nic_front) }}" alt="img" class="w-50"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="col-2 align-middle">
-                            NIC Back
-                        </th>
-                        <td>
-                            <img src="{{ asset($student->nic_back) }}" alt="img" class="w-50"/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        <div class="col-md-12">
+            <table class="table">
+                <tr>
+                    <th class="col-2 align-middle">
+                        NIC Front
+                    </th>
+                    <td>
+                        <img src="{{ asset($student->nic_front) }}" alt="img" class="w-50"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-2 align-middle">
+                        NIC Back
+                    </th>
+                    <td>
+                        <img src="{{ asset($student->nic_back) }}" alt="img" class="w-50"/>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="col-12  mt-4">
             <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">

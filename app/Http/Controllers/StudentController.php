@@ -137,7 +137,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('nic_front');
-                $filename = 'SF-' . $student->id . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SF-' . $student->id . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/front'), $filename);
                 $student->nic_front = 'assets/img/nic/front/' . $filename;
             }
@@ -149,7 +149,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('nic_back');
-                $filename = 'TB-' . $student->id . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'SB-' . $student->id . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('assets/img/nic/back'), $filename);
                 $student->nic_back = 'assets/img/nic/back/' . $filename;
             }
@@ -173,16 +173,30 @@ class StudentController extends Controller
             return redirect()->back()->with('success', 'Student updated successfully');
         }
         catch (\Exception $e){
-            return $e;
+
+            return redirect()->back()->with('error', 'Something went wrong.');
         }
     }
 
     public function delete()
     {
         try {
-            Student::query()
-                ->where('id', request()->id)
-                ->delete();
+            $id = request()->id;
+            $student = Student::findOrFail($id);
+
+            if ($student->profile && file_exists(public_path($student->profile))) {
+                unlink(public_path($student->profile));
+            }
+
+            if ($student->nic_front && file_exists(public_path($student->nic_front))) {
+                unlink(public_path($student->nic_front));
+            }
+
+            if ($student->nic_back && file_exists(public_path($student->nic_back))) {
+                unlink(public_path($student->nic_back));
+            }
+
+            $student->delete();
 
             return redirect()->route('student.index')->with('deleted', 'Student deleted successfully');
         }
