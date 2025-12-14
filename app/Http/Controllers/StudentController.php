@@ -201,7 +201,7 @@ class StudentController extends Controller
             return redirect()->route('student.index')->with('deleted', 'Student deleted successfully');
         }
         catch (\Exception $e){
-            return $e;
+            return redirect()->route('student.index')->with('error', 'Something went wrong.');
         }
     }
 

@@ -181,12 +181,25 @@ class TeacherController extends Controller
         }
     }
 
-    public function delete(int $id)
+    public function delete()
     {
         try {
-            Teacher::query()
-            ->where('id', request('id'))
-            ->delete();
+            $id = request()->id;
+            $teacher = Teacher::findOrFail($id);
+
+            if ($teacher->profile && file_exists(public_path($teacher->profile))) {
+                unlink(public_path($teacher->profile));
+            }
+
+            if ($teacher->nic_front && file_exists(public_path($teacher->nic_front))) {
+                unlink(public_path($teacher->nic_front));
+            }
+
+            if ($teacher->nic_back && file_exists(public_path($teacher->nic_back))) {
+                unlink(public_path($teacher->nic_back));
+            }
+
+            $teacher->delete();
 
             return redirect()->route('teacher.teacher.index')->with('deleted', 'Teacher deleted successfully!');
         }
