@@ -309,7 +309,56 @@
     });
 </script>
 
-
 @stack('scripts')
+
+<script>
+    // Universal image preview function - works on all pages and modals
+    window.previewImage = function(event, previewId) {
+        const preview = document.getElementById(previewId);
+        if (!preview) return;
+
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // Re-initialize previews whenever new content is loaded (especially for modals)
+    document.addEventListener('DOMContentLoaded', initImagePreviews);
+
+    // Also run when modal content changes (for AJAX-loaded edit forms)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                initImagePreviews();
+            }
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    function initImagePreviews() {
+        const previewIds = ['profilePreview', 'nicFrontPreview', 'nicBackPreview', 'previewProfile', 'previewNicFront', 'previewNicBack'];
+
+        previewIds.forEach(id => {
+            const img = document.getElementById(id);
+            if (img) {
+                // Show existing images
+                if (img.src && img.src !== location.href && img.src !== '') {
+                    img.style.display = 'block';
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
