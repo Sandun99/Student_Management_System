@@ -114,19 +114,13 @@
                                class="form-control"
                                accept="image/*"
                                onchange="previewImage(event, 'profilePreview')">
-                        @if($teacher->profile)
-                            <div class="mt-3">
-                                <img id="profilePreview"
-                                     src="{{ asset($teacher->profile) }}"
-                                     alt="Profile"
-                                     class="img-fluid rounded-circle"
-                                     style="width: 150px; height: 150px; object-fit: cover;">
-                            </div>
-                        @else
-                            <div class="mt-3">
-                                <img id="profilePreview" src="" alt="Preview" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover; display: none;">
-                            </div>
-                        @endif
+                        <div class="mt-3">
+                            <img id="profilePreview"
+                                 src="{{ $teacher->profile ? asset($teacher->profile) : '' }}"
+                                 alt="Profile Preview"
+                                 class="img-fluid rounded-circle center item"
+                                 style="width: 150px; height: 150px; object-fit: cover; {{ $teacher->profile ? '' : 'display: none;' }}">
+                        </div>
                     </div>
                 </div>
 
@@ -138,19 +132,13 @@
                                class="form-control"
                                accept="image/*"
                                onchange="previewImage(event, 'nicFrontPreview')">
-                        @if($teacher->nic_front)
-                            <div class="mt-3">
-                                <img id="nicFrontPreview"
-                                     src="{{ asset($teacher->nic_front) }}"
-                                     alt="NIC Front"
-                                     class="img-fluid"
-                                     style="width: 300px; height: 150px; object-fit: cover;">
-                            </div>
-                        @else
-                            <div class="mt-3">
-                                <img id="nicFrontPreview" src="" alt="Preview" class="img-fluid" style="width: 300px; height: 150px; object-fit: cover; display: none;">
-                            </div>
-                        @endif
+                        <div class="mt-3">
+                            <img id="nicFrontPreview"
+                                 src="{{ $teacher->nic_front ? asset($teacher->nic_front) : '' }}"
+                                 alt="NIC Front Preview"
+                                 class="img-fluid"
+                                 style="width: 300px; height: 150px; object-fit: cover; {{ $teacher->nic_front ? '' : 'display: none;' }}">
+                        </div>
                     </div>
                 </div>
 
@@ -162,19 +150,13 @@
                                class="form-control"
                                accept="image/*"
                                onchange="previewImage(event, 'nicBackPreview')">
-                        @if($teacher->nic_back)
-                            <div class="mt-3">
-                                <img id="nicBackPreview"
-                                     src="{{ asset($teacher->nic_back) }}"
-                                     alt="NIC Back"
-                                     class="img-fluid"
-                                     style="width: 300px; height: 150px; object-fit: cover;">
-                            </div>
-                        @else
-                            <div class="mt-3">
-                                <img id="nicBackPreview" src="" alt="Preview" class="img-fluid" style="width: 300px; height: 150px; object-fit: cover; display: none;">
-                            </div>
-                        @endif
+                        <div class="mt-3">
+                            <img id="nicBackPreview"
+                                 src="{{ $teacher->nic_back ? asset($teacher->nic_back) : '' }}"
+                                 alt="NIC Back Preview"
+                                 class="img-fluid"
+                                 style="width: 300px; height: 150px; object-fit: cover; {{ $teacher->nic_back ? '' : 'display: none;' }}">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -187,21 +169,3 @@
         </div>
     </form>
 </div>
-@push('scripts')
-
-    <script>
-        function previewImage(event, previewId) {
-            const preview = document.getElementById(previewId);
-            const file = event.target.files[0];
-
-            if (file && preview) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-@endpush
