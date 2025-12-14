@@ -142,7 +142,7 @@
 
                 <div class="form-group mb-3">
                     <label>Profile Picture</label>
-                    <div class="border border-dashed rounded p-4 text-center bg-light">
+                    <div class="border border-dashed rounded p-4 text-center bg-light d-flex align-items-center justify-content-center flex-column">
                         <input type="file"
                                name="profile"
                                class="form-control"
