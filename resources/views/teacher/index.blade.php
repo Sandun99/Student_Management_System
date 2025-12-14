@@ -73,7 +73,6 @@
                                 <tr>
                                     <th>T_ID</th>
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>NIC</th>
                                     <th>Mobile</th>
                                     <th>Subject</th>
@@ -86,7 +85,6 @@
                                     <tr data-id="{{ $teacher->id }}">
                                         <td><strong>{{ $teacher->t_id }}</strong></td>
                                         <td>{{ $teacher->name }}</td>
-                                        <td>{{ $teacher->email }}</td>
                                         <td>{{ $teacher->nic }}</td>
                                         <td>{{ $teacher->mobile }}</td>
                                         <td>
@@ -94,25 +92,28 @@
                                                 <span class="badge bg-secondary me-1 mb-1">{{ $subject->name }}</span>
                                             @endforeach
                                         </td>
-                                        <td>
+                                        <td style="width: 120px">
                                             @foreach($teacher->grades as $grade)
                                                 <span class="badge bg-secondary me-1 mb-1">{{ $grade->full_name }}</span>
                                             @endforeach
 
                                         </td>
-                                        <td class="text-center" style="width: 180px">
-                                            <button type="button"
-                                                    class="btn btn-primary btn-sm"
-                                                    data-view-url="{{ route('teacher.show', $teacher->id) }}">
-                                                View
-                                            </button>
-                                            <a href="{{route('teacher.teacher.edit',$teacher->id)}}" class="btn btn-warning btn-sm">
-                                                Edit
-                                            </a>
-                                            <a href="{{route('teacher.teacher.delete',$teacher->id)}}"
-                                               data-delete="teacher" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </a>
+                                        <td class="text-center align-middle py-2">
+                                            <div class="btn-group" role="group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-view-url="{{ route('teacher.show', $teacher->id) }}">
+                                                    View
+                                                </button>
+                                                <a href="{{route('teacher.teacher.edit',$teacher->id)}}"
+                                                   class="btn btn-warning btn-sm">
+                                                    Edit
+                                                </a>
+                                                <a href="{{route('teacher.teacher.delete',$teacher->id)}}"
+                                                   data-delete="teacher" class="btn btn-danger btn-sm">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

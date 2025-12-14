@@ -103,19 +103,22 @@
                                                 {{ $student->grade?->full_name}}
                                             </span>
                                         </td>
-                                        <td class="text-center">
-                                            <button type="button"
-                                                    class="btn btn-primary btn-sm"
-                                                    data-view-url="{{ route('student.show', $student->id) }}">
-                                                View
-                                            </button>
-                                            <a href="{{route('student.edit',$student->id)}}" class="btn btn-warning btn-sm">
-                                                Edit
-                                            </a>
-                                            <a href="{{route('student.delete',$student->id)}}" type="button"
-                                               data-delete="grade" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </a>
+                                        <td class="text-center align-middle py-2">
+                                            <div class="btn-group" role="group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-view-url="{{ route('student.show', $student->id) }}">
+                                                    View
+                                                </button>
+                                                <a href="{{route('student.edit',$student->id)}}"
+                                                   class="btn btn-warning btn-sm">
+                                                    Edit
+                                                </a>
+                                                <a href="{{route('student.delete',$student->id)}}" type="button"
+                                                   data-delete="grade" class="btn btn-danger btn-sm">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

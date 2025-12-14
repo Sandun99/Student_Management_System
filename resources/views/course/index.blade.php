@@ -92,19 +92,22 @@
                                                 {{ $subject->name }}
                                             @endforeach
                                         </td>
-                                        <td class="text-center align-middle" style="min-width: 180px;">
-                                            <button type="button"
-                                                    class="btn btn-primary btn-sm"
-                                                    data-view-url="{{ route('course.show', $course->id) }}">
-                                                View
-                                            </button>
-                                            <a href="{{route('course.edit',$course->id)}}" class="btn btn-warning btn-sm">
-                                                Edit
-                                            </a>
-                                            <a href="{{route('course.delete',$course->id)}}" type="button"
-                                               data-delete="grade" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </a>
+                                        <td class="text-center align-middle py-2">
+                                            <div class="btn-group" role="group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm"
+                                                        data-view-url="{{ route('course.show', $course->id) }}">
+                                                    View
+                                                </button>
+                                                <a href="{{route('course.edit',$course->id)}}"
+                                                   class="btn btn-warning btn-sm">
+                                                    Edit
+                                                </a>
+                                                <a href="{{route('course.delete',$course->id)}}" type="button"
+                                                   data-delete="grade" class="btn btn-danger btn-sm">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

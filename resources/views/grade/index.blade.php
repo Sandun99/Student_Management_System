@@ -76,9 +76,9 @@
                         <tbody id="searchableTable">
                         @foreach($grades as $grade)
                             <tr data-id="{{ $grade->id }}">
-                                <td><strong>{{ $grade->code }}</strong></td>
+                                <td>{{ $grade->code }}</td>
                                 <td>
-                                    <strong>{{ $grade->full_name }}</strong>
+                                    {{ $grade->full_name }}
                                 </td>
                                 <td class='text-center'>
                                     <a href="{{route('grade.edit',$grade->id)}}" class="btn btn-warning btn-sm">
