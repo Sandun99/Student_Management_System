@@ -89,7 +89,7 @@
                                         <td>{{ $course->duration }}</td>
                                         <td>
                                             @foreach($course->subjects as $subject)
-                                                {{ $subject->name }}
+                                                {{ $subject->name }} ,
                                             @endforeach
                                         </td>
                                         <td class="text-center align-middle py-2">
