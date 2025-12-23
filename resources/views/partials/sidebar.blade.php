@@ -43,12 +43,12 @@
                                 <p>All Teachers</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('teacher.teacher.create') }}" class="nav-link {{ request()->routeIs('teacher.teacher.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Add Teacher</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('teacher.teacher.create') }}" class="nav-link {{ request()->routeIs('teacher.teacher.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Add Teacher</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -65,12 +65,12 @@
                                 <p>All Students</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('student.create') }}" class="nav-link {{ request()->routeIs('student.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Add Student</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('student.create') }}" class="nav-link {{ request()->routeIs('student.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Add Student</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -87,12 +87,12 @@
                                 <p>All Courses</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('course.create') }}" class="nav-link {{ request()->routeIs('course.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Create Course</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('course.create') }}" class="nav-link {{ request()->routeIs('course.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Create Course</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -109,12 +109,12 @@
                                 <p>All Subjects</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('subject.create') }}" class="nav-link {{ request()->routeIs('subject.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Create Subject</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('subject.create') }}" class="nav-link {{ request()->routeIs('subject.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Create Subject</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -131,12 +131,12 @@
                                 <p>All Grades</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('grade.create') }}" class="nav-link {{ request()->routeIs('grade.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Create Grade</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('grade.create') }}" class="nav-link {{ request()->routeIs('grade.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Create Grade</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 
@@ -153,15 +153,14 @@
                                 <p>All Classes</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('class.create') }}" class="nav-link {{ request()->routeIs('class.create') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-circle-fill fs-7"></i>
-                                <p>Create Class</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('class.create') }}" class="nav-link {{ request()->routeIs('class.create') ? 'active' : '' }}">--}}
+{{--                                <i class="nav-icon bi bi-circle-fill fs-7"></i>--}}
+{{--                                <p>Create Class</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
-
             </ul>
         </nav>
     </div>
